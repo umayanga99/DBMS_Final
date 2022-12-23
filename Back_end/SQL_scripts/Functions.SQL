@@ -25,7 +25,7 @@ Delimer $$
 CREATE FUNCTION Sign_authentication(
 	email varchar(225),
     pass varchar(225),
-    naem varchar(225),
+    name varchar(225),
     type varchar(15),
     ID int,
     roll varchar(225)) RETURNS tinyint(1)
@@ -48,6 +48,25 @@ CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
     DETERMINISTIC
 BEGIN
 RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
+END
+$$
+
+Delimiter $$
+CREATE FUNCTION `Is_Manger`(
+	email varchar(225),
+    password varchar(20)) RETURNS int
+    DETERMINISTIC
+BEGIN
+	declare roll varchar(225);
+    declare flag integer;
+    select l.roll into roll from logindetail l where l.email = email  and l.password = password;
+    
+	if roll = 'main-manager' then set flag = 0;
+    elseif roll = 'stor-manager' then set flag = 1;
+    else set flag = 2;
+    end if;
+
+RETURN flag;
 END
 $$
 
