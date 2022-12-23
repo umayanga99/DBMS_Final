@@ -11,7 +11,7 @@ const newUser = function(file) {
 };
 
 newUser.addUser = (name, password, email, type, role, id) => {
-    mysql.query(`Sign_authentication (${email}, ${password}, ${name}, ${type}, ${id}, ${role})`, (err,res) => {
+    mysql.query(`SELECT Sign_authentication (${email}, ${password}, ${name}, ${type}, ${id}, ${role})`, (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

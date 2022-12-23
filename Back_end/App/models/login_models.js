@@ -7,7 +7,7 @@ const User = function(file) {
 };
 
 User.checkValidity = (userName, password) => {
-    mysql.query(`login_authentication(${userName},${password})`, (err,res) => {
+    mysql.query(`SELECT login_authentication(${userName},${password})`, (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
