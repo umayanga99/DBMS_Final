@@ -22,7 +22,7 @@ END
 $$
 
 Delimer $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `Sign_authentication`(
+CREATE FUNCTION `Sign_authentication`(
 	email varchar(225),
     pass varchar(225),
     naem varchar(225),
