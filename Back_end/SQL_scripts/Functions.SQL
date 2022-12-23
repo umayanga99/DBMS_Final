@@ -50,3 +50,36 @@ BEGIN
 RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
+
+Delimiter $$
+CREATE FUNCTION `Is_Manger`(
+	email varchar(225),
+    password varchar(20)) RETURNS int
+    DETERMINISTIC
+BEGIN
+	declare roll varchar(225);
+    declare flag integer;
+    select l.roll into roll from logindetail l where l.email = email  and l.password = password;
+    
+	if roll = 'main-manager' then set flag = 0;
+    elseif roll = 'stor-manager' then set flag = 1;
+    else set flag = 2;
+    end if;
+
+RETURN flag;
+END
+$$
+
+Delimiter $$
+CREATE FUNCTION Total_Price(
+	email varchar(255)) RETURNS int
+    DETERMINISTIC
+BEGIN
+	declare tot int;
+    select sum(orders.quantity * price) into tot 
+    from orders left join product 
+    using (product_ID) 
+    where customer_email = email;
+RETURN tot;
+END
+$$
