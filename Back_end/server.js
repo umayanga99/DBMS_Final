@@ -24,9 +24,3 @@ app.get("/", (req, res) => {
 // require('./app/routes/cart_routers.js')(app);
 // require("./app/routes/product_routes.js")(app);
 require("./app/routes/login_routers.js")(app);
-
-// set port, listen for requests
-const PORT = process.env.PORT || 8081;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
