@@ -25,7 +25,7 @@ Delimer $$
 CREATE FUNCTION Sign_authentication(
 	email varchar(225),
     pass varchar(225),
-    naem varchar(225),
+    name varchar(225),
     type varchar(15),
     ID int,
     roll varchar(225)) RETURNS tinyint(1)
