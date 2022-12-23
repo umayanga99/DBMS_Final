@@ -50,3 +50,4 @@ BEGIN
 RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
+
