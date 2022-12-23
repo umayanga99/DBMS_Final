@@ -70,3 +70,16 @@ RETURN flag;
 END
 $$
 
+Delimiter $$
+CREATE FUNCTION Total_Price(
+	email varchar(255)) RETURNS int
+    DETERMINISTIC
+BEGIN
+	declare tot int;
+    select sum(orders.quantity * price) into tot 
+    from orders left join product 
+    using (product_ID) 
+    where customer_email = email;
+RETURN tot;
+END
+$$
