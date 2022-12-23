@@ -42,3 +42,11 @@ BEGIN
 	end if;
 END
 $$
+
+Deliimer $$
+CREATE FUNCTION `Delever_Date_Test`(prefered_dilivery_date date) RETURNS int
+    DETERMINISTIC
+BEGIN
+RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
+END
+$$
