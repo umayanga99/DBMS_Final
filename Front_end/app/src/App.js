@@ -11,7 +11,6 @@ import Cart from './Pages/Cart';
 import ProductDetails from "./Pages/ProductDetails";
 import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
-import MyAccount from "./Pages/MyAccount";
 
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
       <Header/>
       <Router>
         <Home path="home" />
-        <MyAccount path="my-account" />
         <SignIn path="/"/>
         <Register path="register"/>
         <ProductDetails path="product-details/:productId"/>

@@ -33,7 +33,7 @@ const SignIn = () => {
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
-                navigate('/', {replace: true})
+                navigate('home', {replace: true})
                 alert('Login successfully');
             })
         }
