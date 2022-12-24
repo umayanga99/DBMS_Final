@@ -1,12 +1,21 @@
-Delimer $$
-CREATE FUNCTION Add_to_cart(product_ID int, cart_ID int) RETURNS int
+-- Delimer $$
+-- CREATE FUNCTION Add_to_cart(product_ID int, cart_ID int) RETURNS int
+--     DETERMINISTIC
+-- BEGIN
+-- 	insert into cart_product values(product_ID, cart_ID);
+-- RETURN 1;
+-- END
+-- $$
+
+
+Deliimer $$
+CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
     DETERMINISTIC
 BEGIN
 RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
 
-Deliimer $$
 CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
     READS SQL DATA
 BEGIN
