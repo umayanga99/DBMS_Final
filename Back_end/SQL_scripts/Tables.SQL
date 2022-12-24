@@ -40,7 +40,7 @@ CREATE TABLE Product_Image(
     PRIMARY KEY (image_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );  
-
+ust
 create table Train(
     train_ID int auto_increment,
     route_ID int,
@@ -49,11 +49,21 @@ create table Train(
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
+CREATE TABLE Order_Delivery(
+    order_delivery_ID int auto_increment,
+    order_ID int,
+    delivery_ID int,
+    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY(delivery_ID) REFERENCES Delivery(delivery_number)
+);
+
 CREATE TABLE Store (
-    city varchar(15) primary key,
-    name varchar(15),
+    store_ID int auto_increment PRIMARY KEY,
+    city varchar(50),
+    store_name varchar(15),
     TP_no int(10),
-    address varchar(2000)
+    store_address varchar(2000),
+    FOREIGN KEY(city) REFERENCES City_Table(city_ID)
 );
 
 CREATE TABLE Destination(
@@ -97,6 +107,14 @@ CREATE TABLE Order (
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
 
+CREATE TABLE City_Table(
+    city_ID int auto_increment,
+    city varchar(50)
+
+);
+
+
+
 CREATE TABLE Truck (
     truck_ID int auto_increment,
     store_ID int,
@@ -105,13 +123,13 @@ CREATE TABLE Truck (
 );
 
 CREATE TABLE Delivery (
-    delivery_number int auto_increment PRIMARY KEY,
+    delivery_number int auto_increment,
+    order_id int,
     customer_email varchar(255),
     truck_ID int,
     deliver_date Date,
-    PRIMARY KEY (delivery_number,order_ID),
+    PRIMARY KEY (delivery_number),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
-    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
 
