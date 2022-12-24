@@ -18,4 +18,6 @@ Manager.checkValidity = (email, password) => {
     });
 };
 
+
+
 module.exports = Manager;
