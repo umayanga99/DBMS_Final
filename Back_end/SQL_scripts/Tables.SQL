@@ -52,6 +52,7 @@ create table Train(
     train_ID int auto_increment,
     route_ID int,
     capacity smallint,
+    lodad_Capacity int,
     PRIMARY KEY (train_ID),
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
