@@ -41,9 +41,9 @@ BEGIN
 	if (select login_authentication (email, pass) = 1) then
 		return true;
 	else
-		insert into logindetail values (email, pass, roll);
+		insert into logindetail values (email, pass, 'customer');
         
-        if roll = 'customer' then 
+        
 			insert into customer values (email, name, type, ID);
             insert into cart values (email, default);
 		END IF;
