@@ -1,4 +1,3 @@
-drop database project_Final;
 
 create database project_Final;
 
