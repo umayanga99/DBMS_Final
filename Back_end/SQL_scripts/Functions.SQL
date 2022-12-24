@@ -79,6 +79,7 @@ RETURN flag;
 END
 $$
 
+
 Delimiter $$
 CREATE FUNCTION Total_Price(
 	email varchar(255)) RETURNS int
