@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-commited by sul
-=======
 
 
 
@@ -11,8 +8,7 @@ Delimer $$
 CREATE FUNCTION Add_to_cart(product_ID int, cart_ID int) RETURNS int
     DETERMINISTIC
 BEGIN
-	insert into cart_product values(product_ID, cart_ID);
-RETURN 1;
+RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
 
@@ -40,7 +36,6 @@ CREATE FUNCTION Sign_authentication(
     roll varchar(225)) RETURNS tinyint(1)
     DETERMINISTIC
 BEGIN
-	declare exist tinyint(1);
 	if (select login_authentication (email, pass) = 1) then
 		return true;
 	else
@@ -55,16 +50,10 @@ BEGIN
 END
 $$
 
-Deliimer $$
-CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
-    DETERMINISTIC
-BEGIN
-RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
-END
-$$
+
 
 Delimiter $$
-CREATE FUNCTION `Is_Manger`(
+CREATE FUNCTION Check_Roll(
 	email varchar(225),
     password varchar(20)) RETURNS int
     DETERMINISTIC
@@ -98,4 +87,3 @@ END
 $$
 
 
->>>>>>> Umayanga

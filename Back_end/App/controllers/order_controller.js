@@ -1,6 +1,5 @@
 const orderModel=require("../models/order_models.js");
 
-
  exports.placeOrder=(req,res)=>{
     if(!req.body){
         res.status(400).send({
@@ -15,8 +14,6 @@ const orderModel=require("../models/order_models.js");
     let destination=req.body.destination;
     let diliveryDate=req.body.diliveryDate;
     
- 
-
  orderModel.placeOrder(cartID,productID,quantity,address,destination,diliveryDate,(err,data)=>{
     if(err){
         res.status(200).send({
@@ -35,7 +32,6 @@ const orderModel=require("../models/order_models.js");
     })
  } 
 
-
  exports.getTotal=(req,res)=>{
     let email=req.query.email;
     const data=req.query.date
@@ -43,9 +39,7 @@ const orderModel=require("../models/order_models.js");
     orderModel.getTotal(email,(err,data)=>{
         if(err){
             res.status(200).send({
-                message:"Fail",
-                
-                
+                message:"Fail",            
             })
         }else{
             res.status(200).send({

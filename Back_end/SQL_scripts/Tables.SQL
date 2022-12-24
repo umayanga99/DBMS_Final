@@ -11,37 +11,43 @@ CREATE TABLE Train_Route (
 
  create  table LoginDetail(
     email varchar(255),
-    password varchar(20),
-    roll varchar(255),
+    login_password varchar(50),
     primary key (email)
-
  );
 
 CREATE TABLE Telephone_No (
     email varchar(255),
     telephone_no decimal(10,0),
-    primary key (email,telephone_no),
+    primary key (telephone_no),
     foreign key(email) references LoginDetail(email)
 );
   
 CREATE TABLE Product (
     product_ID int auto_increment,
     price DECIMAL(7,2),
-    name VARCHAR(255),
-    weight DECIMAL(7,3),
-    description VARCHAR(4000),
-    unit_capacity varchar(255),
-    quantity varchar(255),
+    product_name VARCHAR(255),
+    product_weight DECIMAL(7,3),
+    product_description VARCHAR(4000),
+    unit_capacity int,
+    quantity int,
     PRIMARY KEY (product_ID)
 );
 
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
     product_ID int,
-    image BLOB,
+    product_image BLOB,
     PRIMARY KEY (image_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );  
+
+CREATE TABLE Order_Product(
+    order_product_ID int auto_increment primary key,
+1    order_ID int,
+    product_ID int ,
+    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY(product_ID) REFERENCES Product(product_ID)   
+);
 
 create table Train(
     train_ID int auto_increment,
@@ -51,24 +57,41 @@ create table Train(
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
+CREATE TABLE Order_Delivery(
+    order_delivery_ID int auto_increment,
+    order_ID int,
+    delivery_ID int,
+    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY(delivery_ID) REFERENCES Delivery(delivery_number)
+);
+
 CREATE TABLE Store (
-    city varchar(15) primary key,
-    name varchar(15),
+    store_ID int auto_increment PRIMARY KEY,
+    city varchar(50),
+    store_name varchar(15),
     TP_no int(10),
-    address varchar(2000)
+    store_address varchar(2000),
+    FOREIGN KEY(city) REFERENCES City_Table(city_ID)
+);
+
+CREATE TABLE Destination(
+    final_destination varchar(100),
+    nearest_store_ID int,
+    PRIMARY KEY (final_destination),
+    FOREIGN KEY (nearest_store_ID) REFERENCES Store(store_ID)
 );
 
 CREATE TABLE Customer (
     email varchar(255),
-    name varchar(255),
-    type varchar(15),
-    ID int(5) primary key,
+    customer_name varchar(255),
+    customer_type varchar(15),
+    customer_ID int(5) auto_increment,
     foreign key(email) references LoginDetail(email)
 );
 
 CREATE TABLE Truck_Route (
     route_ID int auto_increment,
-    route VARCHAR(255),
+    truck_route VARCHAR(255),
     route_duration int,
     route_details VARCHAR(2000),
     PRIMARY KEY(route_ID)
@@ -94,6 +117,14 @@ CREATE TABLE Orders (
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );
 
+CREATE TABLE City_Table(
+    city_ID int auto_increment,
+    city varchar(50)
+
+);
+
+
+
 CREATE TABLE Truck (
     truck_ID int auto_increment,
     city varchar(15),
@@ -103,13 +134,11 @@ CREATE TABLE Truck (
 
 CREATE TABLE Delivery (
     delivery_number int auto_increment,
-    order_id int,
     customer_email varchar(255),
     truck_ID int,
     deliver_date Date,
-    PRIMARY KEY (delivery_number,order_ID),
+    PRIMARY KEY (delivery_number),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
-    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
 
@@ -124,16 +153,17 @@ CREATE TABLE Transport(
 );
 
 CREATE TABLE Cart(
-    email VARCHAR(225),
+    customer_ID int,
     cart_ID int auto_increment,
-    PRIMARY KEY (cart_ID,email),
-    FOREIGN KEY (email) REFERENCES Customer(email)
+    PRIMARY KEY (cart_ID),
+    FOREIGN KEY (customer_ID) REFERENCES Customer(customer_ID)
 );
 
 CREATE TABLE Cart_product (
+    cart_product_ID int auto_increment,
     product_ID int,
     cart_ID int,
-    PRIMARY KEY(product_ID,cart_ID),
+    PRIMARY KEY(cart_product_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID),
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID)
 );
