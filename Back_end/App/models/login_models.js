@@ -2,12 +2,12 @@ const mysql = require("./db.js");
 
 // constructor
 const User = function(file) {
-    this.userName = file.userName;
+    this.email = file.email;
     this.password = file.password;
 };
 
-User.checkValidity = (userName, password) => {
-    mysql.query(`SELECT login_authentication(${userName},${password})`, (err,res) => {
+User.checkValidity = (email, password) => {
+    mysql.query(`SELECT login_authentication(${email},${password})`, (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
