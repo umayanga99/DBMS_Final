@@ -35,9 +35,12 @@ BEGIN
 	if (select login_authentication (email, pass) = 1) then
 		return true;
 	else
-		insert into logindetails values (email, pass, roll);
-        insert into customer values (email, name, type, ID);
-        insert into cart values (email, default);
+		insert into logindetail values (email, pass, roll);
+        
+        if roll = 'customer' then 
+			insert into customer values (email, name, type, ID);
+            insert into cart values (email, default);
+		END IF;
         return false;
 	end if;
 END
@@ -83,3 +86,5 @@ BEGIN
 RETURN tot;
 END
 $$
+
+
