@@ -1,4 +1,4 @@
-const ProductModel = require("../models/product_models");
+const ManagerModel = require("../models/manager_models");
 
 // Check for validity of username and password
 // exports.checkValidity = (req, res) => {

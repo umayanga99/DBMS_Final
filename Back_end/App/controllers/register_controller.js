@@ -1,4 +1,4 @@
-const LoginModel = require("../models/register_models");
+const RegisterModel = require("../models/register_models");
 
 exports.addUser = (req, res) => {
     if(!req.body) {
@@ -14,7 +14,7 @@ exports.addUser = (req, res) => {
     const role = req.body.role;
     const id = req.body.id;
 
-    LoginModel.addUser(name, password, email, type, role, id, (err, data) => {
+    RegisterModel.addUser(name, password, email, type, role, id, (err, data) => {
         if(err) {
             res.status(500).send({
                 message: err.message || "Something went wrong"
