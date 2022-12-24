@@ -10,6 +10,7 @@ exports.checkValidity = (req, res) => {
 
     const email = req.body.email;
     const password = req.body.password;
+    console.log(userName,password);
 
     LoginModel.checkValidity(email, password, (err, data) => {
         if(err) {
@@ -19,7 +20,10 @@ exports.checkValidity = (req, res) => {
         } else {
             res.status(200).send({
                 message: "Welcome"
+                
             });
+            
         }
+        console.log(res);
     })
 }
