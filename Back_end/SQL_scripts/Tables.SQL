@@ -78,7 +78,7 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type varchar(15),
     customer_Password varchar(255),
-    customer_TP int(10))
+    customer_TP int(10)
 );
 
 CREATE TABLE Truck_Route (
