@@ -6,15 +6,18 @@
 -- END
 -- $$
 
--- Deliimer $$
+Deliimer $$
 
-CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
-    READS SQL DATA
+CREATE FUNCTION login_authentication(
+	email varchar(255),
+    pass varchar(225)) 
+RETURNS tinyint(1)
+DETERMINISTIC
 BEGIN
 	declare flag boolean default false;
     
-    if ((select count(*) from logindetail l where l.email = email and 
-    l.password = pass) = 1) then
+    if ((select count(*) from customer c where c.email = email and 
+    c.password = pass) = 1) then
     set flag = true;
     end if;
 RETURN flag;
