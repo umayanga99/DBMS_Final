@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-// require('./app/routers/cart_routers.js')(app);
-// require("./app/routers/product_routes.js")(app);
+// require('./app/routes/cart_routers.js')(app);
+// require("./app/routes/product_routes.js")(app);
 require("./app/routers/login_routers.js")(app);
 // require("./app/routers/manager_routers.js")(app);
 // require("./app/routers/orders_routers.js")(app);

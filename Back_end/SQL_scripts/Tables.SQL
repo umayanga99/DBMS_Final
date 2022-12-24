@@ -4,7 +4,7 @@ use project;
 
 CREATE TABLE Train_Route (
     route_ID int auto_increment,
-    destination varchar(30),
+    destination varchar(50),
     depart_time Time,
     PRIMARY KEY (route_ID)
  );
@@ -49,11 +49,21 @@ create table Train(
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
+CREATE TABLE Order_Delivery(
+    order_delivery_ID int auto_increment,
+    order_ID int,
+    delivery_ID int,
+    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY(delivery_ID) REFERENCES Delivery(delivery_number)
+);
+
 CREATE TABLE Store (
-    city varchar(15) primary key,
-    name varchar(15),
+    store_ID int auto_increment PRIMARY KEY,
+    city varchar(50),
+    store_name varchar(15),
     TP_no int(10),
-    address varchar(2000)
+    store_address varchar(2000),
+    FOREIGN KEY(city) REFERENCES City_Table(city_ID)
 );
 
 CREATE TABLE Destination(
@@ -64,11 +74,11 @@ CREATE TABLE Destination(
 );
 
 CREATE TABLE Customer (
-    email varchar(255),
+    email varchar(255) PRIMARY KEY,
     customer_name varchar(255),
     customer_type varchar(15),
-    customer_ID int(5) auto_increment,
-    foreign key(email) references LoginDetail(email)
+    customer_Password varchar(255),
+    customer_TP int(10)
 );
 
 CREATE TABLE Truck_Route (
@@ -79,9 +89,8 @@ CREATE TABLE Truck_Route (
     PRIMARY KEY(route_ID)
 );
 
-CREATE TABLE Orders (
+CREATE TABLE Order (
     order_ID int auto_increment,
-    product_ID int,
     address varchar(255),
     customer_email varchar(255),
     quantity INT,
@@ -95,15 +104,22 @@ CREATE TABLE Orders (
     destination varchar(255),
     PRIMARY KEY (order_ID),
     FOREIGN KEY (route_ID) REFERENCES Truck_Route(route_ID),
-    FOREIGN KEY (customer_email) REFERENCES Customer(email),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
+    FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
+
+CREATE TABLE City_Table(
+    city_ID int auto_increment,
+    city varchar(50)
+
+);
+
+
 
 CREATE TABLE Truck (
     truck_ID int auto_increment,
-    city varchar(15),
+    store_ID int,
     PRIMARY KEY (truck_ID),
-    FOREIGN KEY (city) REFERENCES Store(city)
+    FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
 );
 
 CREATE TABLE Delivery (
@@ -112,27 +128,30 @@ CREATE TABLE Delivery (
     customer_email varchar(255),
     truck_ID int,
     deliver_date Date,
-    PRIMARY KEY (delivery_number,order_ID),
+    PRIMARY KEY (delivery_number),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
-    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
 
 CREATE TABLE Transport(
-    transport_ID int auto_increment,
+    transport_ID int auto_increment PRIMARY KEY,
     train_ID int,
-    order_ID int,
     transport_Date date,
-    PRIMARY KEY (transport_ID,order_ID),
-    FOREIGN KEY (train_ID) REFERENCES Train(train_ID),
-    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID)
+    FOREIGN KEY (train_ID) REFERENCES Train(train_ID)
 );
 
+CREATE TABLE Order_Transport(
+    order_transport_ID int auto_increment PRIMARY key,
+    transport_ID int,
+    order_ID int,
+    FOREIGN KEY (transport_ID) REFERENCES Transport(transport_ID),
+    FOREIGN KEY (order_ID) REFERENCES Order(order_ID)
+)
 CREATE TABLE Cart(
-    customer_ID int,
+    Email int,
     cart_ID int auto_increment,
     PRIMARY KEY (cart_ID),
-    FOREIGN KEY (customer_ID) REFERENCES Customer(customer_ID)
+    FOREIGN KEY (Email) REFERENCES Customer(Email)
 );
 
 CREATE TABLE Cart_product (
@@ -146,24 +165,24 @@ CREATE TABLE Cart_product (
 
 CREATE TABLE Driver (
     email VARCHAR(255),
-    name VARCHAR(100),
-    city varchar(15),
+    name VARCHAR(255),
+    store_ID int,
     NIC VARCHAR(12),
     total_duration int,
     TP_no int(10),
     PRIMARY KEY (NIC),
-    FOREIGN KEY (city) REFERENCES Store(city)
+    FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
 );
 
 CREATE TABLE Assistant (
     NIC varchar(12),
-    name varchar(20),
-    city varchar(15),
+    name varchar(225),
+    store_ID int,
     total_duration int,
     email varchar(255),
     TP_no int(10),
     PRIMARY KEY (NIC),
-    FOREIGN KEY (city) REFERENCES Store(city)
+    FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
 );
   
 CREATE TABLE Driver_Assistant (

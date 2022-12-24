@@ -2,21 +2,12 @@
 -- CREATE FUNCTION Add_to_cart(product_ID int, cart_ID int) RETURNS int
 --     DETERMINISTIC
 -- BEGIN
--- 	insert into cart_product values(product_ID, cart_ID);
--- RETURN 1;
+-- RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 -- END
 -- $$
 
+-- Deliimer $$
 
-Deliimer $$
-CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
-    DETERMINISTIC
-BEGIN
-RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
-END
-$$
-
-Deliimer $$
 CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
     READS SQL DATA
 BEGIN
@@ -43,9 +34,9 @@ BEGIN
 	if (select login_authentication (email, pass) = 1) then
 		return true;
 	else
-		insert into logindetail values (email, pass, roll);
+		insert into logindetail values (email, pass, 'customer');
         
-        if roll = 'customer' then 
+        
 			insert into customer values (email, name, type, ID);
             insert into cart values (email, default);
 		END IF;
@@ -75,6 +66,7 @@ RETURN flag;
 END
 $$
 
+
 Delimiter $$
 CREATE FUNCTION Total_Price(
 	email varchar(255)) RETURNS int
@@ -90,3 +82,40 @@ END
 $$
 
 
+
+CREATE FUNCTION `payment_proceed` (
+	product_ID int,
+    cart_ID int,
+    email VARCHAR(225),
+	cart_ID int ,
+    order_ID int ,
+    product_ID int,
+    address varchar(255),
+    customer_email varchar(255),
+    quantity INT,
+    date date,
+    time Time,
+    route_ID int,
+    nearest_Branch varchar(20),
+    tot_capacity int,
+    state bool,
+    prefered_dilivery_date date,
+    destination varchar(255)
+        )
+BEGIN
+    Declare id int;
+    
+    SELECT ID into id 
+    FROM `customer` 
+    WHERE email = customer_email;
+    INSERT INTO `order` (order_ID,product_ID,address,customer_ID,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_dilivery_date,destination) 
+    VALUES (order_ID,product_ID,address,id,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_dilivery_date,destination);
+
+    INSERT INTO 'cart' (email,cart_ID)
+    VALUES (email,cart_ID);
+
+    DELETE from 'cart_product' where cart_ID = cart_ID;
+
+
+
+END
