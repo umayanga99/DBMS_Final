@@ -1,3 +1,9 @@
+
+
+
+
+
+
 Delimer $$
 CREATE FUNCTION Add_to_cart(product_ID int, cart_ID int) RETURNS int
     DETERMINISTIC
