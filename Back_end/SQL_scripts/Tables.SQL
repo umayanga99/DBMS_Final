@@ -1,6 +1,8 @@
-create database project;
+drop database project_Final;
 
-use project;
+create database project_Final;
+
+use project_Final;
 
 CREATE TABLE Train_Route (
     route_ID int auto_increment,
@@ -14,6 +16,11 @@ CREATE TABLE Train_Route (
     login_password varchar(50),
     primary key (email)
  );
+
+CREATE TABLE City_Table(
+    city_ID int auto_increment primary key,
+    city varchar(50)
+);
 
 CREATE TABLE Telephone_No (
     email varchar(255),
@@ -40,15 +47,7 @@ CREATE TABLE Product_Image(
     PRIMARY KEY (image_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );  
-
-CREATE TABLE Order_Product(
-    order_product_ID int auto_increment primary key,
-1    order_ID int,
-    product_ID int ,
-    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
-    FOREIGN KEY(product_ID) REFERENCES Product(product_ID)   
-);
-
+ust
 create table Train(
     train_ID int auto_increment,
     route_ID int,
@@ -57,17 +56,9 @@ create table Train(
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
-CREATE TABLE Order_Delivery(
-    order_delivery_ID int auto_increment,
-    order_ID int,
-    delivery_ID int,
-    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
-    FOREIGN KEY(delivery_ID) REFERENCES Delivery(delivery_number)
-);
-
 CREATE TABLE Store (
     store_ID int auto_increment PRIMARY KEY,
-    city varchar(50),
+    city int,
     store_name varchar(15),
     TP_no int(10),
     store_address varchar(2000),
@@ -97,7 +88,7 @@ CREATE TABLE Truck_Route (
     PRIMARY KEY(route_ID)
 );
 
-CREATE TABLE Order (
+CREATE TABLE Orders (
     order_ID int auto_increment,
     address varchar(255),
     customer_email varchar(255),
@@ -114,14 +105,6 @@ CREATE TABLE Order (
     FOREIGN KEY (route_ID) REFERENCES Truck_Route(route_ID),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
-
-CREATE TABLE City_Table(
-    city_ID int auto_increment,
-    city varchar(50)
-
-);
-
-
 
 CREATE TABLE Truck (
     truck_ID int auto_increment,
@@ -140,6 +123,14 @@ CREATE TABLE Delivery (
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
 
+CREATE TABLE Order_Delivery(
+    order_delivery_ID int auto_increment primary key,
+    order_ID int,
+    delivery_ID int,
+    FOREIGN KEY(order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY(delivery_ID) REFERENCES Delivery(delivery_number)
+);
+
 CREATE TABLE Transport(
     transport_ID int auto_increment PRIMARY KEY,
     train_ID int,
@@ -152,10 +143,11 @@ CREATE TABLE Order_Transport(
     transport_ID int,
     order_ID int,
     FOREIGN KEY (transport_ID) REFERENCES Transport(transport_ID),
-    FOREIGN KEY (order_ID) REFERENCES Order(order_ID)
-)
+    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID)
+);
+
 CREATE TABLE Cart(
-    Email int,
+    Email varchar(255),
     cart_ID int auto_increment,
     PRIMARY KEY (cart_ID),
     FOREIGN KEY (Email) REFERENCES Customer(Email)
