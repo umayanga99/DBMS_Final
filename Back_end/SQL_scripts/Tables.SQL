@@ -40,7 +40,7 @@ CREATE TABLE Product_Image(
     PRIMARY KEY (image_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );  
-ust
+
 create table Train(
     train_ID int auto_increment,
     route_ID int,
