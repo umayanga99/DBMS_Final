@@ -8,15 +8,16 @@ const orderModel=require("../models/order_models.js");
         });
     }
 
-    const cartID=req.body.cartID;
-    const productID=req.body.productID;
-    const quantity=req.body.quantity;
-    const address=req.body.address;
-    const destination=req.body.destination;
-    const diliveryDate=req.body.diliveryDate;
+    let cartID=req.body.cartID;
+    let productID=req.body.productID;
+    let quantity=req.body.quantity;
+    let address=req.body.address;
+    let destination=req.body.destination;
+    let diliveryDate=req.body.diliveryDate;
+    
  
 
- orderModel.placeOrder(cartID,productID,quantity,address,destination,diliveryDate,(err,date)=>{
+ orderModel.placeOrder(cartID,productID,quantity,address,destination,diliveryDate,(err,data)=>{
     if(err){
         res.status(200).send({
             message:"error occured",
@@ -33,3 +34,23 @@ const orderModel=require("../models/order_models.js");
         }
     })
  } 
+
+
+ exports.getTotal=(req,res)=>{
+    let email=req.query.email;
+    const data=req.query.date
+
+    orderModel.getTotal(email,(err,data)=>{
+        if(err){
+            res.status(200).send({
+                message:"Fail",
+                
+                
+            })
+        }else{
+            res.status(200).send({
+                message:"Successfull"
+            });
+        }
+    });
+ }

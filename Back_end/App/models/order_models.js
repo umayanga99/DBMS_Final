@@ -17,4 +17,19 @@
         }
 
     });
- }
+};
+
+ Order.getTotal=(email,result)=>{
+
+    mysql.query("CALL Total_Price(${email})",(err,res)=>{
+        if(err){
+            console.log("error ",err);
+            result(err,null);
+            return;
+        }else{
+            result(null,res);
+        }
+        console.log("added : ",res);
+    });
+
+ };

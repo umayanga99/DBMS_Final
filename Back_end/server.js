@@ -22,9 +22,9 @@ app.get("/", (req, res) => {
 });
 
 require('./app/routers/cart_routers.js')(app);
-require("./app/routers/product_routes.js")(app);
+// require("./app/routers/product_routes.js")(app);
 require("./app/routers/login_routers.js")(app);
-
+require("./app/routers/orders_routers")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {

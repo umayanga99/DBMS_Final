@@ -1,5 +1,5 @@
 module.exports = app => {
-    const CartController = require("../controller/cart_controller");
+    const CartController = require("../controllers/cart_controller");
     
     var cartRouter = require("express").Router();
     // localhost:8080/api/cart/get:isdafnokans
