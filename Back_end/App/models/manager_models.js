@@ -1,7 +1,7 @@
-const truck = require("./db.js");
+const manager = require("./db.js");
 
 // constructor
-const truck = function(file) {
+const Manager = function(file) {
     // this.email = file.email;
     // this.password = file.password;
 };
@@ -18,4 +18,4 @@ const truck = function(file) {
 //     });
 // };
 
-module.exports = Truck;
+module.exports = Manager;
