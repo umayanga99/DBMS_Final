@@ -8,11 +8,11 @@ exports.checkValidity = (req, res) => {
         });
     }
 
-    const userName = req.body.userName;
+    const email = req.body.email;
     const password = req.body.password;
     console.log(userName,password);
 
-    LoginModel.checkValidity(userName, password, (err, data) => {
+    LoginModel.checkValidity(email, password, (err, data) => {
         if(err) {
             res.status(500).send({
                 message: err.message || "Something went wrong"
