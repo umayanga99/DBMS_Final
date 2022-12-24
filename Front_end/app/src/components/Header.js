@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { ThemeContext } from '../GlobalComponents/ThemeProvider';
 import { BiSun, BiMoon, BiCart} from 'react-icons/bi';
-import { VscAccount } from 'react-icons/vsc';
+// import { VscAccount } from 'react-icons/vsc';
 import { Link } from "@reach/router";
 import { useCart } from "react-use-cart";
 
@@ -28,7 +28,7 @@ const Header = () => {
                 style={{ width: '100%', position: 'fixed', zIndex: 100}}
         >
         <Container>
-          <Link to="/">
+          <Link to="home">
             <Navbar.Brand className={darkMode? 'text-dark-primary': 'text-light-primary'}>
                 <b>Simple-ecart</b>
             </Navbar.Brand>
@@ -36,7 +36,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Link to="sign-in" className={`nav-link ${darkMode? 'text-dark-primary' : 'text-light-primary'}`}>
+              <Link to="/" className={`nav-link ${darkMode? 'text-dark-primary' : 'text-light-primary'}`}>
                 Sign in
               </Link>
               <Nav.Link 
@@ -53,10 +53,10 @@ const Header = () => {
                 {!isEmpty && <span style={{ position: 'relative', left: '-21px', top: '-18px'}}>{totalItems}</span>}
                 <span style={{ marginLeft: !isEmpty ? '-13px': 0}}>&nbsp;Cart</span>
               </Link>
-              <Link to="my-account" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}>
+              {/* <Link to="my-account" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}>
                   <VscAccount size="1.8rem"/>
                   &nbsp;My Account
-              </Link>
+              </Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

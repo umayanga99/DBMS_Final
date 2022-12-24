@@ -20,9 +20,9 @@ function App() {
     <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
       <Header/>
       <Router>
-        <Home path="/" />
+        <Home path="home" />
         <MyAccount path="my-account" />
-        <SignIn path="sign-in"/>
+        <SignIn path="/"/>
         <Register path="register"/>
         <ProductDetails path="product-details/:productId"/>
         <Cart path="/cart" />
