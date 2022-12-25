@@ -1,4 +1,4 @@
-drop database project_Final;
+drop database if exist project_Final;
 
 create database project_Final;
 
