@@ -6,5 +6,5 @@ var productRouter = require("express").Router();
 
 // registerRouter.post("/", ProductController.addUser);
 
-app.use('api/product', productRouter);
+app.use('/api/product', productRouter);
 }
