@@ -7,13 +7,18 @@
 -- END
 -- $$
 
--- Deliimer $$
 
-CREATE FUNCTION login_authentication(
-	email varchar(255),
-    pass varchar(225)) 
-RETURNS tinyint(1)
-DETERMINISTIC
+Deliimer $$
+CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
+    DETERMINISTIC
+BEGIN
+RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
+END
+$$
+
+>>>>>>>>> Temporary merge branch 2
+CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
+    READS SQL DATA
 BEGIN
 	declare flag boolean default false;
     
