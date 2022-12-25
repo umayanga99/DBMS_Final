@@ -5,5 +5,5 @@ module.exports = app => {
     
     registerRouter.post("/", RegisterController.addUser);
     
-    app.use('api/register', registerRouter);
+    app.use('/api/register', registerRouter);
     }

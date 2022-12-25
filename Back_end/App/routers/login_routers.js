@@ -5,5 +5,5 @@ module.exports = app => {
     
     loginRouter.post("/", LoginController.checkValidity);
     
-    app.use('api/login', loginRouter);
+    app.use('/api/login', loginRouter);
     }
