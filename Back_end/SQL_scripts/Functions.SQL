@@ -16,7 +16,7 @@ RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
 
-
+Deliimer $$
 CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
     READS SQL DATA
 BEGIN
