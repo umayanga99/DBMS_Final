@@ -1,3 +1,4 @@
+drop database project_Final;
 
 create database project_Final;
 
@@ -35,7 +36,6 @@ CREATE TABLE Product (
     product_weight DECIMAL(7,3),
     product_description VARCHAR(4000),
     unit_capacity int,
-    quantity int,
     PRIMARY KEY (product_ID)
 );
 
@@ -144,6 +144,14 @@ CREATE TABLE Order_Transport(
     order_ID int,
     FOREIGN KEY (transport_ID) REFERENCES Transport(transport_ID),
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID)
+);
+
+CREATE TABLE Order_Product (
+    order_product_id int auto_increment PRIMARY KEY,
+    order_ID int,
+    product_ID int,
+    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );
 
 CREATE TABLE Cart(
