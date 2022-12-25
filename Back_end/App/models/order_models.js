@@ -6,7 +6,7 @@
     
  };
 
- Order.checkValidity = (prefered_dilivery_date) => {
+ Order.validateDate = (prefered_dilivery_date) => {
     mysql.query(`SELECT validate_Day(${prefered_dilivery_date})`, (err,res) => {
         if(err){
             console.log("error: ", err);
