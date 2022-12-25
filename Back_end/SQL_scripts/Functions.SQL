@@ -17,7 +17,7 @@ BEGIN
 	declare flag boolean default false;
     
     if ((select count(*) from customer c where c.email = email and 
-    c.password = pass) = 1) then
+    c.customer_password = pass) = 1) then
     set flag = true;
     end if;
 RETURN flag;
