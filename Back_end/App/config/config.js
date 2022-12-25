@@ -2,5 +2,5 @@ module.exports={
     HOST: "localhost",
     USER:"root",
     PASSWORD:"UmayangaSQL",
-    DB:"DBMS_Final"
+    DB:"dbms_final"
 }

@@ -1,4 +1,8 @@
-drop database project_Final;
+<<<<<<<<< Temporary merge branch 1
+drop database if exists project_Final;
+=========
+--drop database project_Final;
+>>>>>>>>> Temporary merge branch 2
 
 create database project_Final;
 
