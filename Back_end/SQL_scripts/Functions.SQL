@@ -27,23 +27,19 @@ $$
 
 Delimer $$
 CREATE FUNCTION Sign_authentication(
-	email varchar(225),
-    pass varchar(225),
-    name varchar(225),
-    type varchar(15),
-    ID int,
-    roll varchar(225)) RETURNS tinyint(1)
-    DETERMINISTIC
+	email varchar(255),
+    pass varchar(255),
+    customer_name varchar(255),
+    customer_type varchar(15),
+    TP int(10)) 
+RETURNS tinyint(1)
+DETERMINISTIC
 BEGIN
 	if (select login_authentication (email, pass) = 1) then
 		return true;
 	else
-		insert into logindetail values (email, pass, 'customer');
-        
-        
-			insert into customer values (email, name, type, ID);
-            insert into cart values (email, default);
-		END IF;
+		insert into customer values (email, customer_name,  customer_type, pass, TP);
+		insert into cart values (email, default);
         return false;
 	end if;
 END
@@ -51,25 +47,33 @@ $$
 
 
 
-Delimiter $$
-CREATE FUNCTION Check_Roll(
-	email varchar(225),
-    password varchar(20)) RETURNS int
+-- Delimiter $$
+-- CREATE FUNCTION Check_Roll(
+-- 	email varchar(225),
+--     password varchar(20)) RETURNS int
+--     DETERMINISTIC
+-- BEGIN
+-- 	declare roll varchar(225);
+--     declare flag integer;
+--     select l.roll into roll from logindetail l where l.email = email  and l.password = password;
+    
+-- 	if roll = 'main-manager' then set flag = 0;
+--     elseif roll = 'stor-manager' then set flag = 1;
+--     else set flag = 2;
+--     end if;
+
+-- RETURN flag;
+-- END
+-- $$
+Delimer $$
+CREATE FUNCTION validate_Day(
+	prefered_dilivery_date date) 
+    RETURNS int
     DETERMINISTIC
 BEGIN
-	declare roll varchar(225);
-    declare flag integer;
-    select l.roll into roll from logindetail l where l.email = email  and l.password = password;
-    
-	if roll = 'main-manager' then set flag = 0;
-    elseif roll = 'stor-manager' then set flag = 1;
-    else set flag = 2;
-    end if;
-
-RETURN flag;
+RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
-
 
 Delimiter $$
 CREATE FUNCTION Total_Price(
@@ -84,8 +88,6 @@ BEGIN
 RETURN tot;
 END
 $$
-
-
 
 CREATE FUNCTION `payment_proceed` (
 	product_ID int,
