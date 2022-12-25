@@ -67,8 +67,8 @@ $$
 Delimer $$
 CREATE FUNCTION validate_Day(
 	prefered_dilivery_date date) 
-    RETURNS int
-    DETERMINISTIC
+RETURNS int
+DETERMINISTIC
 BEGIN
 RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
