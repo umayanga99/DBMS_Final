@@ -1,6 +1,4 @@
-
-drop database if exists project_Final;
-
+-- drop database project_Final;
 
 create database project_Final;
 
@@ -48,22 +46,23 @@ CREATE TABLE Product_Image(
     PRIMARY KEY (image_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );  
-ust
+
 create table Train(
     train_ID int auto_increment,
     route_ID int,
     capacity smallint,
-    loaded_Capacity int,
+    lodad_Capacity int,
     PRIMARY KEY (train_ID),
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
 CREATE TABLE Store (
-    store_ID int auto_increment PRIMARY KEY,
-    city int,
+    store_ID int auto_increment ,
+    city int(20),
     store_name varchar(15),
     TP_no int(10),
     store_address varchar(2000),
+    primary key (store_ID),
     FOREIGN KEY(city) REFERENCES City_Table(city_ID)
 );
 
@@ -75,11 +74,11 @@ CREATE TABLE Destination(
 );
 
 CREATE TABLE Customer (
-    email varchar(255) PRIMARY KEY,
+    email varchar(255) ,
     customer_name varchar(255),
     customer_type varchar(15),
     customer_Password varchar(255),
-    customer_TP int(10)
+    PRIMARY KEY (email)
 );
 
 CREATE TABLE Truck_Route (
@@ -157,7 +156,7 @@ CREATE TABLE Order_Product (
 );
 
 CREATE TABLE Cart(
-    Email varchar(255),
+    email varchar(255),
     cart_ID int auto_increment,
     PRIMARY KEY (cart_ID),
     FOREIGN KEY (Email) REFERENCES Customer(Email)
@@ -175,7 +174,7 @@ CREATE TABLE Cart_product (
 CREATE TABLE Driver (
     email VARCHAR(255),
     name VARCHAR(255),
-    store_ID int,
+    store_ID int(20),
     NIC VARCHAR(12),
     total_duration int,
     TP_no int(10),
@@ -186,8 +185,8 @@ CREATE TABLE Driver (
 CREATE TABLE Assistant (
     NIC varchar(12),
     name varchar(225),
-    store_ID int,
-    total_duration int,
+    store_ID int(20),
+    total_duration float,
     email varchar(255),
     TP_no int(10),
     PRIMARY KEY (NIC),
