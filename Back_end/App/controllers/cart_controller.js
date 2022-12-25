@@ -22,7 +22,7 @@ CartModel.addToCart(cartID, productID, (err, data) => {
         //     message: err.message || "Something went wrong."
         // })
         res.status(200).send({
-            message: "Successfull",
+            message: "Fail",
             data: {
                 productId: "dsfsdf"
             }
