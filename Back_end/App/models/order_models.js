@@ -1,23 +1,24 @@
- const mysql=require("./db.js");
+ const mysql = require("./db.js");
 
- const Order=function(obj){
-     this.title=obj.title;
-     this.prefered_dilivery_date=obj.prefered_dilivery_date;
+ const Order=function(file){
+     this.title = file.title;
+     this.prefered_dilivery_date = file.prefered_dilivery_date;
     
- }
+ };
 
 Order.validateDate = (prefered_dilivery_date) => {
-    mysql.query('select validate_Day (${prefered_dilivery_date})',(err,res)=>{
+    mysql.query('SELECT validate_Day (${prefered_dilivery_date})', (err,res) => {
         if(err){
-            console.log("error: ",err);
-            result(err,null);
+            console.log("error: ", err);
+            result(err, null);
             return;
-        }
-        else{
-            result(null,true);
+        } else {
+            result(null, res);
         }
     });
 };
+
+module.exports = User;
 
 //  Order.placeOrder= (customerID,cartID,qunatity,address,destination,diliveryDate,result)=>{
 //     mysql.query('select place_order(${customerID},${cartID},${quantity},${address},${destination},${diliveryDate})',(err,res)=>{
