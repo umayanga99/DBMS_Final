@@ -2,11 +2,12 @@
 -- CREATE FUNCTION Add_to_cart(product_ID int, cart_ID int) RETURNS int
 --     DETERMINISTIC
 -- BEGIN
--- RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
+-- 	insert into cart_product values(product_ID, cart_ID);
+-- RETURN 1;
 -- END
 -- $$
 
-Deliimer $$
+-- Deliimer $$
 
 CREATE FUNCTION login_authentication(
 	email varchar(255),
