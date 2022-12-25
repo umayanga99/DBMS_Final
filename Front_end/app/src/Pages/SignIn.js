@@ -19,7 +19,7 @@ const SignIn = () => {
         const password = form.password.value;
         if(username && password){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/login',{
+            fetch('https://localhost:8081/api/login',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
