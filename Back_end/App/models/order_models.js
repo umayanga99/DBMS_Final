@@ -19,7 +19,7 @@
     this.destination = file.destination;
  };
 
- Order.validateDate = (product_ID,cart_ID,email,order_ID,address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,destination) => {
+ Order.paymentProceed = (product_ID,cart_ID,email,order_ID,address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,destination) => {
     mysql.query(`SELECT payment_proceed(${product_ID}, ${cart_ID}, ${email}, ${order_ID}, ${address}, ${customer_email}, ${quantity}, ${date}, ${time}, ${route_ID}, ${nearest_Branch}, ${tot_capacity}, ${state}, ${destination})`, (err,res) => {
         if(err){
             console.log("error: ", err);

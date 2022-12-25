@@ -1,4 +1,4 @@
-const LoginModel = require("../models/login_models");
+const AuthModel = require("../models/auth_models");
 
 // Check for validity of username and password
 exports.checkValidity = (req, res) => {
@@ -12,7 +12,7 @@ exports.checkValidity = (req, res) => {
     const password = req.body.password;
     console.log(userName,password);
 
-    LoginModel.checkValidity(email, password, (err, data) => {
+    AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
             res.status(500).send({
                 message: err.message || "Something went wrong"
@@ -28,8 +28,6 @@ exports.checkValidity = (req, res) => {
     })
 }
 
-const RegisterModel = require("../models/register_models");
-
 exports.addUser = (req, res) => {
     if(!req.body) {
         res.status(400).send({
@@ -43,7 +41,7 @@ exports.addUser = (req, res) => {
     const type = req.body.type;
     const TP = req.body.TP;
 
-    RegisterModel.addUser(name, password, email, type, TP, (err, data) => {
+    AuthModel.addUser(name, password, email, type, TP, (err, data) => {
         if(err) {
             res.status(500).send({
                 message: err.message || "Something went wrong"
