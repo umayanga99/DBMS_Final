@@ -11,10 +11,9 @@ exports.addUser = (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
     const type = req.body.type;
-    const role = req.body.role;
-    const id = req.body.id;
+    const TP = req.body.TP;
 
-    RegisterModel.addUser(name, password, email, type, role, id, (err, data) => {
+    RegisterModel.addUser(name, password, email, type, TP, (err, data) => {
         if(err) {
             res.status(500).send({
                 message: err.message || "Something went wrong"

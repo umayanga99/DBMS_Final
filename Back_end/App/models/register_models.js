@@ -6,12 +6,11 @@ const newUser = function(file) {
     this.password = file.password;
     this.email = file.email;
     this.type = file.type;
-    this.role = file.role;
-    this.id = file.id;
+    this.TP = file.TP;
 };
 
-newUser.addUser = (name, password, email, type, role, id) => {
-    mysql.query(`SELECT Sign_authentication (${email}, ${password}, ${name}, ${type}, ${id}, ${role})`, (err,res) => {
+newUser.addUser = (email, password, name, type, TP) => {
+    mysql.query(`SELECT Sign_authentication (${email}, ${password}, ${name}, ${type}, ${TP})`, (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
