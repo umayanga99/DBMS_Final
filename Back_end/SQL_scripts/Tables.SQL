@@ -6,9 +6,9 @@ use project_Final;
 
 CREATE TABLE Product (
     product_ID int auto_increment,
-    price DECIMAL(7,2),
+    price real(7,2),
     product_name VARCHAR(255),
-    product_weight DECIMAL(7,3),
+    product_weight real(7,3),
     product_description VARCHAR(4000),
     unit_capacity int,
     PRIMARY KEY (product_ID)
@@ -59,20 +59,17 @@ CREATE TABLE Customer (
 
 CREATE TABLE Truck_Route (
     truck_route VARCHAR(225) PRIMARY KEY,
-    route_duration int,
-    nearest_store_id int,
-    FOREIGN Key (nearest_store_id) REFERENCES Store(store_ID)
+    route_duration int
 );
 
 CREATE TABLE Orders (
     order_ID int auto_increment,
-    address varchar(500),
+    customer_address varchar(500),
     customer_email varchar(255),
-    date date,
-    time Time,
+    ordered_date date,
+    ordered_time Time,
     truck_route varchar(225),
     tot_capacity int,
-    state boolean,
     prefered_dilivery_date date,
     PRIMARY KEY (order_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route),
@@ -80,16 +77,18 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE Truck (
-    truck_ID int auto_increment,
+    truck_ID varchar(30),
     store_ID int,
+    truck_route varchar(225),
     PRIMARY KEY (truck_ID),
-    FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
+    FOREIGN KEY (store_ID) REFERENCES Store(store_ID),
+    FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route)
 );
 
 CREATE TABLE Delivery (
-    delivery_number int auto_increment,
+    delivery_number int auto_increment, 
     customer_email varchar(255),
-    truck_ID int,
+    truck_ID varchar(30),
     PRIMARY KEY (delivery_number),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
@@ -144,7 +143,7 @@ CREATE TABLE Cart_product (
 
 CREATE TABLE Driver (
     email VARCHAR(255),
-    name VARCHAR(255),
+    driver_name VARCHAR(255),
     store_ID int,
     NIC VARCHAR(12),
     total_duration float(4,2),
@@ -155,10 +154,10 @@ CREATE TABLE Driver (
 
 CREATE TABLE Assistant (
     NIC varchar(12),
-    name varchar(225),
+    assistant_name varchar(225),
     store_ID int,
-    total_duration float(4,2),
     email varchar(255),
+	total_duration float(4,2),
     telephone_No int(10),
     PRIMARY KEY (NIC),
     FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
@@ -166,7 +165,7 @@ CREATE TABLE Assistant (
   
 CREATE TABLE Driver_Assistant (
     turn_ID int auto_increment ,
-    truck_ID int,
+    truck_ID varchar(30),
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
     duration float(4,2),
