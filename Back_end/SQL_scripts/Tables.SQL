@@ -4,13 +4,6 @@ create database project_Final;
 
 use project_Final;
 
-CREATE TABLE Train_Route (
-    route_ID int auto_increment,
-    destination varchar(50),
-    depart_time Time,
-    PRIMARY KEY (route_ID)
- );
-
 CREATE TABLE City_Table(
     city_ID int auto_increment primary key,
     city varchar(50)
@@ -34,15 +27,6 @@ CREATE TABLE Product_Image(
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );  
 
-create table Train(
-    train_ID int auto_increment,
-    route_ID int,
-    capacity int,
-    loaded_Capacity int,
-    PRIMARY KEY (train_ID),
-    FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
-);
-
 CREATE TABLE Store (
     store_ID int auto_increment,
     city int(20),
@@ -51,6 +35,23 @@ CREATE TABLE Store (
     store_address varchar(2000),
     primary key (store_ID),
     FOREIGN KEY(city) REFERENCES City_Table(city_ID)
+);
+
+CREATE TABLE Train_Route (
+    route_ID int auto_increment,
+    store_ID int,
+    depart_time Time,
+    PRIMARY KEY (route_ID),
+    FOREIGN key (store_ID) REFERENCES Store(store_ID)
+ );
+
+ create table Train(
+    train_ID int auto_increment,
+    route_ID int,
+    capacity int,
+    loaded_Capacity int,
+    PRIMARY KEY (train_ID),
+    FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
 CREATE TABLE Customer (

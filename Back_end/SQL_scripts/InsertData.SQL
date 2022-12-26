@@ -1,10 +1,10 @@
 use project;
 
-insert into Train_Route (destination,depart_time) values ('Colombo','00:00:00');
-insert into Train_Route (destination,depart_time) values ('Colombo','10:30:00');
-insert into Train_Route (destination,depart_time) values ('Galle','00:10:00');
-insert into Train_Route (destination,depart_time) values ('Trinco','13:00:00');
-insert into Train_Route (destination,depart_time) values ('Matara','23:34:00');
+insert into Train_Route values (default, 'Colombo','00:00:00');
+insert into Train_Route values (default, 'Colombo','10:30:00');
+insert into Train_Route values (default, 'Galle','00:10:00');
+insert into Train_Route values (default, 'Trinco','13:00:00');
+insert into Train_Route values (default, 'Matara','23:34:00');
 
 insert into LoginDetail values ("abc@gmail.com","abc");
 insert into LoginDetail values ("storemanager@gmail.com","storeman");
@@ -71,9 +71,6 @@ insert into Customer values ("abc@gmail.com","abc","wholeseler",12345);
 insert into Customer values ("sssd@gmail.com","sss","retailer",23556);
 insert into Customer values ("abwwwc@gmail.com","abww","customer",56734);
 
-insert into Truck_Route (truck_route,route_duration,route_details) values ("colomba wate",12,"colomba wate hamathanama");
-insert into Truck_Route (truck_route,route_duration,route_details) values ("galle wate",10,"galle wate hamathanama");
-insert into Truck_Route (truck_route,route_duration,route_details) values ("trinco wate",12,"trinco wate hamathanama");
 
 insert into orders (address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_delivery_date,destination) values (7,"university of moratuwa","abc@gmail.com",100,'2022-12-15','00:00:00',1,"Colombo",870,1,'2022-12-25',"Moratuwa");
 insert into orders (address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_delivery_date,destination) values (10,"university of galle","abwwwc@gmail.com",2,'2022-10-15','14:10:00',2,"Galle",70,2,'2022-11-01',"galle fort");
