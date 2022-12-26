@@ -1,4 +1,4 @@
--- drop database project_Final;
+drop database if exists project_Final;
 
 create database project_Final;
 
@@ -11,22 +11,9 @@ CREATE TABLE Train_Route (
     PRIMARY KEY (route_ID)
  );
 
- create  table LoginDetail(
-    email varchar(255),
-    login_password varchar(50),
-    primary key (email)
- );
-
 CREATE TABLE City_Table(
     city_ID int auto_increment primary key,
     city varchar(50)
-);
-
-CREATE TABLE Telephone_No (
-    email varchar(255),
-    telephone_no decimal(10,0),
-    primary key (telephone_no),
-    foreign key(email) references LoginDetail(email)
 );
   
 CREATE TABLE Product (
@@ -50,27 +37,20 @@ CREATE TABLE Product_Image(
 create table Train(
     train_ID int auto_increment,
     route_ID int,
-    capacity smallint,
-    lodad_Capacity int,
+    capacity int,
+    loaded_Capacity int,
     PRIMARY KEY (train_ID),
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
 
 CREATE TABLE Store (
-    store_ID int auto_increment ,
+    store_ID int auto_increment,
     city int(20),
-    store_name varchar(15),
+    store_name varchar(50),
     TP_no int(10),
     store_address varchar(2000),
     primary key (store_ID),
     FOREIGN KEY(city) REFERENCES City_Table(city_ID)
-);
-
-CREATE TABLE Destination(
-    final_destination varchar(100),
-    nearest_store_ID int,
-    PRIMARY KEY (final_destination),
-    FOREIGN KEY (nearest_store_ID) REFERENCES Store(store_ID)
 );
 
 CREATE TABLE Customer (
@@ -78,32 +58,29 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type varchar(15),
     customer_Password varchar(255),
+    Telephone_No int(10),
     PRIMARY KEY (email)
 );
 
 CREATE TABLE Truck_Route (
-    route_ID int auto_increment,
-    truck_route VARCHAR(255),
+    truck_route VARCHAR(225) PRIMARY KEY,
     route_duration int,
-    route_details VARCHAR(2000),
-    PRIMARY KEY(route_ID)
+    nearest_store_id int,
+    FOREIGN Key (nearest_store_id) REFERENCES Store(store_ID)
 );
 
 CREATE TABLE Orders (
     order_ID int auto_increment,
-    address varchar(255),
+    address varchar(500),
     customer_email varchar(255),
-    quantity INT,
     date date,
     time Time,
-    route_ID int,
-    nearest_Branch varchar(20),
+    truck_route varchar(225),
     tot_capacity int,
-    state bool,
+    state boolean,
     prefered_dilivery_date date,
-    destination varchar(255),
     PRIMARY KEY (order_ID),
-    FOREIGN KEY (route_ID) REFERENCES Truck_Route(route_ID),
+    FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
 );
 
@@ -118,7 +95,6 @@ CREATE TABLE Delivery (
     delivery_number int auto_increment,
     customer_email varchar(255),
     truck_ID int,
-    deliver_date Date,
     PRIMARY KEY (delivery_number),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
@@ -135,7 +111,6 @@ CREATE TABLE Order_Delivery(
 CREATE TABLE Transport(
     transport_ID int auto_increment PRIMARY KEY,
     train_ID int,
-    transport_Date date,
     FOREIGN KEY (train_ID) REFERENCES Train(train_ID)
 );
 
@@ -151,6 +126,7 @@ CREATE TABLE Order_Product (
     order_product_id int auto_increment PRIMARY KEY,
     order_ID int,
     product_ID int,
+    quantity int,
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );
@@ -174,10 +150,10 @@ CREATE TABLE Cart_product (
 CREATE TABLE Driver (
     email VARCHAR(255),
     name VARCHAR(255),
-    store_ID int(20),
+    store_ID int,
     NIC VARCHAR(12),
-    total_duration int,
-    TP_no int(10),
+    total_duration float(4,2),
+    Telephone_No int(10),
     PRIMARY KEY (NIC),
     FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
 );
@@ -185,10 +161,10 @@ CREATE TABLE Driver (
 CREATE TABLE Assistant (
     NIC varchar(12),
     name varchar(225),
-    store_ID int(20),
-    total_duration float,
+    store_ID int,
+    total_duration float(4,2),
     email varchar(255),
-    TP_no int(10),
+    telephone_No int(10),
     PRIMARY KEY (NIC),
     FOREIGN KEY (store_ID) REFERENCES Store(store_ID)
 );
@@ -198,7 +174,7 @@ CREATE TABLE Driver_Assistant (
     truck_ID int,
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
-    duration Time,
+    duration float(4,2),
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (driver_NIC) REFERENCES Driver(NIC),
