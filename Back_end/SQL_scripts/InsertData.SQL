@@ -13,11 +13,7 @@ insert into LoginDetail values ("sssd@gmail.com","sawec");
 insert into LoginDetail values ("abcassff@gmail.com","abcqw123");
 insert into LoginDetail values ("abwwwc@gmail.com","aqwec");
 
-insert into City_Table (city) values ('Colombo');
-insert into City_Table (city) values ('Ratnapura');
-insert into City_Table (city) values ('Galle');
-insert into City_Table (city) values ('Trinco');
-insert into City_Table (city) values ('Matara');
+
 
 insert into Telephone_No values ("abc@gmail.com",0760600600);
 insert into Telephone_No values ("storemanager@gmail.com",0712464545);

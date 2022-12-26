@@ -4,11 +4,6 @@ create database project_Final;
 
 use project_Final;
 
-CREATE TABLE City_Table(
-    city_ID int auto_increment primary key,
-    city varchar(50)
-);
-  
 CREATE TABLE Product (
     product_ID int auto_increment,
     price DECIMAL(7,2),
@@ -29,12 +24,11 @@ CREATE TABLE Product_Image(
 
 CREATE TABLE Store (
     store_ID int auto_increment,
-    city int(20),
+    city varchar(100),
     store_name varchar(50),
     TP_no int(10),
     store_address varchar(2000),
-    primary key (store_ID),
-    FOREIGN KEY(city) REFERENCES City_Table(city_ID)
+    primary key (store_ID)
 );
 
 CREATE TABLE Train_Route (
