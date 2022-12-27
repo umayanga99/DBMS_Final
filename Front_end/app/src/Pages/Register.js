@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-boo
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
+import CustomerType from '../components/CustomerType';
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
@@ -33,23 +34,9 @@ const Register = () => {
                         Create Account
                     </h1>
                     <Form onSubmit={handleSubmit}>
-                        <Row>
-                            <Form.Group className="mb-3 col-lg-6">
-                                <Form.Label>First name</Form.Label>
-                                <Form.Control name="firstName" type="text" placeholder="First name" required />
-                            </Form.Group>
-                            <Form.Group className="mb-3 col-lg-6">
-                                <Form.Label>Last name</Form.Label>
-                                <Form.Control name="lastName" type="text" placeholder="Last name" required />
-                            </Form.Group>
-                        </Row>
                         <Form.Group className="mb-3">
                             <Form.Label>Email</Form.Label>
                             <Form.Control name="email" type="email" placeholder="Email" required />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control name="username" type="text" placeholder="Username" minLength={3} required />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Mobile number</Form.Label>
@@ -65,6 +52,9 @@ const Register = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Password</Form.Label>
                             <Form.Control name="password" type="password" placeholder="Password" minLength={6} required />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <CustomerType />
                         </Form.Group>
                         <Button
                             type="submit"
@@ -82,7 +72,7 @@ const Register = () => {
                                     aria-hidden="true"
                                 />
                                 &nbsp;Loading...
-                            </> : 'Continue'
+                            </> : 'Create'
                         }
                         </Button>
                     </Form>

@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function RadialBox() {
+export default function PaymentMethod() {
   return (
     <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label">Payment Method</FormLabel>

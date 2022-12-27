@@ -5,28 +5,28 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function DropDown() {
-  const [age, setAge] = React.useState('');
+export default function CustomerType() {
+  const [type, setType] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setType(event.target.value);
   };
 
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Route</InputLabel>
+        <InputLabel id="demo-simple-select-label">Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
+          value={type}
           label="Age"
           onChange={handleChange}
           required
         >
-          <MenuItem value={10}>Colombo</MenuItem>
-          <MenuItem value={20}>Kurunegala</MenuItem>
-          <MenuItem value={30}>Moratuwa</MenuItem>
+          <MenuItem value={10}>Wholesalers</MenuItem>
+          <MenuItem value={20}>Retailers</MenuItem>
+          <MenuItem value={30}>End Customers</MenuItem>
         </Select>
       </FormControl>
     </Box>

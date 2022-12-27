@@ -4,8 +4,8 @@ import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
 import DatePick from '../components/Demo';
-import DropDown from '../components/DropDown';
-import RadialBox from '../components/RadialBox';
+import RouteSelecion from '../components/RouteSelecion';
+import PaymentMethod from '../components/PaymentMethod';
 import CardValidator from '../components/CardValidator';
 import Header from '../components/Header';
 
@@ -48,10 +48,10 @@ const Payment = () => {
                             <Form.Control name="Address" type="text" placeholder="Address" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <DropDown />
+                            <RouteSelecion />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <RadialBox />
+                            <PaymentMethod />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <CardValidator />
