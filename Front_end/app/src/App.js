@@ -11,19 +11,22 @@ import Cart from './Pages/Cart';
 import ProductDetails from "./Pages/ProductDetails";
 import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
+import Payment from "./Pages/Payment";
 
 
 function App() {
   const [theme] = useThemeHook();
   return (
     <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
-      <Header/>
+      {/* <Header/> */}
       <Router>
+        
         <Home path="home" />
         <SignIn path="/"/>
         <Register path="register"/>
         <ProductDetails path="product-details/:productId"/>
         <Cart path="/cart" />
+        <Payment path="/payment" />
       </Router>
     </main>
   );

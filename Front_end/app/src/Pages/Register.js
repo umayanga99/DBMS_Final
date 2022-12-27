@@ -54,7 +54,9 @@ const Register = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Mobile number</Form.Label>
                             <PhoneInput
-                                country={'in'}
+                                international={false}
+                                country={'lk'}
+                                onlyCountries={['lk']}
                                 value={number}
                                 onChange={phone=> setNumber(phone)}
                                 className="text-dark"
