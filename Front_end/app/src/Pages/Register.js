@@ -3,27 +3,32 @@ import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-boo
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
-import CustomerType from '../components/CustomerType';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(null);
     const [theme] = useThemeHook();
-    
+    const [type, setType] = React.useState('');
+
+    const handleChange = (event) => {
+        setType(event.target.value);
+    };
 
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
-        const username = form.username.value;
         const password = form.password.value;
-        const firstname = form.firstName.value;
-        const lastname = form.lastName.value;
         const email = form.email.value;
         
-        if(username && password && firstname && lastname && email && number){
+        if(password && email && number){
             setLoading(true);
             console.log('call api here');
-            console.log(username, password, firstname, lastname, email, number);
+            console.log(password, email, number);
         }
     }
     return (
@@ -54,7 +59,23 @@ const Register = () => {
                             <Form.Control name="password" type="password" placeholder="Password" minLength={6} required />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <CustomerType />
+                            <Box sx={{ minWidth: 120 }}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={type}
+                                    label="Age"
+                                    onChange={handleChange}
+                                    required
+                                    >
+                                    <MenuItem value={10}>Wholesalers</MenuItem>
+                                    <MenuItem value={20}>Retailers</MenuItem>
+                                    <MenuItem value={30}>End Customers</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Box>
                         </Form.Group>
                         <Button
                             type="submit"
