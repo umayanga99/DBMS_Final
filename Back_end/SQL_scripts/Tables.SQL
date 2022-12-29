@@ -11,23 +11,12 @@ CREATE TABLE Train_Route (
     PRIMARY KEY (route_ID)
  );
 
- create  table LoginDetail(
-    email varchar(255),
-    login_password varchar(50),
-    primary key (email)
- );
 
 CREATE TABLE City_Table(
     city_ID int auto_increment primary key,
     city varchar(50)
 );
 
-CREATE TABLE Telephone_No (
-    email varchar(255),
-    telephone_no decimal(10,0),
-    primary key (telephone_no),
-    foreign key(email) references LoginDetail(email)
-);
   
 CREATE TABLE Product (
     product_ID int auto_increment,
@@ -39,19 +28,12 @@ CREATE TABLE Product (
     PRIMARY KEY (product_ID)
 );
 
-CREATE TABLE Product_Image(
-    image_ID int auto_increment,
-    product_ID int,
-    product_image BLOB,
-    PRIMARY KEY (image_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
-);  
 
 create table Train(
     train_ID int auto_increment,
     route_ID int,
     capacity smallint,
-    lodad_Capacity int,
+    loaded_Capacity int,
     PRIMARY KEY (train_ID),
     FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
 );
@@ -78,6 +60,7 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type varchar(15),
     customer_Password varchar(255),
+    TP_no int ,
     PRIMARY KEY (email)
 );
 
@@ -91,16 +74,15 @@ CREATE TABLE Truck_Route (
 
 CREATE TABLE Orders (
     order_ID int auto_increment,
-    address varchar(255),
+    order_address varchar(255),
     customer_email varchar(255),
-    quantity INT,
-    date date,
-    time Time,
+    current_date date,
+    current_time Time,
     route_ID int,
     nearest_Branch varchar(20),
     tot_capacity int,
-    state bool,
-    prefered_dilivery_date date,
+    current_state bool,
+    prefered_delivery_date date,
     destination varchar(255),
     PRIMARY KEY (order_ID),
     FOREIGN KEY (route_ID) REFERENCES Truck_Route(route_ID),
@@ -151,6 +133,7 @@ CREATE TABLE Order_Product (
     order_product_id int auto_increment PRIMARY KEY,
     order_ID int,
     product_ID int,
+    quantity int ,
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );
@@ -173,7 +156,7 @@ CREATE TABLE Cart_product (
 
 CREATE TABLE Driver (
     email VARCHAR(255),
-    name VARCHAR(255),
+    driver_name VARCHAR(255),
     store_ID int(20),
     NIC VARCHAR(12),
     total_duration int,
@@ -184,7 +167,7 @@ CREATE TABLE Driver (
 
 CREATE TABLE Assistant (
     NIC varchar(12),
-    name varchar(225),
+    assistant_name varchar(225),
     store_ID int(20),
     total_duration float,
     email varchar(255),

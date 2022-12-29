@@ -6,12 +6,7 @@ insert into Train_Route (destination,depart_time) values ('Galle','00:10:00');
 insert into Train_Route (destination,depart_time) values ('Trinco','13:00:00');
 insert into Train_Route (destination,depart_time) values ('Matara','23:34:00');
 
-insert into LoginDetail values ("abc@gmail.com","abc");
-insert into LoginDetail values ("storemanager@gmail.com","storeman");
-insert into LoginDetail values ("mainmanager@gmail.com","mainman");
-insert into LoginDetail values ("sssd@gmail.com","sawec");
-insert into LoginDetail values ("abcassff@gmail.com","abcqw123");
-insert into LoginDetail values ("abwwwc@gmail.com","aqwec");
+
 
 insert into City_Table (city) values ('Colombo');
 insert into City_Table (city) values ('Ratnapura');
@@ -19,13 +14,7 @@ insert into City_Table (city) values ('Galle');
 insert into City_Table (city) values ('Trinco');
 insert into City_Table (city) values ('Matara');
 
-insert into Telephone_No values ("abc@gmail.com",0760600600);
-insert into Telephone_No values ("storemanager@gmail.com",0712464545);
-insert into Telephone_No values ("mainmanager@gmail.com",2342342342);
-insert into Telephone_No values ("sssd@gmail.com",6354654235);
-insert into Telephone_No values ("abwwwc@gmail.com",6343463462);
-insert into Telephone_No values ("abcassff@gmail.com",2344565678);
-insert into Telephone_No values ("mainmanager@gmail.com",3454565786);
+
 
 insert into Product (price,name,weight,description,unit_capacity,quantity) values (1000, "p1", 12.45, "This is the product 1","10cm3",10);
 insert into Product (price,name,weight,description,unit_capacity,quantity) values (500, "p2", 45.74, "This is the product 2","11cm3",100);
@@ -38,16 +27,6 @@ insert into Product (price,name,weight,description,unit_capacity,quantity) value
 insert into Product (price,name,weight,description,unit_capacity,quantity) values (785, "p9", 74.12, "This is the product 9","78cm3",100);
 insert into Product (price,name,weight,description,unit_capacity,quantity) values (4123, "p10", 470.33, "This is the product 10","1cm3",10);
 
-insert into Product_Image (product_ID,image) values (1,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (2,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (3,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (4,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (5,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (6,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (7,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (8,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (9,'toppng.com-png-effects-download-500x500.png');
-insert into Product_Image (product_ID,image) values (10,'toppng.com-png-effects-download-500x500.png');
 
 insert into Train (route_ID,capacity,loaded_capacity) values(1,3210,500);
 insert into Train (route_ID,capacity,loaded_capacity) values(2,3401,1000);
@@ -75,9 +54,9 @@ insert into Truck_Route (truck_route,route_duration,route_details) values ("colo
 insert into Truck_Route (truck_route,route_duration,route_details) values ("galle wate",10,"galle wate hamathanama");
 insert into Truck_Route (truck_route,route_duration,route_details) values ("trinco wate",12,"trinco wate hamathanama");
 
-insert into orders (address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_delivery_date,destination) values (7,"university of moratuwa","abc@gmail.com",100,'2022-12-15','00:00:00',1,"Colombo",870,1,'2022-12-25',"Moratuwa");
-insert into orders (address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_delivery_date,destination) values (10,"university of galle","abwwwc@gmail.com",2,'2022-10-15','14:10:00',2,"Galle",70,2,'2022-11-01',"galle fort");
-insert into orders (address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,prefered_delivery_date,destination) values (6,"university of trinco","abwwwc@gmail.com",30,'2022-12-05','03:00:00',3,"Trinco",410,1,'2022-12-20',"trinco harber");
+insert into orders (address,customer_email,cuurent_date,current_time,route_ID,nearest_Branch,tot_capacity,current_state,prefered_delivery_date,destination) values (7,"university of moratuwa","abc@gmail.com",'2022-12-15','00:00:00',1,"Colombo",870,1,'2022-12-25',"Moratuwa");
+insert into orders (address,customer_email,cuurent_date,current_time,route_ID,nearest_Branch,tot_capacity,current_state,prefered_delivery_date,destination) values (10,"university of galle","abwwwc@gmail.com",'2022-10-15','14:10:00',2,"Galle",70,2,'2022-11-01',"galle fort");
+insert into orders (address,customer_email,cuurent_date,current_time,route_ID,nearest_Branch,tot_capacity,current_state,prefered_delivery_date,destination) values (6,"university of trinco","abwwwc@gmail.com",30,'2022-12-05','03:00:00',3,"Trinco",410,1,'2022-12-20',"trinco harber");
 
 insert into Truck (store_ID) values (1);
 insert into Truck (store_ID) values (2);
