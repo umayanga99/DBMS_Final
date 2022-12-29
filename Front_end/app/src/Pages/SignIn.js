@@ -15,9 +15,9 @@ const SignIn = () => {
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
-        const username = form.username.value;
+        const email = form.email.value;
         const password = form.password.value;
-        if(username && password){
+        if(email && password){
             setLoading(true);
             fetch('https://localhost:8081/api/login',{
                 method: 'POST',
@@ -25,7 +25,7 @@ const SignIn = () => {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    username: username,
+                    email: email,
                     password: password
                 })
             }).then(res=>res.json())
@@ -50,7 +50,8 @@ const SignIn = () => {
                             <InputGroup.Text>
                                 <AiOutlineUser size="1.8rem" />
                             </InputGroup.Text>
-                            <Form.Control name="username" type="text" placeholder="Username" minLength={3} required />
+                            {/* <Form.Control name="username" type="text" placeholder="Email" minLength={3} required /> */}
+                            <Form.Control name="email" type="email" placeholder="Email" required />
                         </InputGroup>
                         <InputGroup className="mb-4">
                             <InputGroup.Text>
@@ -90,6 +91,7 @@ const SignIn = () => {
                 </Col>
             </Row>
        </Container>
+       
     );
 };
 

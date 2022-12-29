@@ -6,6 +6,7 @@ import 'react-lightbox-component/build/css/index.css';
 import './product-details.css';
 import { useCart } from 'react-use-cart';
 import { BsCartPlus } from 'react-icons/bs';
+import Header from '../components/Header';
 
 const ProductDetails = (props) => {
     const [productData, setProductData] = useState([]);
@@ -22,6 +23,8 @@ const ProductDetails = (props) => {
                           setProductData(await res);
     }
     return (
+        <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
+          <Header />
         <Container className="py-5">
             <Row className="justify-content-center mt-5">
                 <Col xs={10} md={7} lg={5} className="p-0">
@@ -72,6 +75,7 @@ const ProductDetails = (props) => {
                 </Col>
             </Row>
         </Container>
+        </main>
     );
 };
 

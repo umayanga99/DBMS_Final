@@ -3,26 +3,51 @@ import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-boo
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Link, useNavigate } from "@reach/router";
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(null);
     const [theme] = useThemeHook();
-    
+    const [type, setType] = React.useState('');
+    const navigate = useNavigate();
+
+    const handleChange = (event) => {
+        setType(event.target.value);
+    };
 
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
-        const username = form.username.value;
         const password = form.password.value;
-        const firstname = form.firstName.value;
-        const lastname = form.lastName.value;
         const email = form.email.value;
         
-        if(username && password && firstname && lastname && email && number){
+        if(password && email && number && type){
             setLoading(true);
-            console.log('call api here');
-            console.log(username, password, firstname, lastname, email, number);
+            fetch('https://fakestoreapi.com/auth/signIn',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                    email: email,
+                    password: password,
+                    type: type,
+                    number: number
+                })
+            }).then(res=>res.json())
+            .then(json=>sessionStorage.setItem("token", json.token))
+            .catch(error=> console.error(error))
+            .finally(()=>{
+                setLoading(false);
+                navigate('home', {replace: true})
+                alert('register successfully');
+            })
         }
     }
     return (
@@ -33,28 +58,16 @@ const Register = () => {
                         Create Account
                     </h1>
                     <Form onSubmit={handleSubmit}>
-                        <Row>
-                            <Form.Group className="mb-3 col-lg-6">
-                                <Form.Label>First name</Form.Label>
-                                <Form.Control name="firstName" type="text" placeholder="First name" required />
-                            </Form.Group>
-                            <Form.Group className="mb-3 col-lg-6">
-                                <Form.Label>Last name</Form.Label>
-                                <Form.Control name="lastName" type="text" placeholder="Last name" required />
-                            </Form.Group>
-                        </Row>
                         <Form.Group className="mb-3">
                             <Form.Label>Email</Form.Label>
                             <Form.Control name="email" type="email" placeholder="Email" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control name="username" type="text" placeholder="Username" minLength={3} required />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
                             <Form.Label>Mobile number</Form.Label>
                             <PhoneInput
-                                country={'in'}
+                                international={false}
+                                country={'lk'}
+                                onlyCountries={['lk']}
                                 value={number}
                                 onChange={phone=> setNumber(phone)}
                                 className="text-dark"
@@ -63,6 +76,25 @@ const Register = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Password</Form.Label>
                             <Form.Control name="password" type="password" placeholder="Password" minLength={6} required />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Box sx={{ minWidth: 120 }}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={type}
+                                    label="Age"
+                                    onChange={handleChange}
+                                    required
+                                    >
+                                    <MenuItem value={10}>Wholesalers</MenuItem>
+                                    <MenuItem value={20}>Retailers</MenuItem>
+                                    <MenuItem value={30}>End Customers</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Box>
                         </Form.Group>
                         <Button
                             type="submit"
@@ -80,7 +112,7 @@ const Register = () => {
                                     aria-hidden="true"
                                 />
                                 &nbsp;Loading...
-                            </> : 'Continue'
+                            </> : 'Create'
                         }
                         </Button>
                     </Form>

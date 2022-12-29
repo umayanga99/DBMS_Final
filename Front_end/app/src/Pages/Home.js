@@ -4,6 +4,7 @@ import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BiSearch } from 'react-icons/bi';
 import SearchFilter from 'react-filter-search';
 import ProductCard from '../components/ProductCard';
+import Header from '../components/Header';
 
 const Home = () => {
     const [theme] = useThemeHook();
@@ -21,6 +22,8 @@ const Home = () => {
     },[]);
 
     return (
+        <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
+          <Header />
         <Container className="py-4">
             <Row className="justify-content-center">
                 <Col xs={10} md={7} lg={6} xl={4} className="mb-3 mx-auto text-center">
@@ -51,6 +54,7 @@ const Home = () => {
                 
             </Row>
         </Container>
+        </main>
     );
 };
 
