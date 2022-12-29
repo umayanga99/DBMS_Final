@@ -19,7 +19,7 @@ const SignIn = () => {
         const password = form.password.value;
         if(email && password){
             setLoading(true);
-            fetch('https://localhost:8081/api/login',{
+            fetch('http://localhost:3000/app/routers/auth_routers.js/checkValidity',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
