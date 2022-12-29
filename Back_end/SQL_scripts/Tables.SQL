@@ -4,23 +4,6 @@ create database project_Final;
 
 use project_Final;
 
-<<<<<<< HEAD
-CREATE TABLE Train_Route (
-    route_ID int auto_increment,
-    destination varchar(50),
-    depart_time Time,
-    PRIMARY KEY (route_ID)
- );
-
-
-CREATE TABLE City_Table(
-    city_ID int auto_increment primary key,
-    city varchar(50)
-);
-
-  
-=======
->>>>>>> Shehan_23
 CREATE TABLE Product (
     product_ID int auto_increment,
     price real(7,2),
@@ -32,18 +15,6 @@ CREATE TABLE Product (
 );
 
 
-<<<<<<< HEAD
-create table Train(
-    train_ID int auto_increment,
-    route_ID int,
-    capacity smallint,
-    loaded_Capacity int,
-    PRIMARY KEY (train_ID),
-    FOREIGN KEY (route_ID) REFERENCES Train_Route(route_ID)
-);
-
-=======
->>>>>>> Shehan_23
 CREATE TABLE Store (
     store_ID int auto_increment,
     city varchar(100),
@@ -75,11 +46,7 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type varchar(15),
     customer_Password varchar(255),
-<<<<<<< HEAD
-    TP_no int ,
-=======
     Telephone_No int(10),
->>>>>>> Shehan_23
     PRIMARY KEY (email)
 );
 
@@ -90,18 +57,6 @@ CREATE TABLE Truck_Route (
 
 CREATE TABLE Orders (
     order_ID int auto_increment,
-<<<<<<< HEAD
-    order_address varchar(255),
-    customer_email varchar(255),
-    current_date date,
-    current_time Time,
-    route_ID int,
-    nearest_Branch varchar(20),
-    tot_capacity int,
-    current_state bool,
-    prefered_delivery_date date,
-    destination varchar(255),
-=======
     customer_address varchar(500),
     customer_email varchar(255),
     ordered_date date,
@@ -109,7 +64,6 @@ CREATE TABLE Orders (
     truck_route varchar(225),
     tot_capacity int,
     prefered_dilivery_date date,
->>>>>>> Shehan_23
     PRIMARY KEY (order_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
@@ -159,11 +113,7 @@ CREATE TABLE Order_Product (
     order_product_id int auto_increment PRIMARY KEY,
     order_ID int,
     product_ID int,
-<<<<<<< HEAD
-    quantity int ,
-=======
     quantity int,
->>>>>>> Shehan_23
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
 );
@@ -187,11 +137,7 @@ CREATE TABLE Cart_product (
 CREATE TABLE Driver (
     email VARCHAR(255),
     driver_name VARCHAR(255),
-<<<<<<< HEAD
-    store_ID int(20),
-=======
     store_ID int,
->>>>>>> Shehan_23
     NIC VARCHAR(12),
     total_duration float(4,2),
     Telephone_No int(10),
@@ -202,12 +148,8 @@ CREATE TABLE Driver (
 CREATE TABLE Assistant (
     NIC varchar(12),
     assistant_name varchar(225),
-<<<<<<< HEAD
     store_ID int(20),
     total_duration float,
-=======
-    store_ID int,
->>>>>>> Shehan_23
     email varchar(255),
 	total_duration float(4,2),
     telephone_No int(10),
