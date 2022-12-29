@@ -11,7 +11,7 @@ const Auth = function(file) {
 };
 
 Auth.checkValidity = (email, password) => {
-    mysql.query(`SELECT login_authentication(${email},${password})`, (err,res) => {
+    mysql.query(`SELECT login_authentication (${email}, ${password})`, (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
