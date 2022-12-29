@@ -51,9 +51,9 @@ insert into Truck_Route values ('Mulathiw', 22.00);
 insert into Truck_Route values ('Trinco', 20.00);
 insert into Truck_Route values ('Colombo', 4.00);
 
-insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12.20','Kaluthara',440,'2022-9-1');
-insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','4.24','Trinco',990,'2022-12-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','17.49','Mathara',440,'2023-1-1');
+insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1');
+insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1');
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
 
 insert into Truck values ('WP ABC 2891', 1, 'Colombo');
 insert into Truck values ('WP QQ 2345', 1, 'Kaluthara');
