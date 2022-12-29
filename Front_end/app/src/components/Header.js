@@ -28,7 +28,7 @@ const Header = () => {
                 style={{ width: '100%', position: 'fixed', zIndex: 100}}
         >
         <Container>
-          <Link to="home">
+          <Link to="/home">
             <Navbar.Brand className={darkMode? 'text-dark-primary': 'text-light-primary'}>
                 <b>Home</b>
             </Navbar.Brand>
