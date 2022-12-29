@@ -24,14 +24,14 @@ import { useCart } from 'react-use-cart';
 
 const Payment = () => {
     const [loading, setLoading] = useState(false);
-    const [number, setNumber] = useState(null);
     const [theme] = useThemeHook();
     const today = new Date();
     const minDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000 );
     const [date, setDate] = React.useState(null);
     const [route, setRoute] = React.useState('');
     const navigate = useNavigate();
-
+    const [selectedMethod, setSelectedMethod] = useState('Visa Card');
+    
     const handleChange = (event) => {
         setRoute(event.target.value);
     };
@@ -43,13 +43,16 @@ const Payment = () => {
     }
     const { cartTotal } = useCart();
 
+    const handleChangeMethod = (event) => {
+        setSelectedMethod(event.target.value);
+      };
+
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
         const Address = form.Address.value;
-        const Method = FormLabel.PaymentMethod.value;
 
-        if(Address && route && date && Method){
+        if(Address && route && date && selectedMethod){
             setLoading(true);
             fetch('https://fakestoreapi.com/auth/signIn',{
                 method: 'POST',
@@ -60,7 +63,7 @@ const Payment = () => {
                     date: date,
                     Address: Address,
                     route: route,
-                    Method: Method
+                    selectedMethod: selectedMethod
                 })
             }).then(res=>res.json())
             .then(json=>sessionStorage.setItem("token", json.token))
@@ -68,7 +71,7 @@ const Payment = () => {
             .finally(()=>{
                 setLoading(false);
                 navigate('home', {replace: true})
-                alert('register successfully');
+                alert('payment successfully');
             })
         }
     }
@@ -112,7 +115,7 @@ const Payment = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={route}
-                                label="Age"
+                                label="Route"
                                 onChange={handleChange}
                                 required
                                 >
@@ -129,8 +132,10 @@ const Payment = () => {
                             <RadioGroup
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
-                                name="row-radio-buttons-group"
+                                name="PaymentMethod"
                                 defaultValue="Visa Card" 
+                                value={selectedMethod}
+                                onChange={handleChangeMethod}
                             >
                                 <FormControlLabel value="Visa Card" control={<Radio />} label="Visa Card" />
                                 <FormControlLabel value="Master Card" control={<Radio />} label="Master Card" />
