@@ -27,7 +27,7 @@ Cart.GetCartItem =  (cartID, result) => {
    mysql.query(`SELECT * from cart `, (err, res) => {
     if (err) {
       console.log("error: ", err);
-      result(err, null);
+      result(err, res);
       return;
     } else {
       result(null, res);

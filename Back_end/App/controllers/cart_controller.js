@@ -42,7 +42,7 @@ exports.getCartItems = (req, res) => {
      if(err) {
        
         res.status(200).send({
-            message: "Successfull",
+            message: "fail",
             data: {
                 products : data
             }

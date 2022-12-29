@@ -18,6 +18,7 @@ Auth.checkValidity = (email, password) => {
             return;
         } else {
             result(null, res);
+            console.log("welcome");
         }
     });
 };

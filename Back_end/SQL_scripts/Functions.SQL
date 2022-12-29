@@ -6,19 +6,19 @@ RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
 
--- Delimiter $$
--- CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
---     READS SQL DATA
--- BEGIN
--- 	declare flag boolean default false;
+Delimiter $$
+CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
+    READS SQL DATA
+BEGIN
+	declare flag boolean default false;
     
---     if ((select count(*) from customer c where c.email = email and 
---     c.customer_password = pass) = 1) then
---     set flag = true;
---     end if;
--- RETURN flag;
--- END
--- $$
+    if ((select count(*) from customer c where c.email = email and 
+    c.customer_password = pass) = 1) then
+    set flag = true;
+    end if;
+RETURN flag;
+END
+$$
 
 Delimiter $$
 CREATE FUNCTION Sign_authentication(

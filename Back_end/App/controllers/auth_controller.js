@@ -10,7 +10,7 @@ exports.checkValidity = (req, res) => {
 
     const email = req.body.email;
     const password = req.body.password;
-    console.log(userName,password);
+    console.log(email,password);
 
     AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
@@ -24,7 +24,7 @@ exports.checkValidity = (req, res) => {
             });
             
         }
-        console.log(res);
+        console.log("result is: ",res);
     })
 }
 
