@@ -14,8 +14,10 @@ return (
 	marginLeft: '20px',
 	}}>
 	<pre>
-		<span>Enter Card Number: </span><input type="text"
-		onChange={(e) => validateCreditCard(e.target.value)} required></input> <br />
+		<span>Enter Card Number: </span>
+		<input type="text"
+			onChange={(e) => validateCreditCard(e.target.value)} required>
+		</input> <br />
 		<span style={{
 		fontWeight: 'bold',
 		color: 'red',

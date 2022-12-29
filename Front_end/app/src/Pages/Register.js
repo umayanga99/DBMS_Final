@@ -8,12 +8,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Link, useNavigate } from "@reach/router";
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(null);
     const [theme] = useThemeHook();
     const [type, setType] = React.useState('');
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setType(event.target.value);
@@ -25,10 +27,27 @@ const Register = () => {
         const password = form.password.value;
         const email = form.email.value;
         
-        if(password && email && number){
+        if(password && email && number && type){
             setLoading(true);
-            console.log('call api here');
-            console.log(password, email, number);
+            fetch('https://fakestoreapi.com/auth/signIn',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                    email: email,
+                    password: password,
+                    type: type,
+                    number: number
+                })
+            }).then(res=>res.json())
+            .then(json=>sessionStorage.setItem("token", json.token))
+            .catch(error=> console.error(error))
+            .finally(()=>{
+                setLoading(false);
+                navigate('home', {replace: true})
+                alert('register successfully');
+            })
         }
     }
     return (
