@@ -11,7 +11,7 @@ const Auth = function(file) {
 } ; 
 
 Auth.checkValidity = (email, password,result) => {
-    mysql.query(`select dbms_final.login_authentication(${email},${password})`, (err,res) => {
+    mysql.query(`select dbms_final.login_authentication(?,?)`, [email, password], (err,res) => {
         if (err) {
             // console.log("error: ", err);
             console.log("Error in model");
