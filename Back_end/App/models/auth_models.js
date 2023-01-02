@@ -11,7 +11,7 @@ const Auth = function(file) {
 } ; 
 
 Auth.checkValidity = (email, password,result) => {
-    mysql.query(`select dbms_final.login_authentication(?,?)`, [email, password], (err,res) => {
+   const r = mysql.query(`select dbms_final.login_authentication(?,?)`, [email, password], (err,res) => {
         if (err) {
             // console.log("error: ", err);
             console.log("Error in model");
@@ -19,7 +19,11 @@ Auth.checkValidity = (email, password,result) => {
             return;
         } else {
             result(null, res);
-            console.log("Succed in model")
+            console.log(`dbms_final.login_authentication('${email}','${password}')`, res["dbms_final.login_authentication('${email}','${password}')"]);
+            var data=JSON.parse(JSON.stringify(res));
+            console.log(data[0]);
+            
+            
         }
     });
 };
@@ -34,6 +38,7 @@ Auth.addUser = (email, password, name, type, TP) => {
             return;
         } else {
             result(null, res);
+            
         }
     });
 };
