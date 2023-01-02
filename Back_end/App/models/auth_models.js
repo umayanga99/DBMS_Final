@@ -24,8 +24,10 @@ Auth.checkValidity = (email, password,result) => {
     });
 };
 
+//${email}, ${password}, ${name}, ${type}, ${TP}
+
 Auth.addUser = (email, password, name, type, TP) => {
-    mysql.query(`SELECT Sign_authentication (${email}, ${password}, ${name}, ${type}, ${TP})`, (err,res) => {
+    mysql.query(`SELECT Sign_authentication (?,?,?,?)`,[email,password,name,type,TP], (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
