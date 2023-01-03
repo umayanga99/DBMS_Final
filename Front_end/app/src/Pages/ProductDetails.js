@@ -21,6 +21,7 @@ const ProductDetails = (props) => {
         const res = await fetch(`https://fakestoreapi.com/products/${props.productId}`)
                           .then(res=> res.json());
                           setProductData(await res);
+                          
     }
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>

@@ -20,8 +20,7 @@ Auth.checkValidity = (email, password,result) => {
         } else {
             
             // result(null, res);
-            console.log(`dbms_final.login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
-            if(res[0].isLoggedIn!="0"){
+             if(res[0].isLoggedIn!="0"){
                 result(null,true);
             }
             else{
@@ -37,7 +36,7 @@ Auth.checkValidity = (email, password,result) => {
 //${email}, ${password}, ${name}, ${type}, ${TP}
 
 Auth.addUser = (email, password, name, type, TP, result) => {
-    mysql.query(`SELECT Sign_authentication (?,?,?,?)`,[email,password,name,type,TP], (err,res) => {
+    mysql.query(`SELECT Sign_authentication (?,?,?,?,?)`,[email,password,name,type,TP], (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

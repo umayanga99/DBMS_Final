@@ -1,7 +1,7 @@
 const CartModel = require("../models/cart_models");
 
 
-exports.addToCart = (req, res) => {
+exports.saveCart = (req, res) => {
  
   if (!req.body) {
     res.status(400).send({  
@@ -10,22 +10,21 @@ exports.addToCart = (req, res) => {
   } 
 
  
-  const cartID = req.body.cartID;
+  const email = req.body.email;
+  const quantity=req.body.cartID;
   const productID = req.body.productID;
   console.log(cartID, productID);
   
-CartModel.addToCart(cartID, productID, (err, data) => {
+CartModel.saveCart(email, productID,quantity, (err, data) => {
     if(err) {
        
-        res.status(200).send({
+        res.status(500).send({
             message: "Fail",
-            data: {
-                productId: "dsfsdf"
-            }
+           
         });
     } else {
         res.status(200).send({
-            message: "Successfull"
+            message:"Successful"
         });
     }
 } )
@@ -35,23 +34,24 @@ CartModel.addToCart(cartID, productID, (err, data) => {
 exports.getCartItems = (req, res) => {
  
 
-    let cartID = req.query.cartID;
+    let email = req.query.email;
   
    
- CartModel.GetCartItem(cartID, (err, data) => {
+ CartModel.GetCartItem(email, (err, data) => {
      if(err) {
-       
         res.status(200).send({
-            message: "Successfull",
-            data: {
-                products : data
-            }
+            message: "Fail",
+        
         });
      } else {
-         res.status(200).send({
-             message: "Successfull",
+         
              
-             data:data
+
+             res.status(200).send({
+                message: "Successfull",
+                data: {
+                    products : data
+                }
          });
          console.log(data);
      }
