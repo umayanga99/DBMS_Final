@@ -20,3 +20,5 @@ select year(o.ordered_date) as year,
     sum(op.quantity) as soldquarter_order_details
 from order_product op inner join orders o using(order_ID) inner join product p using(product_ID) 
 group by year, quarter, product;
+
+--ksdkflksndkfnksdnfklnjsldjf

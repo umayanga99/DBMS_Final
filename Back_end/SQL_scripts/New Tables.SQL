@@ -14,6 +14,8 @@ CREATE TABLE Product (
     PRIMARY KEY (product_ID)
 );
 
+--sjdfhsdhfisdhfsdf
+
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
     product_ID int,
