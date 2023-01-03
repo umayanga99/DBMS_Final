@@ -4,7 +4,7 @@ module.exports=app=>{
 
 // var productRouter = require("express").Router();
 
-// productRouter.post("/", ProductController.addUser);
+productRouter.get("/", ProductController.getProducts);
 
 // app.use('/api/product', productRouter);
 }
