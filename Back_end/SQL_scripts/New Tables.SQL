@@ -1,4 +1,4 @@
--- drop database project_Final;
+drop database if exists project_Final;
 
 create database project_Final;
 
@@ -14,6 +14,13 @@ CREATE TABLE Product (
     PRIMARY KEY (product_ID)
 );
 
+CREATE TABLE Product_Image(
+    image_ID int auto_increment,
+    product_ID int,
+    product_image BLOB,
+    PRIMARY KEY (image_ID),
+    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
+);  
 
 CREATE TABLE Store (
     store_ID int auto_increment,
@@ -44,7 +51,7 @@ CREATE TABLE Train_Route (
 CREATE TABLE Customer (
     email varchar(255) ,
     customer_name varchar(255),
-    customer_type varchar(15),
+    customer_type enum('wholesaler', 'retailer', 'end customer'),
     customer_Password varchar(255),
     Telephone_No int(10),
     PRIMARY KEY (email)

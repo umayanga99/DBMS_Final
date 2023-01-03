@@ -1,6 +1,6 @@
 const mysql = require("./db.js");
 
-// constructor
+constructor
 const Auth = function(file) {
     this.email = file.email;
     this.password = file.password;
@@ -8,29 +8,43 @@ const Auth = function(file) {
     this.password = file.password;
     this.type = file.type;
     this.TP = file.TP;
-};
+} ; 
 
-Auth.checkValidity = (email, password) => {
-    mysql.query(`SELECT login_authentication (${email}, ${password})`, (err,res) => {
+Auth.checkValidity = (email, password,result) => {
+    mysql.query(`select dbms_final.login_authentication(?,?) as isLoggedIn`, [email, password], (err,res) => {
         if (err) {
-            console.log("error: ", err);
+            // console.log("error: ", err);
+            console.log("Error in model");
             result(err, null);
             return;
         } else {
-            result(null, res);
-            console.log("welcome");
+            
+            // result(null, res);
+            console.log(`dbms_final.login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
+            if(res[0].isLoggedIn!="0"){
+                result(null,true);
+            }
+            else{
+                result(null,false);
+            }
+            console.log(res[0].isLoggedIn);
+            
+            
         }
     });
 };
 
+//${email}, ${password}, ${name}, ${type}, ${TP}
+
 Auth.addUser = (email, password, name, type, TP) => {
-    mysql.query(`SELECT Sign_authentication (${email}, ${password}, ${name}, ${type}, ${TP})`, (err,res) => {
+    mysql.query(`SELECT Sign_authentication (?,?,?,?)`,[email,password,name,type,TP], (err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         } else {
             result(null, res);
+            
         }
     });
 };
