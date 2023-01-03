@@ -42,7 +42,7 @@ const SignIn = () => {
                 }
                 else{
                     alert("okkkk",value);
-                    navigate('home', {replace: false});
+                    navigate('/home', {replace: false});
                     
                     
                 }
