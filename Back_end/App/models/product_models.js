@@ -2,8 +2,7 @@ const mysql = require("./db.js");
 
 // constructor
 const Product = function(file) {
-    this.email = file.email;
-    this.password = file.password;
+   
 };
 
 Product.getProducts=(result)=>{
