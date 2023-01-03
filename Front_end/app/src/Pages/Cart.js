@@ -1,4 +1,5 @@
-import React from 'react';
+// import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button, Container, Col, Row, Table} from 'react-bootstrap';
 import { useCart } from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
@@ -15,6 +16,19 @@ const Cart = () => {
         removeItem,
         emptyCart,
     } = useCart();
+
+    // const [cartData, setCartData] = useState([]);
+    // async function getResponse(){
+    //     const res = await fetch('https://fakestoreapi.com/products')
+    //                       .then(res=> res.json());
+    //                       setCartData(await res);
+    // }
+
+    // useEffect(()=>{
+    //     getResponse();
+    // },[]);
+
+
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
           <Header />

@@ -35,13 +35,13 @@ const SignIn = () => {
             .then((data) => {
                 
                 setValue(data);
-                console.log(value);
+                console.log(`value = `,value);
                 if(!value){
                     alert("Can not login",value);
-                    
+                    navigate('/');
                 }
                 else{
-                    alert("okkkk",value);
+                    alert("ok",value);
                     navigate('home', {replace: false});
                     
                     
