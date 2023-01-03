@@ -1,8 +1,8 @@
-drop database if exists project_Final;
+-- drop database project_Final;
 
-create database project_Final;
+create database FFinal;
 
-use project_Final;
+use FFinal;
 
 CREATE TABLE Product (
     product_ID int auto_increment,
@@ -14,13 +14,6 @@ CREATE TABLE Product (
     PRIMARY KEY (product_ID)
 );
 
-CREATE TABLE Product_Image(
-    image_ID int auto_increment,
-    product_ID int,
-    product_image BLOB,
-    PRIMARY KEY (image_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
-);  
 
 CREATE TABLE Store (
     store_ID int auto_increment,

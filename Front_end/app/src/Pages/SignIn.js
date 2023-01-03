@@ -9,32 +9,52 @@ import { VscKey } from 'react-icons/vsc';
 
 const SignIn = () => {
     const [loading, setLoading] = useState(false);
+    const [value,setValue] = useState("");
     const [theme] = useThemeHook();
     const navigate = useNavigate();
 
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
-        const username = form.username.value;
+        const email = form.email.value;
         const password = form.password.value;
-        if(username && password){
+        if(email && password){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/login',{
+            fetch('http://localhost:8000/api/auth/checkValidity',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    username: username,
+                    email: email,
                     password: password
                 })
-            }).then(res=>res.json())
+                
+            })
+            .then(res=>res.json())
+            .then((data) => {
+                
+                setValue(data);
+                console.log(value);
+                if(!value){
+                    alert("Can not login",value);
+                    
+                }
+                else{
+                    alert("okkkk",value);
+                    navigate('home', {replace: false});
+                    
+                    
+                }
+                // console.log(value);
+            })
             .then(json=>sessionStorage.setItem("token", json.token))
-            .catch(error=> console.error(error))
+            // .catch(error=> console.error(error))
             .finally(()=>{
+                
                 setLoading(false);
-                navigate('home', {replace: true})
-                alert('Login successfully');
+                // navigate('home', {replace: false});
+                // alert('Login successfully');
             })
         }
     }
@@ -50,7 +70,8 @@ const SignIn = () => {
                             <InputGroup.Text>
                                 <AiOutlineUser size="1.8rem" />
                             </InputGroup.Text>
-                            <Form.Control name="username" type="text" placeholder="Username" minLength={3} required />
+                            {/* <Form.Control name="username" type="text" placeholder="Email" minLength={3} required /> */}
+                            <Form.Control name="email" type="email" placeholder="Email" required />
                         </InputGroup>
                         <InputGroup className="mb-4">
                             <InputGroup.Text>
@@ -90,6 +111,7 @@ const SignIn = () => {
                 </Col>
             </Row>
        </Container>
+       
     );
 };
 

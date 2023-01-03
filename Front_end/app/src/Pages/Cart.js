@@ -3,6 +3,7 @@ import { Button, Container, Col, Row, Table} from 'react-bootstrap';
 import { useCart } from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
+import Header from '../components/Header';
 
 const Cart = () => {
     const [theme] = useThemeHook();
@@ -15,6 +16,8 @@ const Cart = () => {
         emptyCart,
     } = useCart();
     return (
+        <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
+          <Header />
         <Container className="py-4 mt-5">
             <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>
                 {isEmpty? 'Your Cart is Empty' : 'The Cart'}
@@ -68,14 +71,16 @@ const Cart = () => {
                             </Button>
                             <Button variant="success"
                                 className="m-2"
+                                onClick={()=>  window.location.href='payment'}
                             >
                                 <BsCartCheck size="1.7rem" />
-                                Clear Cart
+                                Proceed
                             </Button>
                         </Col>
                     </Row>}
             </Row>
         </Container>
+        </main>
     );
 };
 

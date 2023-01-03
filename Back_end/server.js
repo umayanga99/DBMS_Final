@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -23,14 +23,14 @@ app.get("/", (req, res) => {
 
 require('./app/routers/cart_routers.js')(app);
 require("./app/routers/product_routers.js")(app);
-require("./app/routers/login_routers.js")(app);
+require("./app/routers/auth_routers.js")(app);
 require("./app/routers/manager_routers.js")(app);
 require("./app/routers/orders_routers.js")(app);
-require("./app/routers/login_routers.js")(app);
-require("./app/routers/register_routers.js")(app);
+// require("./app/routers/login_routers.js")(app);
+// require("./app/routers/register_routers.js")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT ||8000 ;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

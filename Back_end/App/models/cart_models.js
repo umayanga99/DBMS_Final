@@ -9,7 +9,7 @@ const Cart = function(file) {
 
 
 Cart.addToCart = (cartID, productID, result) => {
-    mysql.query(`SELECT Add_to_cart(${productID},${cartID})`, (err, res) => {
+    mysql.query(`CALL Add_to_cart(${productID},${cartID})`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);

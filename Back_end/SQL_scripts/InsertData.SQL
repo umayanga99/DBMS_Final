@@ -1,4 +1,4 @@
-use project_Final;
+use FFinal;
 
 insert into Product values (default, 1000, "p1", 12.45, "This is the product 1",10);
 insert into Product values (default, 500, "p2", 45.74, "This is the product 2",100);

@@ -1,24 +1,24 @@
--- Delimiter $$
--- CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
---     DETERMINISTIC
--- BEGIN
--- RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
--- END
--- $$
-
 Delimiter $$
-CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
-    READS SQL DATA
+CREATE FUNCTION Delever_Date_Test(prefered_dilivery_date date) RETURNS int
+    DETERMINISTIC
 BEGIN
-	declare flag boolean default false;
-    
-    if ((select count(*) from customer c where c.email = email and 
-    c.customer_password = pass) = 1) then
-    set flag = true;
-    end if;
-RETURN flag;
+RETURN (select datediff(prefered_dilivery_date, curdate()) >= 7);
 END
 $$
+
+-- Delimiter $$
+-- CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
+--     READS SQL DATA
+-- BEGIN
+-- 	declare flag boolean default false;
+    
+--     if ((select count(*) from customer c where c.email = email and 
+--     c.customer_password = pass) = 1) then
+--     set flag = true;
+--     end if;
+-- RETURN flag;
+-- END
+-- $$
 
 Delimiter $$
 CREATE FUNCTION Sign_authentication(
@@ -54,27 +54,27 @@ RETURN tot;
 END
 $$
 
--- CREATE FUNCTION `payment_proceed` (
--- 	product_ID int,
---     cart_ID int,
---     email VARCHAR(225),
--- 	cart_ID int ,
---     order_ID int ,
---     product_ID int,
---     address varchar(255),
---     customer_email varchar(255),
---     quantity INT,
---     date date,
---     time Time,
---     route_ID int,
---     nearest_Branch varchar(20),
---     tot_capacity int,
---     state bool,
---     prefered_dilivery_date date,
---     destination varchar(255)
---         )
--- BEGIN
---     Declare id int;
+CREATE FUNCTION `payment_proceed` (
+	product_ID int,
+    cart_ID int,
+    email VARCHAR(225),
+	cart_ID int ,
+    order_ID int ,
+    product_ID int,
+    address varchar(255),
+    customer_email varchar(255),
+    quantity INT,
+    date date,
+    time Time,
+    route_ID int,
+    nearest_Branch varchar(20),
+    tot_capacity int,
+    state bool,
+    prefered_dilivery_date date,
+    destination varchar(255)
+        )
+BEGIN
+    Declare id int;
     
 --     SELECT ID into id 
 --     FROM `customer` 
