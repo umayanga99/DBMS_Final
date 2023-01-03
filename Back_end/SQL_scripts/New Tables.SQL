@@ -137,6 +137,7 @@ CREATE TABLE Cart_product (
     cart_product_ID int auto_increment,
     product_ID int,
     cart_ID int,
+    quantity int,
     PRIMARY KEY(cart_product_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(product_ID),
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID)

@@ -87,11 +87,11 @@ insert into Cart values ("abc@gmail.com",default);
 insert into Cart values ("sssd@gmail.com",default);
 insert into Cart values ("abwwwc@gmail.com",default);
 
-insert into Cart_Product values (default,4,1);
-insert into Cart_Product values (default,6,1);
-insert into Cart_Product values (default,1,2);
-insert into Cart_Product values (default,2,3);
-insert into Cart_Product values (default,3,3);
+insert into Cart_Product values (default,4,1,3);
+insert into Cart_Product values (default,6,1,4);
+insert into Cart_Product values (default,1,2,2);
+insert into Cart_Product values (default,2,3,3);
+insert into Cart_Product values (default,3,3,7);
 
 insert into Driver values ("driver1@gmail.com","driver 1",1,"78964545634V",34,0054734570);
 insert into Driver values ("driver2@gmail.com","driver 2",2,"78964548634V",26,0054734570);
