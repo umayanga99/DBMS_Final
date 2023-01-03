@@ -5,7 +5,6 @@ import { useCart} from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
 import Header from '../components/Header';
-import { Link, useNavigate } from "@reach/router";
 
 const Cart = () => {
     const [theme] = useThemeHook();
