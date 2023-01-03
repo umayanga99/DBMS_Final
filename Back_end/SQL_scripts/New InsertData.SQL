@@ -55,11 +55,11 @@ insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com'
 insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1');
 insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
 
-insert into Truck values ('WP ABC 2891', 1, 'Colombo');
-insert into Truck values ('WP QQ 2345', 1, 'Kaluthara');
-insert into Truck values ('EP LK 1889', 3, 'Trinco');
-insert into Truck values ('SP AAA 3449', 2, 'Mathara');
-insert into Truck values ('NP XZ 3990', 4, 'Mulathiw');
+insert into Truck values ('WP ABC 2891', 1, 'Colombo',25);
+insert into Truck values ('WP QQ 2345', 1, 'Kaluthara',39.25);
+insert into Truck values ('EP LK 1889', 3, 'Trinco',36.45);
+insert into Truck values ('SP AAA 3449', 2, 'Mathara',45.00);
+insert into Truck values ('NP XZ 3990', 4, 'Mulathiw',89.20);
 
 insert into Delivery values (default, "sssd@gmail.com",'WP QQ 2345');
 insert into Delivery values (default, "abc@gmail.com",'EP LK 1889');

@@ -80,6 +80,7 @@ CREATE TABLE Truck (
     truck_ID varchar(30),
     store_ID int,
     truck_route varchar(225),
+    total_duration float(5,2), 
     PRIMARY KEY (truck_ID),
     FOREIGN KEY (store_ID) REFERENCES Store(store_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route)

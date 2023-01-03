@@ -20,3 +20,14 @@ select year(o.ordered_date) as year,
     sum(op.quantity) as soldquarter_order_details
 from order_product op inner join orders o using(order_ID) inner join product p using(product_ID) 
 group by year, quarter, product;
+
+drop view if exists products_details;
+create view products_details as 
+select p.product_id, 
+price, 
+product_name, 
+product_weight,
+ product_description, 
+ unit_capacity, 
+ pi.product_image
+ from product p inner join product_image pi group by product_id order by product_id;
