@@ -38,7 +38,6 @@ const SignIn = () => {
                 console.log(`value = `,value);
                 if(!value){
                     alert("Can not login",value);
-                    navigate('/');
                 }
                 else{
                     alert("ok",value);
