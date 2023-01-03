@@ -7,7 +7,7 @@ const Product = function(file) {
 };
 
 Product.getProducts=(result)=>{
-    mysql.query("select * from products",(err,res)=>{
+    mysql.query("select * from product",(err,res)=>{
         if(err){
             result(err,null);
             return;

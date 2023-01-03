@@ -48,7 +48,7 @@ exports.addUser = (req, res) => {
             })
         } else {
             res.status(200).send({
-                message: "Welcome"
+                message: data
             });
         }
     })
