@@ -1,6 +1,6 @@
 const mysql = require("./db.js");
 
-constructor
+// constructor
 const Auth = function(file) {
     this.email = file.email;
     this.password = file.password;
