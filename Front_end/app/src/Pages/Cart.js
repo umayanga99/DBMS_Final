@@ -1,7 +1,7 @@
 // import React from 'react';
 import React, {useEffect, useState} from 'react';
 import { Button, Container, Col, Row, Table} from 'react-bootstrap';
-import { useCart } from 'react-use-cart';
+import { useCart} from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
 import Header from '../components/Header';
@@ -16,6 +16,9 @@ const Cart = () => {
         removeItem,
         emptyCart,
     } = useCart();
+    
+    // const data = getItem() ;
+
 
     // const [cartData, setCartData] = useState([]);
     // async function getResponse(){
@@ -76,6 +79,13 @@ const Cart = () => {
                             <h4>Total Price: Rs. {cartTotal}</h4>
                         </Col>
                         <Col className="p-0" md={4}>
+                            <Button variant="warning"
+                                className="m-2"
+                                // onClick={()=>  window.location.href='payment'}
+                            >
+                                <BsCartCheck size="1.7rem" />
+                                Save Cart
+                            </Button>
                             <Button variant="danger"
                                 className="m-2"
                                 onClick={()=> emptyCart()}
