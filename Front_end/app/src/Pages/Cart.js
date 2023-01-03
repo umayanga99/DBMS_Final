@@ -5,6 +5,7 @@ import { useCart} from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
 import Header from '../components/Header';
+import { Link, useNavigate } from "@reach/router";
 
 const Cart = () => {
     const [theme] = useThemeHook();
@@ -17,6 +18,8 @@ const Cart = () => {
         emptyCart,
     } = useCart();
     
+    const [response, setResponse] = useState(null);
+
     // const data = getItem() ;
 
 
@@ -49,21 +52,21 @@ const Cart = () => {
                                         <div style={{ background: 'white', height: '8rem', overflow: 'hidden', display: 'flex',
                                         justifyContent: 'center', alignItems: 'center' }}>
                                             <div style={{ padding: '.5rem'}}>
-                                                <img src={item.image} style={{ width: '4rem'}} alt={item.title} />
+                                                <img src={item.image} style={{ width: '4rem'}} alt={item.product_description} />
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <h6 style={{ whiteSpace: 'nowrap', width: '14rem', overflow: 'hidden', textOverFlow: 'ellipsis'}}>
-                                            {item.title}
+                                            {item.product_name}
                                         </h6>
                                     </td>
                                     <td>Rs. {item.price}</td>
                                     <td>Quantity ({item.quantity})</td>
                                     <td>
-                                        <Button onClick={()=> updateItemQuantity(item.id, item.quantity - 1)} className="ms-2">-</Button>
-                                        <Button onClick={()=> updateItemQuantity(item.id, item.quantity + 1)} className="ms-2">+</Button>
-                                        <Button variant="danger" onClick={()=> removeItem(item.id)} className="ms-2">Remove Item</Button>
+                                        <Button onClick={()=> updateItemQuantity(item.product_ID, item.quantity - 1)} className="ms-2">-</Button>
+                                        <Button onClick={()=> updateItemQuantity(item.product_ID, item.quantity + 1)} className="ms-2">+</Button>
+                                        <Button variant="danger" onClick={()=> removeItem(item.product_ID)} className="ms-2">Remove Item</Button>
                                     </td>
                                 </tr>
                             )
@@ -81,7 +84,22 @@ const Cart = () => {
                         <Col className="p-0" md={4}>
                             <Button variant="warning"
                                 className="m-2"
-                                // onClick={()=>  window.location.href='payment'}
+                                onClick={()=>  {
+                                      fetch('/my-endpoint', {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                          message: 'Hello from the client!'
+                                        }),
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        }
+                                      })
+                                        .then(res => res.json())
+                                        .then(res => {
+                                          setResponse(res);
+                                        });
+                                        alert("Can not login");
+                                    }}
                             >
                                 <BsCartCheck size="1.7rem" />
                                 Save Cart

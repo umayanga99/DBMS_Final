@@ -8,9 +8,7 @@ exports.getProducts=(req,res)=>{
                 message:err.message||"Something went Wrong"
             })
         }else{
-            res.status(200).send({
-                message:data
-            });
+            res.status(200).send(data);
         }
     })
 

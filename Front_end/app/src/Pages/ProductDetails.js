@@ -5,7 +5,7 @@ import Lightbox from 'react-lightbox-component';
 import 'react-lightbox-component/build/css/index.css';
 import './product-details.css';
 import { useCart } from 'react-use-cart';
-import { BsCartPlus } from 'react-icons/bs';
+import { BsCartPlus } from 'react-icons/bs'; 
 import Header from '../components/Header';
 
 const ProductDetails = (props) => {
@@ -18,7 +18,7 @@ const ProductDetails = (props) => {
     },[]);
 
     const getResponse = async()=>{
-        const res = await fetch(`https://fakestoreapi.com/products/${props.productId}`)
+        const res = await fetch(`http://localhost:8000/api/product/${props.productId}`)
                           .then(res=> res.json());
                           setProductData(await res);
     }
@@ -32,29 +32,29 @@ const ProductDetails = (props) => {
                         images={[
                             {
                                 src: productData.image,
-                                title: productData.title,
+                                title: productData.product_name,
                                 description: 'img 1'
                             },
                             {
                                 src: productData.image,
-                                title: productData.title,
+                                title: productData.product_name,
                                 description: 'img 2'
                             },
                             {
                                 src: productData.image,
-                                title: productData.title,
+                                title: productData.product_name,
                                 description: 'img 3'
                             },
                             {
                                 src: productData.image,
-                                title: productData.title,
+                                title: productData.product_name,
                                 description: 'img 4'
                             }
                         ]}
                   />
                 </Col>
                 <Col xs={10} md={7} lg={7} className={`${theme? 'text-light' : 'text-black'} product-details`}>
-                    <h1>{productData.title}</h1>
+                    <h1>{productData.product_name}</h1>
                     <Button 
                         onClick={()=>addItem(productData)}
                         className={theme? 'bg-dark-primary text-black' : 'bg-light-primary'}
@@ -68,9 +68,9 @@ const ProductDetails = (props) => {
                         Rs. {productData.price}
                     </b>
                     <br/>
-                    <b className="h5">4.1 ⭐</b>
+                    <b className="h5">{productData.price} kg</b>
                     <p className="mt-3 h5" style={{opacity: '0.8', fontWeight: '400'}}>
-                        {productData.description}
+                        {productData.product_description}
                     </p>
                 </Col>
             </Row>
