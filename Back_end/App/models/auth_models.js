@@ -11,17 +11,23 @@ const Auth = function(file) {
 } ; 
 
 Auth.checkValidity = (email, password,result) => {
-   const r = mysql.query(`select dbms_final.login_authentication(?,?)`, [email, password], (err,res) => {
+    mysql.query(`select dbms_final.login_authentication(?,?) as isLoggedIn`, [email, password], (err,res) => {
         if (err) {
             // console.log("error: ", err);
             console.log("Error in model");
             result(err, null);
             return;
         } else {
-            result(null, res);
-            console.log(`dbms_final.login_authentication('${email}','${password}')`, res["dbms_final.login_authentication('${email}','${password}')"]);
-            var data=JSON.parse(JSON.stringify(res));
-            console.log(data[0]);
+            
+            // result(null, res);
+            console.log(`dbms_final.login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
+            if(res[0].isLoggedIn!="0"){
+                result(null,true);
+            }
+            else{
+                result(null,false);
+            }
+            console.log(res[0].isLoggedIn);
             
             
         }
