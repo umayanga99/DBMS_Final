@@ -33,6 +33,11 @@ const Header = () => {
                 <b>Home</b>
             </Navbar.Brand>
           </Link>
+          <Link to="/">
+            <Navbar.Brand className={darkMode? 'text-dark-primary': 'text-light-primary'}>
+                <b>Log Out</b>
+            </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
