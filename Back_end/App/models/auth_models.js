@@ -13,7 +13,7 @@ const Auth = function(file) {
 Auth.checkValidity = (email, password,result) => {
     mysql.query(`select login_authentication(?,?) as isLoggedIn`, [email, password], (err,res) => {
         if (err) {
-            // console.log("error: ", err);
+            // console.log("error: ",  err);
             console.log("Error in model",err);
             result(err, null);
             return;
