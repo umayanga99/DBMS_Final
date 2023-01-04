@@ -6,7 +6,7 @@ import { BsCartPlus } from 'react-icons/bs';
 import { Link } from  "@reach/router";
 
 const ProductCard = (props) => {
-    let { image, price, product_name, product_ID} = props.data;
+    let { image, price, product_name, product_ID } = props.data;
     const [theme] = useThemeHook();
     const { addItem } = useCart();
 
