@@ -38,7 +38,7 @@ const SignIn = () => {
                 setValue(data);
                 console.log(`value = `,value);
                 console.log(data.message);
-                if(data.message!=1){
+                if(data.message!==1){
                     alert("Can not login",value);
                 }
                 else{
