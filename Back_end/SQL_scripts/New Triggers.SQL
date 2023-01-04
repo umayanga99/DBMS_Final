@@ -14,7 +14,7 @@ FOR EACH ROW
 BEGIN
 	UPDATE product
     SET quantity = quantity  - orders.quantity
-    WHERE product_ID = new.product_ID;
+    WHERE id = new.id;
 END
 $$
 

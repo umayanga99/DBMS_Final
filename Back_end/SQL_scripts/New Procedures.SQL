@@ -1,9 +1,9 @@
 Delimiter $$
 create procedure Add_To_Cart(
-	product_ID int,
+	id int,
     cart_ID int)
 begin 
-	insert into cart_product values (product_ID, cart_ID, default);
+	insert into cart_product values (id, cart_ID, default);
 end$$
 delimiter ;
 

@@ -5,21 +5,21 @@ create database project_Final;
 use project_Final;
 
 CREATE TABLE Product (
-    product_ID int auto_increment,
+    id int auto_increment,
     price real(7,2),
     product_name VARCHAR(255),
     product_weight real(7,3),
     product_description VARCHAR(4000),
     unit_capacity int,
-    PRIMARY KEY (product_ID)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
-    product_ID int,
+    id int,
     product_image BLOB,
     PRIMARY KEY (image_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
+    FOREIGN KEY (id) REFERENCES Product(id)
 );  
 
 CREATE TABLE Store (
@@ -120,10 +120,10 @@ CREATE TABLE Order_Transport(
 CREATE TABLE Order_Product (
     order_product_id int auto_increment PRIMARY KEY,
     order_ID int,
-    product_ID int,
+    id int,
     quantity int,
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
+    FOREIGN KEY (id) REFERENCES Product(id)
 );
 
 CREATE TABLE Cart(
@@ -135,11 +135,11 @@ CREATE TABLE Cart(
 
 CREATE TABLE Cart_product (
     cart_product_ID int auto_increment,
-    product_ID int,
+    id int,
     cart_ID int,
     quantity int,
     PRIMARY KEY(cart_product_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID),
+    FOREIGN KEY (id) REFERENCES Product(id),
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID)
 );
 

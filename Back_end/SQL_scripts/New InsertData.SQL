@@ -22,10 +22,13 @@ insert into Product_Image values (default,8,'toppng.com-png-effects-download-500
 insert into Product_Image values (default,9,'toppng.com-png-effects-download-500x500.png');
 insert into Product_Image values (default,10,'toppng.com-png-effects-download-500x500.png');
 
-insert into Store values (default, "Colombo","Colombostore",0760600609,"addressColombo");
-insert into Store values (default, "Galle","Gallestore",076060089,"addressGalle");
-insert into Store values (default, "Trinco","Trincostore",0760690609,"addressTrinco");
-insert into Store values (default, "Jaffna","Jaffnastore",0760606609,"addressNegambo");
+insert into Store values (default, "Colombo","Colombostore",0111234567,"addressColombo");
+insert into Store values (default, "Galle","Gallestore",0913256987,"addressGalle");
+insert into Store values (default, "Trinco","Trincostore",0260690609,"addressTrinco");
+insert into Store values (default, "Jaffna","Jaffnastore",0210609409,"addresJaffna");
+insert into Store values (default, "Anuradhapura","Anuradhapurastore",0257899609,"addressAnuradhapura");
+insert into Store values (default, "Monaragala","Monaragalastore",0550601129,"addressMonaragala");
+insert into Store values (default, "Kandy","Kandystore",0810846609,"addressKandy");
 
 insert into Train_Route values (default, 1,'00:00:00');
 insert into Train_Route values (default, 1,'10:30:00');
@@ -45,11 +48,31 @@ insert into Customer values ("abc@gmail.com","abc","wholesaler", 'sdfasdfa', 123
 insert into Customer values ("sssd@gmail.com","sss","retailer", 'sdafsd3232', 23556);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g55', 56734);
 
-insert into Truck_Route values ('Kaluthara', 10.30);
-insert into Truck_Route values ('Mathara', 8.00);
-insert into Truck_Route values ('Mulathiw', 22.00);
-insert into Truck_Route values ('Trinco', 20.00);
+insert into Truck_Route values ('Kandy', 10.30);
+insert into Truck_Route values ('Kurunegala', 8.00);
+insert into Truck_Route values ('Kegalla', 22.00);
+insert into Truck_Route values ('Matale', 20.00);
+insert into Truck_Route values ('Nuwara Eliya', 4.00);
 insert into Truck_Route values ('Colombo', 4.00);
+insert into Truck_Route values ('Gampaha', 4.00);
+insert into Truck_Route values ('Kaluthara', 4.00);
+insert into Truck_Route values ('Mathara', 4.00);
+insert into Truck_Route values ('Rathnapura', 4.00);
+insert into Truck_Route values ('Galle', 4.00);
+insert into Truck_Route values ('Hambanthota', 4.00);
+insert into Truck_Route values ('Monaragala', 4.00);
+insert into Truck_Route values ('Ampara', 4.00);
+insert into Truck_Route values ('Badulla', 4.00);
+insert into Truck_Route values ('Anuradhapura', 4.00);
+insert into Truck_Route values ('Polonnaruwa', 4.00);
+insert into Truck_Route values ('Puttalama', 4.00);
+insert into Truck_Route values ('Wauniya', 4.00);
+insert into Truck_Route values ('Trinco', 4.00);
+insert into Truck_Route values ('Baticlo', 4.00);
+insert into Truck_Route values ('Jaffna', 4.00);
+insert into Truck_Route values ('Kilinochchi', 4.00);
+insert into Truck_Route values ('Mannar', 4.00);
+insert into Truck_Route values ('Mulathivu', 4.00);
 
 insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1');
 insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1');

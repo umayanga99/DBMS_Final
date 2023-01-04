@@ -39,7 +39,7 @@ BEGIN
 	declare tot int;
     select sum(OP.quantity * P.price) into tot 
     from Orders O right join Order_Product OP using (order_ID) 
-    left join Product P using (product_ID) 
+    left join Product P using (id) 
     where O.customer_email = email;
 RETURN tot;
 END
