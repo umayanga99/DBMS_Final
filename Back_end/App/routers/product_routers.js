@@ -1,12 +1,11 @@
 module.exports=app=>{
 
-// 
-const productController=require("../controllers/product_controller.js");
+const ProductController = require("../controllers/product_controller.js");
 
-//localhost:8081/api/product/get:hudfhuh
-var product_routes=require("express").Router();
+var productRouter = require("express").Router();
 
-//Get cart item 
+productRouter.get("/", ProductController.getProducts);
+productRouter.get("/:id", ProductController.getProductsById);
 
-
+app.use('/api/product', productRouter);
 }

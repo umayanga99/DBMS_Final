@@ -1,6 +1,6 @@
 const mysql = require("./db.js");
 
-// constructor
+constructor
 const Cart = function(file) {
   this.title = file.title;
   this.description = file.description;
@@ -8,8 +8,8 @@ const Cart = function(file) {
 };
 
 
-Cart.addToCart = (cartID, productID, result) => {
-    mysql.query(`SELECT Add_to_cart(${productID},${cartID})`, (err, res) => {
+Cart.saveCart = (email,quantity, productID, result) => {
+    mysql.query(`CALL Add_to_cart(?,?,?)`,[email,quantity,productID], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -17,23 +17,23 @@ Cart.addToCart = (cartID, productID, result) => {
       } else {
         result(null, true);
       }
-      // not found Tutorial with the id
+      
       console.log("added : ", res);
     });
   };
 
 
-Cart.GetCartItem =  (cartID, result) => {
-   mysql.query(`SELECT * from ${cartID}`, (err, res) => {
+Cart.GetCartItem =  (email, result) => {
+   mysql.query(`select * from cart_product where cart_id = (select cart_id from cart where cart.email=?)`,[email], (err, res) => {
     if (err) {
       console.log("error: ", err);
-      result(err, null);
+      result(err, res);
       return;
     } else {
       result(null, res);
     }
     // not found Tutorial with the id
-    console.log("added : ", res);
+    console.log("returned : ", res);
   });
 };
 
