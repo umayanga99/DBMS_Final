@@ -68,7 +68,8 @@ const ProductDetails = (props) => {
                         Rs. {productData.price}
                     </b>
                     <br/>
-                    <b className="h5">{productData.price} kg</b>
+                    <b className="h5">{productData.product_weight} kg</b><br />
+                    <b className="h5">{productData.unit_capacity} m3</b>
                     <p className="mt-3 h5" style={{opacity: '0.8', fontWeight: '400'}}>
                         {productData.product_description}
                     </p>
