@@ -20,7 +20,7 @@ const ProductDetails = (props) => {
     const getResponse = async()=>{
         const res = await fetch(`http://localhost:8000/api/product/${props.productId}`)
                           .then(res=> res.json());
-                          setProductData(await res);
+                          setProductData(await res[0]);
     }
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>

@@ -13,7 +13,7 @@ const Home = () => {
 
     async function getResponse(){
         // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product/')
+        const res = await fetch('http://localhost:8000/api/product')
                           .then(res=> res.json());
                           setProductData(await res);
     }
