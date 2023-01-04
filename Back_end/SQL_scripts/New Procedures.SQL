@@ -28,3 +28,21 @@ BEGIN
 	END WHILE;
 END $$ 
 DELIMITER ;
+
+drop procedure if exists select_train;
+DELIMITER $$
+CREATE PROCEDURE select_train(
+	order_ID int)
+BEGIN
+	declare train_ID int;
+	select train_ID into train_ID from train inner join 
+	train_route using(route_id) where store_ID in (select store_ID from
+	truck where truck_route = (select truck_route from orders where orders.order_ID = order_ID)) and 
+	train.loaded_Capacity + (select tot_capacity from orders where orders.order_ID = order_ID) <= train.capacity 
+	order by IF(SIGN(TIMEDIFF(train_route.depart_time, CURTIME())) = 1, 1, 0) limit 1;
+    
+    insert into transport values (default, train_ID);
+    insert into order_transport values (default, max(transport.transport_ID), order_ID);
+END $$ 
+DELIMITER ;
+

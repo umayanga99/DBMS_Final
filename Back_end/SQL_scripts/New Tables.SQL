@@ -170,7 +170,6 @@ CREATE TABLE Driver_Assistant (
     truck_ID varchar(30),
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
-    duration float(4,2),
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (driver_NIC) REFERENCES Driver(NIC),
