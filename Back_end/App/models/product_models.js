@@ -10,7 +10,6 @@ Product.getProductsById=(id,result)=>{
             result(err,null);
             return;
         }else{
-            console.log(res);
             result(null,res);
             return;
         }
