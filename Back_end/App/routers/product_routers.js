@@ -4,7 +4,8 @@ const ProductController = require("../controllers/product_controller.js");
 
 var productRouter = require("express").Router();
 
-// registerRouter.post("/", ProductController.addUser);
+productRouter.get("/", ProductController.getProducts);
+productRouter.get("/:id", ProductController.getProductsById);
 
 app.use('/api/product', productRouter);
 }

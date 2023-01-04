@@ -19,6 +19,7 @@ const SignIn = () => {
         const email = form.email.value;
         const password = form.password.value;
         if(email && password){
+            console.log("if", email, password)
             setLoading(true);
             fetch('http://localhost:8000/api/auth/checkValidity',{
                 method: 'POST',
@@ -35,13 +36,13 @@ const SignIn = () => {
             .then((data) => {
                 
                 setValue(data);
-                console.log(value);
-                if(!value){
+                console.log(`value = `,value);
+                console.log(data.message);
+                if(data.message!==1){
                     alert("Can not login",value);
-                    
                 }
                 else{
-                    alert("okkkk",value);
+                    alert("ok",value);
                     navigate('home', {replace: false});
                     
                     
@@ -49,7 +50,7 @@ const SignIn = () => {
                 // console.log(value);
             })
             .then(json=>sessionStorage.setItem("token", json.token))
-            // .catch(error=> console.error(error))
+            .catch(error=> console.error(error))
             .finally(()=>{
                 
                 setLoading(false);

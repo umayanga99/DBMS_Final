@@ -1,29 +1,27 @@
 const ProductModel = require("../models/product_models");
 
-// Check for validity of username and password
-// exports.checkValidity = (req, res) => {
-//     if(!req.body) {
-//         res.status(400).send({
-//             message: "Username and password can not be empty!"
-//         });
-//     }
+exports.getProductsById=(req,res)=>{
+    const id = req.params.id
+    // console.log(req.p )
+    ProductModel.getProductsById(id, (err,data)=>{
+        if(err){
+            res.status(500).send({
+                message:err.message||"Something went Wrong"
+            })
+        }else{
+            res.status(200).send(data);
+        }
+    })
+}
 
-//     const email = req.body.email;
-//     const password = req.body.password;
-//     console.log(userName,password);
-
-//     LoginModel.checkValidity(email, password, (err, data) => {
-//         if(err) {
-//             res.status(500).send({
-//                 message: err.message || "Something went wrong"
-//             })
-//         } else {
-//             res.status(200).send({
-//                 message: "Welcome"
-                
-//             });
-            
-//         }
-//         console.log(res);
-//     })
-// }
+exports.getProducts=(req,res)=>{
+    ProductModel.getProducts((err,data)=>{
+        if(err){
+            res.status(500).send({
+                message:err.message||"Something went Wrong"
+            })
+        }else{
+            res.status(200).send(data);
+        }
+    })
+}
