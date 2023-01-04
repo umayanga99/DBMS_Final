@@ -41,7 +41,7 @@ exports.addUser = (req, res) => {
     const type = req.body.type;
     const TP = req.body.TP;
 
-    AuthModel.addUser(name, password, email, type, TP, (err, data) => {
+    AuthModel.addUser(email,password,name, type, TP, (err, data) => {
         if(err) {
             res.status(500).send({
                 message: err.message || "Something went wrong"

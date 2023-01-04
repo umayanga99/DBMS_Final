@@ -8,7 +8,7 @@ module.exports = app => {
     cartRouter.get("/getCartItem", CartController.getCartItems);
     
     // Add to cart
-    cartRouter.post("/saveCart", CartController.saveCart);
+    // cartRouter.post("/saveCart", CartController.saveCart);
     
     app.use('/api/cart', cartRouter);
     }
