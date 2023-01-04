@@ -45,7 +45,7 @@ const Register = () => {
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
-                navigate('home', {replace: true})
+                navigate('/', {replace: true})
                 alert('register successfully');
             })
         }
