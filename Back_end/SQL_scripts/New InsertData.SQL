@@ -72,7 +72,7 @@ insert into Truck_Route values ('Baticlo', 4.00);
 insert into Truck_Route values ('Jaffna', 4.00);
 insert into Truck_Route values ('Kilinochchi', 4.00);
 insert into Truck_Route values ('Mannar', 4.00);
-insert into Truck_Route values ('Mulathivu', 4.00);
+insert into Truck_Route values ('Mulathiw', 4.00);
 
 insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1');
 insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1');
