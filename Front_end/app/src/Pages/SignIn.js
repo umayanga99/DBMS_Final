@@ -37,7 +37,8 @@ const SignIn = () => {
                 
                 setValue(data);
                 console.log(`value = `,value);
-                if(!Number(data)){
+                console.log(data.message);
+                if(data.message!=1){
                     alert("Can not login",value);
                 }
                 else{
@@ -49,7 +50,7 @@ const SignIn = () => {
                 // console.log(value);
             })
             .then(json=>sessionStorage.setItem("token", json.token))
-            // .catch(error=> console.error(error))
+            .catch(error=> console.error(error))
             .finally(()=>{
                 
                 setLoading(false);

@@ -2,6 +2,7 @@ const mysql = require("./db.js");
 
 // constructor
 const Product = function(file) {
+   
 };
 
 Product.getProductsById=(id,result)=>{

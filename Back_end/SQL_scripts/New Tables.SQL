@@ -1,8 +1,8 @@
-drop database if exists project_Final;
+drop database if exists FFinal;
 
-create database project_Final;
+create database FFinal;
 
-use project_Final;
+use FFinal;
 
 CREATE TABLE Product (
     product_ID int auto_increment,
