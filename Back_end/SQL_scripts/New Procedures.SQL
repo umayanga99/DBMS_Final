@@ -6,5 +6,3 @@ begin
 	insert into cart_product values (product_ID, cart_ID, default);
 end$$
 delimiter ;
-
---sdjhfjsjdfjhsdjf

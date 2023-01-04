@@ -22,8 +22,6 @@ insert into Product_Image values (default,8,'toppng.com-png-effects-download-500
 insert into Product_Image values (default,9,'toppng.com-png-effects-download-500x500.png');
 insert into Product_Image values (default,10,'toppng.com-png-effects-download-500x500.png');
 
--- jkdjfkdkfkdjfkdkfjkjsdjfodofjljlldjjdjlj
-
 insert into Store values (default, "Colombo","Colombostore",0760600609,"addressColombo");
 insert into Store values (default, "Galle","Gallestore",076060089,"addressGalle");
 insert into Store values (default, "Trinco","Trincostore",0760690609,"addressTrinco");
