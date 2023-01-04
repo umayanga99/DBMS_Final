@@ -7,15 +7,15 @@ BEGIN
     VALUES (new.email, default);
 END $$
 
-DELIMITER $$
-CREATE TRIGGER product_count_after_order
-AFTER UPDATE ON orders
-FOR EACH ROW
-BEGIN
-	UPDATE product
-    SET quantity = quantity  - orders.quantity
-    WHERE id = new.id;
-END
-$$
+-- DELIMITER $$
+-- CREATE TRIGGER product_count_after_order
+-- AFTER UPDATE ON orders
+-- FOR EACH ROW
+-- BEGIN
+-- 	UPDATE product
+--     SET quantity = quantity - orders.quantity
+--     WHERE id = new.id;
+-- END
+-- $$
 
-delimiter ;
+-- delimiter ;
