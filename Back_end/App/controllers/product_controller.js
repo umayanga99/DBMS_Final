@@ -2,7 +2,7 @@ const ProductModel = require("../models/product_models");
 
 exports.getProductsById=(req,res)=>{
     const id = req.params.id
-    // console.log(req.p)
+    // console.log(req.p )
     ProductModel.getProductsById(id, (err,data)=>{
         if(err){
             res.status(500).send({
