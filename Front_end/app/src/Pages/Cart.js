@@ -86,21 +86,21 @@ const Cart = () => {
                                 className="m-2"
                                 onClick={()=>  {
                                     console.log(items.price);
-                                      fetch('/my-endpoint', {
-                                        method: 'POST',
-                                        body: JSON.stringify({
-                                            email : localStorage.getItem('email'),
-                                            items : items
-                                        }),
-                                        headers: {
-                                          'Content-Type': 'application/json'
-                                        }
-                                      })
-                                        .then(res => res.json())
-                                        .then(res => {
-                                          setResponse(res);
-                                        });
-                                        alert("error in saving");
+                                    //   fetch('/my-endpoint', {
+                                    //     method: 'POST',
+                                    //     body: JSON.stringify({
+                                    //         email : localStorage.getItem('email'),
+                                    //         items : items
+                                    //     }),
+                                    //     headers: {
+                                    //       'Content-Type': 'application/json'
+                                    //     }
+                                    //   })
+                                    //     .then(res => res.json())
+                                    //     .then(res => {
+                                    //       setResponse(res);
+                                    //     });
+                                    //     alert("error in saving");
                                     }}
                             >
                                 <BsCartCheck size="1.7rem" />
