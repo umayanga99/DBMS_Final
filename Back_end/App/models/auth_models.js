@@ -20,7 +20,7 @@ Auth.checkValidity = (email, password,result) => {
         } else {
             
             // result(null, res);
-            console.log(`login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
+        //     console.log(`login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
             if(res[0].isLoggedIn!='0'){
                 console.log(`success`);
                 result(null,true);
