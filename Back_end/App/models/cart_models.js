@@ -12,7 +12,7 @@ Cart.saveCart = (email,items, result) => {
   let newItems=[];
   for (let i=0;i<items.length;i++){
     let subArray=items[i];
-    mysql.query(`CALL Add_to_cart(?,?,?)`,[email,subArray.id,subArray.quantity], (err, res) => {
+    mysql.query(`CALL Save_To_Cart(?,?,?)`,[email,subArray.id,subArray.quantity], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
