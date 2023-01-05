@@ -12,16 +12,7 @@ Cart.saveCart = (email,items, result) => {
   let newItems=[];
   for (let i=0;i<items.length;i++){
     let subArray=items[i];
-    let newSubArray=[];
-    newSubArray.push(subArray.id);
-    newSubArray.push(subArray.quantity);
-    newItems.push(newSubArray);
-    
-    
-  }
-  console.log(newItems,email);
-  const arr = JSON.stringify(newItems);
-    mysql.query(`CALL Add_to_cart(?,?)`,[email,arr], (err, res) => {
+    mysql.query(`CALL Add_to_cart(?,?,?)`,[email,subArray.id,subArray.quantity], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -29,9 +20,14 @@ Cart.saveCart = (email,items, result) => {
       } else {
         result(null, true);
       }
-      
-      console.log("added : ", res);
+    
     });
+    
+    
+  }
+  console.log(newItems,email);
+  const arr = JSON.stringify(newItems);
+  
   };
 
 
