@@ -9,17 +9,28 @@ const Cart = function(file) {
 
 
 Cart.saveCart = (email,items, result) => {
-  let newItems=[];
-  for (let i=0;i<items.length;i++){
-    let subArray=items[i];
-    const tempList=mysql.query(`CALL Save_To_Cart(?,?,?)`,[email,subArray.id,subArray.quantity]);
-    newItems.push(tempList);  
-  }
+  // let newItems=[];
+  // for (let i=0;i<items.length;i++){
+  //   let subArray=items[i];
+  //   const tempList=mysql.query(`CALL Save_To_Cart(?,?,?)`,[email,subArray.id,subArray.quantity]);
+  //   newItems.push(tempList);  
+  // }
+  // result(null,true);
   
+
   // console.log(newItems,email);
-  // const arr = JSON.stringify(newItems);
+  // // const arr = JSON.stringify(newItems);
   
-  };
+  // };
+  items.forEach((subArray) => {
+    mysql.query(`CALL Save_To_Cart(?,?,?)`,[email,subArray.id,subArray.quantity], (error, results) => {
+      if (error) {
+        // handle the error here
+        return;
+      }
+      // do something with the results if needed
+    });
+  });};
 
 
 Cart.GetCartItem =  (email, result) => {
