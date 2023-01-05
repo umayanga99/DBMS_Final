@@ -36,9 +36,9 @@ const Register = () => {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    email: email,
                     name: name,
                     password: password,
+                    email: email,
                     type: type,
                     TP: number
                 })
@@ -46,6 +46,7 @@ const Register = () => {
             // .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
+                console.log(name,password,email,type,number);
                 setLoading(false);
                 navigate('/', {replace: true})
                 alert('register successfully');
@@ -95,9 +96,9 @@ const Register = () => {
                                     onChange={handleChange}
                                     required
                                     >
-                                    <MenuItem value={10}>Wholesalers</MenuItem>
-                                    <MenuItem value={20}>Retailers</MenuItem>
-                                    <MenuItem value={30}>End Customers</MenuItem>
+                                    <MenuItem value={"wholesaler"}>Wholesalers</MenuItem>
+                                    <MenuItem value={"retailer"}>Retailers</MenuItem>
+                                    <MenuItem value={"end customer"}>End Customers</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Box>
