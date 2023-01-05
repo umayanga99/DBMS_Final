@@ -26,22 +26,24 @@ const Register = () => {
         event.preventDefault();
         const password = form.password.value;
         const email = form.email.value;
+        const name = form.name.value;
         
-        if(password && email && number && type){
+        if(password && email && number && type && name){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/signIn',{
+            fetch('http://localhost:8000/api/auth/addUser',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
                     email: email,
+                    name: name,
                     password: password,
                     type: type,
-                    number: number
+                    TP: number
                 })
             }).then(res=>res.json())
-            .then(json=>sessionStorage.setItem("token", json.token))
+            // .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
@@ -61,6 +63,10 @@ const Register = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Email</Form.Label>
                             <Form.Control name="email" type="email" placeholder="Email" required />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control name="name" type="text" placeholder="Name" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Mobile number</Form.Label>

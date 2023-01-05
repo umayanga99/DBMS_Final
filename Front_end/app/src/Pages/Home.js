@@ -18,6 +18,13 @@ const Home = () => {
                           setProductData(await res);
     }
 
+    // async function getCartItems(){
+    //     // const res = await fetch('https://fakestoreapi.com/products')
+    //     const res = await fetch('http://localhost:8000/api/product')
+    //                       .then(res=> res.json());
+    //                       setProductData(await res);
+    // }
+
     useEffect(()=>{
         getResponse();
     },[]);
