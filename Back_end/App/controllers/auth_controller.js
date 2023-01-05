@@ -20,7 +20,8 @@ exports.checkValidity = (req, res) => {
             })
         } else {
             res.status(200).send({
-                message: data ? 1 : 0
+                message: data ? 1 : 0,
+                email:email
                 
             });
             
