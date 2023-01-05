@@ -43,7 +43,7 @@ const SignIn = () => {
                 }
                 else{
                     alert("ok",value);
-                    localStorage.setItem('email', 'abc@gmail.com');
+                    localStorage.setItem('email', data.email);
                     navigate('home', {replace: true});
                     
                     
