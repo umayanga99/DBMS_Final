@@ -16,11 +16,12 @@ exports.checkValidity = (req, res) => {
     AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
             res.status(500).send({
-                message: 0 || "Something went wrong"
+                message: 0 
             })
         } else {
             res.status(200).send({
-                message: data ? 1 : 0
+                message: data ? 1 : 0,
+                email:email
                 
             });
             
