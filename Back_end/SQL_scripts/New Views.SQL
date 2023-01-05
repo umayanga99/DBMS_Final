@@ -40,7 +40,8 @@ select p.id,
 
 drop view if exists get_cart_items;
 create view get_cart_items as
-select id, cp.quantity * p.price as 'itemTotal', 
+select id, 
+    cp.quantity * p.price as 'itemTotal', 
     price, 
     product_description, 
     product_name, 
