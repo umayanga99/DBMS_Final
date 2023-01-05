@@ -31,3 +31,9 @@ product_weight,
  unit_capacity, 
  pi.product_image
  from product p inner join product_image pi group by id order by id;
+
+drop view if exists get_cart_items;
+create view get_cart_items as
+select id, cp.quantity * p.price as 'itemTotal', 
+    price, product_description, product_name, product_weight, quantity, unit_capacity 
+from cart inner join cart_product cp using(cart_ID) inner join product p using (id);
