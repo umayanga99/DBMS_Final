@@ -44,7 +44,7 @@ const SignIn = () => {
                 else{
                     alert("ok",value);
                     localStorage.setItem('email', data.email);
-                    navigate('home', {replace: false});
+                    navigate('home', {replace: true});
                     
                     
                 }

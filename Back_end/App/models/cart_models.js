@@ -19,8 +19,9 @@ Cart.saveCart = (email,items, result) => {
     
     
   }
-  console.log(newItems);
-    mysql.query(`CALL Add_to_cart(?,?)`,[email,newItems], (err, res) => {
+  console.log(newItems,email);
+  const arr = JSON.stringify(newItems);
+    mysql.query(`CALL Add_to_cart(?,?)`,[email,arr], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -41,6 +42,7 @@ Cart.GetCartItem =  (email, result) => {
       result(err, res);
       return;
     } else {
+      console.log("success");
       result(null, res);
     }
     // not found Tutorial with the id
@@ -48,9 +50,4 @@ Cart.GetCartItem =  (email, result) => {
   });
 };
 
-
-  
-
 module.exports = Cart;
-
-

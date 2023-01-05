@@ -56,5 +56,3 @@ exports.getCartItems = (req, res) => {
  } )
  
  }
-
-
