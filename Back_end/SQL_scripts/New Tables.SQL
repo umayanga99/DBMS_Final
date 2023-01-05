@@ -53,7 +53,7 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type enum('wholesaler', 'retailer', 'end customer'),
     customer_Password varchar(255),
-    Telephone_No int(10),
+    Telephone_No int(12),
     PRIMARY KEY (email)
 );
 
