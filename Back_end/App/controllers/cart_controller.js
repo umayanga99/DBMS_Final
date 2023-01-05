@@ -11,17 +11,15 @@ exports.saveCart = (req, res) => {
 
  
   const email = req.body.email;
-  const productID = req.body.productID;
-  console.log(cartID, productID);
+  const items = req.body.items;
+//   console.log(cartID, productID);
   
-CartModel.saveCart(email, productID, (err, data) => {
+CartModel.saveCart(email, items, (err, data) => {
     if(err) {
        
         res.status(200).send({
             message: "Fail",
-            data: {
-                productId: "dsfsdf"
-            }
+            
         });
     } else {
         res.status(200).send({

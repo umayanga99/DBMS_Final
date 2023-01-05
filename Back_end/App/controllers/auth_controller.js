@@ -16,7 +16,7 @@ exports.checkValidity = (req, res) => {
     AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
             res.status(500).send({
-                message: 0 || "Something went wrong"
+                message: 0 
             })
         } else {
             res.status(200).send({
