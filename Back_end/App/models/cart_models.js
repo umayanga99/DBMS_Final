@@ -25,11 +25,18 @@ Cart.saveCart = (email,items, result) => {
 
 
 Cart.GetCartItem =  (email, result) => {
-  const cartItemIDList=mysql.query("select id from cart_product where cart_ID = (select cart_ID from cart where email=?)",[email]);
+  const cartItemIDList=JSON.stringify(mysql.query("select id from cart_product where cart_ID = (select cart_ID from cart where email=?)",[email]));
+  console.log(cartItemIDList);
   let itemList=[];
   for(let i =0;i<cartItemIDList.length;i++){
-      const tempList=mysql.query("")
-   }
+      const tempList=mysql.query("select itemTotal, price, product_description, product_name, product_weight, quantity, unit_capacity from get_cart_items where id =?",[cartItemIDList[i]]);
+      itemList.push(tempList);
+      console.log(tempList);
+
+    }
+    console.log(itemList);
+    result(null,itemList);
+    
 };
 
 module.exports = Cart;
