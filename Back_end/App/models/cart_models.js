@@ -8,8 +8,20 @@ const Cart = function(file) {
 };
 
 
-Cart.saveCart = (email,quantity, productID, result) => {
-    mysql.query(`CALL Add_to_cart(?,?,?)`,[email,quantity,productID], (err, res) => {
+Cart.saveCart = (email,items, result) => {
+  let newItems=[];
+  for (let i=0;i<items.length;i++){
+    let subArray=items[i];
+    let newSubArray=[];
+    newSubArray.push(subArray.id);
+    newSubArray.push(subArray.quantity);
+    newItems.push(newSubArray);
+    
+    
+  }
+  console.log(newItems,email);
+  const arr = JSON.stringify(newItems);
+    mysql.query(`CALL Add_to_cart(?,?)`,[email,arr], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -30,6 +42,7 @@ Cart.GetCartItem =  (email, result) => {
       result(err, res);
       return;
     } else {
+      console.log("success");
       result(null, res);
     }
     // not found Tutorial with the id
@@ -37,9 +50,4 @@ Cart.GetCartItem =  (email, result) => {
   });
 };
 
-
-  
-
 module.exports = Cart;
-
-

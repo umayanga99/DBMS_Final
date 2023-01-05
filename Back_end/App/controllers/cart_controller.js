@@ -1,7 +1,7 @@
 const CartModel = require("../models/cart_models");
 //
 
-exports.addToCart = (req, res) => {
+exports.saveCart = (req, res) => {
  
   if (!req.body) {
     res.status(400).send({  
@@ -10,18 +10,16 @@ exports.addToCart = (req, res) => {
   } 
 
  
-  const cartID = req.body.cartID;
-  const productID = req.body.productID;
-  console.log(cartID, productID);
+  const email = req.body.email;
+  const items = req.body.items;
+//   console.log(cartID, productID);
   
-CartModel.addToCart(cartID, productID, (err, data) => {
+CartModel.saveCart(email, items, (err, data) => {
     if(err) {
        
         res.status(200).send({
             message: "Fail",
-            data: {
-                productId: "dsfsdf"
-            }
+            
         });
     } else {
         res.status(200).send({
@@ -58,5 +56,3 @@ exports.getCartItems = (req, res) => {
  } )
  
  }
-
-
