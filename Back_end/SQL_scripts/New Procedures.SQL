@@ -84,3 +84,12 @@ BEGIN
     update assistant_assistant set assistant_NIC = current_nic where turn_ID = max(turn_ID);
 END $$ 
 DELIMITER ;
+
+drop procedure if exists get_cart_items_procedure;
+Delimiter $$
+create procedure get_cart_items_procedure(
+	email varchar(225))
+begin 
+	select itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = email;
+end$$
+delimiter ;
