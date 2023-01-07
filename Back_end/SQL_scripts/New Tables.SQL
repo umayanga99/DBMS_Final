@@ -71,6 +71,7 @@ CREATE TABLE Orders (
     truck_route varchar(225),
     tot_capacity int,
     prefered_dilivery_date date,
+    total_price real,
     PRIMARY KEY (order_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)

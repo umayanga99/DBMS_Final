@@ -1,3 +1,4 @@
+drop procedure save_to_cart;
 Delimiter $$
 create procedure Save_To_Cart(
 	email varchar(225),
@@ -6,6 +7,7 @@ create procedure Save_To_Cart(
 begin 
 	declare current_id int;
 	select cart_ID into current_id from cart where cart.email = email;
+    delete from cart_product where cart_ID = current_id and cart_product.id = id;
 	insert into cart_product values (default, id, current_id, quantity);
 end$$
 delimiter ;
@@ -113,3 +115,37 @@ begin
 	select itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = email;
 end$$
 delimiter ;
+
+
+DELIMITER $$
+CREATE PROCEDURE assign_all(order_id int)
+BEGIN
+    DECLARE exit handler for sqlexception
+    BEGIN
+        ROLLBACK;
+    END;
+
+    START TRANSACTION;
+
+	call select_train(order_id);
+	call select_truck(order_id);
+	call select_driver(order_id);
+	call select_assistant(order_id);
+
+    COMMIT;
+END $$
+
+
+drop procedure if exists payment_proceed;
+DELIMITER $$
+CREATE PROCEDURE payment_proceed(
+	email varchar(225),
+    prefered_deliver_date date,
+    address varchar(225),
+    route varchar(50),
+    total_price real)
+BEGIN
+	declare tot_capacity real;
+    select sum(quantity * unit_capacity) into tot_capacity  from product inner join cart_product using(id) inner join cart using (cart_id) where cart.email = email;
+    insert into Orders values (default, address, email, curdate(), curtime(), route, tot_capacity, prefered_deliver_date, total_price);
+END $$
