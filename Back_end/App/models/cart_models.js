@@ -17,10 +17,6 @@ Cart.saveCart = (email,items, result) => {
   // console.log(items);
   for (let i=0;i<items.length;i++){
     let subArray=items[i];
-    let tempArray=[];
-    tempArray.push(subArray.id);
-    tempArray.push(subArray.quantity);
-    newItems.push(tempArray);
     console.log(subArray.id,subArray.quantity);
     mysql.query("Call Save_To_Cart(?,?,?)",[email,subArray.id,subArray.quantity],(err,res)=>{
       // console.log(newItems[i].id,newItems[i].quantity);
