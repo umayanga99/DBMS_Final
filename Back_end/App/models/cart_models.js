@@ -1,7 +1,11 @@
 const mysql = require("./db.js");
+// let pool = require('../../database/connection');
+// const {decodeToken} = require('../../middleware/authMiddleware') // add this middle ware to authenticate without login
 
 constructor
 const Cart = function(file) {
+  this.email=email;
+  this.items=items;
   this.title = file.title;
   this.description = file.description;
   this.published = file.published;
@@ -9,44 +13,36 @@ const Cart = function(file) {
 
 
 Cart.saveCart = (email,items, result) => {
-  // let newItems=[];
-  // for (let i=0;i<items.length;i++){
-  //   let subArray=items[i];
-  //   const tempList=mysql.query(`CALL Save_To_Cart(?,?,?)`,[email,subArray.id,subArray.quantity]);
-  //   newItems.push(tempList);  
-  // }
-  // result(null,true);
-  
+  let newItems=[];
+  // console.log(items);
+  for (let i=0;i<items.length;i++){
+    let subArray=items[i];
+    let tempArray=[];
+    tempArray.push(subArray.id);
+    tempArray.push(subArray.quantity);
+    newItems.push(tempArray);
+    console.log(subArray.id,subArray.quantity);
+    mysql.query("Call Save_To_Cart(?,?,?)",[email,subArray.id,subArray.quantity],(err,res)=>{
+      // console.log(newItems[i].id,newItems[i].quantity);
+      if(err){result(err,null);
+      return;}
+    })
+}
 
-  // console.log(newItems,email);
-  // // const arr = JSON.stringify(newItems);
-  
-  // };
-  items.forEach((subArray) => {
-    mysql.query(`CALL Save_To_Cart(?,?,?)`,[email,subArray.id,subArray.quantity], (error, results) => {
-      if (error) {
-        // handle the error here
-        return;
-      }
-      // do something with the results if needed
-    });
-  });};
+}
 
 
-Cart.GetCartItem =  (email, result) => {
-  const cartItemIDList=mysql.query("select id from cart_product where cart_ID = (select cart_ID from cart where email=?)",[email]);
-   mysql.query(`select * from cart_product where cart_id = (select cart_id from cart where cart.email=?)`,[email], (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, res);
-      return;
-    } else {
-      console.log("success");
-      result(null, res);
-    }
-    // not found Tutorial with the id
-    console.log("returned : ", res);
-  });
+
+Cart.GetCartItems=(email,result)=>{
+ mysql.query("CALL get_cart_items_procedure(?)",[email],(err,res)=>{
+  if(err){
+    result(err,null);
+    return;
+  }else{
+    result(null,res);
+    return;
+  }
+ })
 };
 
-module.exports = Cart;
+module.exports=Cart;

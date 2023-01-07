@@ -11,7 +11,7 @@ exports.saveCart = (req, res) => {
 
  
   const email = req.body.email;
-  const items = req.body.items;
+  let items = req.body.items;
 //   console.log(cartID, productID);
   
 CartModel.saveCart(email, items, (err, data) => {
