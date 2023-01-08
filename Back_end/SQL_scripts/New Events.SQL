@@ -1,9 +1,20 @@
-CREATE EVENT reset_driver_assistant_hours
+drop event if exists reset_working_hours;
+delimiter $$
+CREATE  EVENT reset_working_hours
 ON SCHEDULE EVERY 1 WEEK
-starts '2023-01-02 00:00:00'
+starts '2022-01-03 00:00:00'
 DO
-    UPDATE Assistant SET total_duration = 0;
-    UPDATE Driver SET total_duration = 0;
-    UPDATE Truck SET total_duration = 0;
+	begin
+		UPDATE Driver SET total_duration = 0;
+		UPDATE Truck SET total_duration = 0;
+		UPDATE Assistant SET total_duration = 0;
+	end $$
 
-ALTER EVENT reset_driver_assistant_hours ENABLE;
+delimiter $$
+CREATE  EVENT reset_train_load
+ON SCHEDULE EVERY 1 DAY
+starts '2022-01-03 00:00:00'
+DO
+	begin
+		UPDATE Train SET loaded_capacity = 0;
+	end $$

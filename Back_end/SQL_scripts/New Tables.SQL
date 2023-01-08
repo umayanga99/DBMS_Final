@@ -55,13 +55,13 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type enum('wholesaler', 'retailer', 'end customer'),
     customer_Password varchar(255),
-    Telephone_No int(12),
+    Telephone_No int,
     PRIMARY KEY (email)
 );
 
 CREATE TABLE Truck_Route (
     truck_route VARCHAR(225) PRIMARY KEY,
-    route_duration int
+    route_duration float(4,2)
 );
 
 CREATE TABLE Orders (
@@ -73,6 +73,7 @@ CREATE TABLE Orders (
     truck_route varchar(225),
     tot_capacity int,
     prefered_dilivery_date date,
+    total_price real,
     PRIMARY KEY (order_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
@@ -172,6 +173,7 @@ CREATE TABLE Driver_Assistant (
     truck_ID varchar(30),
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
+    turn_dutaion float(4,2),
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (driver_NIC) REFERENCES Driver(NIC),

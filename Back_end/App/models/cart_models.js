@@ -29,8 +29,8 @@ Cart.saveCart = (email,items, result) => {
 
 
 
-Cart.GetCartItems=(email,result)=>{
- mysql.query("CALL get_cart_items_procedure(?)",[email],(err,res)=>{
+Cart.getCartItem=(email,result)=>{
+ mysql.query("select itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = ? ",[email],(err,res)=>{
   if(err){
     result(err,null);
     return;
