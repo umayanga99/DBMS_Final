@@ -27,7 +27,7 @@ Cart.GetCartItem =  (email, result) => {
    mysql.query(`select * from cart_product where cart_id = (select cart_id from cart where cart.email=?)`,[email], (err, res) => {
     if (err) {
       console.log("error: ", err);
-      result(err, null);
+      result(err, res);
       return;
     } else {
       result(null, res);

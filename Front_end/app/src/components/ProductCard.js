@@ -6,7 +6,7 @@ import { BsCartPlus } from 'react-icons/bs';
 import { Link } from  "@reach/router";
 
 const ProductCard = (props) => {
-    let { image, price, title, id} = props.data;
+    let { image, price, product_name, product_ID} = props.data;
     const [theme] = useThemeHook();
     const { addItem } = useCart();
 
@@ -18,7 +18,7 @@ const ProductCard = (props) => {
             style={{ width: '18rem', height: 'auto' }}
             className={`${theme? 'bg-light-black text-light':'bg-lihgt text-black'} text-center p-0 overflow-hidden shadow mx-auto mb-4`}
         >
-            <Link to={`/product-details/${id}`}>
+            <Link to={`/product-details/${product_ID}`}>
                 <div style={{ background: 'white', height: '15rem', overflow: 'hidden', display: 'flex',
                 justifyContent: 'center', alignItems: 'center', marginBottom: 'inherit' }}>
                     <div style={{ width: '9rem'}}>
@@ -28,7 +28,7 @@ const ProductCard = (props) => {
             </Link>
             <Card.Body>
                 <Card.Title style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap'}}>
-                    {title}
+                    {product_name}
                 </Card.Title>
                 <Card.Title>
                     Rs. <span className="h3">{price}</span>
