@@ -36,7 +36,7 @@ exports.getCartItems = (req, res) => {
     let email = req.query.email;
   
    
- CartModel.GetCartItem(email, (err, data) => {
+ CartModel.getCartItem(email, (err, data) => {
      if(err) {
        
         res.status(200).send({
