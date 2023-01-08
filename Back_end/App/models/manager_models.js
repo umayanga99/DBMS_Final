@@ -29,9 +29,9 @@ const Manager = function(file) {
   
 
 
-Manager.getTrainSchedule = ( result) => {
+Manager.getTruckSchedule = ( result) => {
     //check the query
-    mysql.query(`select * from Train`,(err,res) => {
+    mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -46,7 +46,7 @@ Manager.getTrainSchedule = ( result) => {
 
 Manager.getAssistantSchedule = ( result) => {
     //check the query
-    mysql.query(`select * from Train`,(err,res) => {
+    mysql.query(`Select ID, total_duration from working_hours where roll = 'assistant' order by total_duration`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -60,7 +60,7 @@ Manager.getAssistantSchedule = ( result) => {
 
 Manager.getDriverSchedule = ( result) => {
     //check the query
-    mysql.query(`select * from train_schedule`,(err,res) => {
+    mysql.query(`Select ID, total_duration from working_hours where roll = 'driver' order by total_duration`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -72,9 +72,9 @@ Manager.getDriverSchedule = ( result) => {
     });
 };
 
-Manager.getreport = (year, result) => {
+Manager.getTrainSchedule = (result) => {
     //check the query
-    mysql.query(`select * from Train where ? `,[year],(err,res) => {
+    mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -86,5 +86,91 @@ Manager.getreport = (year, result) => {
     });
 };
 
+
+Manager.getMostOrderedReport = (year, result) => {
+    //check the query
+    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res);
+            
+        }
+    });
+};
+
+Manager.getQuarterlySalesReport = (year, result) => {
+    //check the query
+    mysql.query(`SELECT quarter, total_quantity, total_income FROM quarterly_sales_report where year = ?`,[year],(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res);
+            
+        }
+    });
+};
+
+Manager.getQuarterlyOrderReport = (year, result) => {
+    //check the query
+    mysql.query(`SELECT quarter, product, total_sells, total_income FROM quarter_order_details where year = ?`,[year],(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res);
+            
+        }
+    });
+};
+
+
+
+Manager.getMostOrdered = (year, result) => {
+    //check the query
+    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res);
+            
+        }
+    });
+};
+
+Manager.getCustomerOrderReport = (year, result) => {
+    //check the query
+    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res);
+            
+        }
+    });
+};
+
+Manager.getCitiesRoutesReport = (result) => {
+    //check the query
+    mysql.query("SELECT * FROM cities_routes_report",(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res);
+            
+        }
+    });
+};
 
 module.exports = Manager;
