@@ -85,17 +85,10 @@ select customer_email,
     product_name, 
     quantity, 
     price*quantity as 'total_price'  from
-<<<<<<< HEAD
+
 customer c inner join orders o on c.email = o.customer_email 
 inner join order_product using(order_ID) 
 inner join product using(id) order by ordered_date desc;
-<<<<<<< HEAD
->>>>>>> Sheshan
-=======
-=======
-customer c inner join orders_order_product o on c.email = o.customer_email 
-order by ordered_date desc;
->>>>>>> Sheshan
 
 
 create or replace view cities_routes_report as 
@@ -107,4 +100,4 @@ select city,
 store inner join truck using(store_ID)
 inner join orders_order_product using(truck_route) 
 group by city, truck_route, product_name;
->>>>>>> Sheshan
+

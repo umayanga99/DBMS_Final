@@ -26,7 +26,7 @@ exports.checkValidity = (req, res) => {
             });
             
         }
-        console.log("success in controller");
+     
     })
 }
 
