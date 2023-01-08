@@ -138,7 +138,7 @@ const Manager = () => {
                             </Button>
             
             <Row className="justify-content-center">
-                <h2 ref={lAssistent} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Assistent</h2>
+            <h2 ref={lAssistent} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Assistent</h2>
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
@@ -228,6 +228,7 @@ const Manager = () => {
                                 className="m-2"
                                 style={{ width: '500px', height: '70px' }}
                                 onClick={()=>  { 
+                                    navigate('reports', {replace: false});
                                     // const filteredItems = items.filter((item) => {
                                     //     return { id: item.id, price: item.price };
                                     //   });

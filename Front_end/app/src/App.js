@@ -13,7 +13,7 @@ import Register from "./Pages/Register";
 import Payment from "./Pages/Payment";
 import TrainSchedule from "./Pages/TrainSchedule";
 import Manager from "./Pages/Manager";
-
+import Reports from "./Pages/Reports";
 
 function App() {
   const [theme] = useThemeHook();
@@ -30,6 +30,7 @@ function App() {
         <Payment path="/payment" />
         <TrainSchedule path="/train-schedule" />
         <Manager path="/manager" />
+        <Reports path="reports" />
       </Router>
     </main>
   );
