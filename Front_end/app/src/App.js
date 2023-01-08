@@ -12,6 +12,8 @@ import ProductDetails from "./Pages/ProductDetails";
 import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
 import Payment from "./Pages/Payment";
+import Assistant from "./Pages/Assistant";
+import { Table } from "react-bootstrap";
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
         <ProductDetails path="product-details/:productId"/>
         <Cart path="/cart" />
         <Payment path="/payment" />
+        <Assistant path="/assistant"/>
       </Router>
     </main>
   );
