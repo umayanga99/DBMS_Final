@@ -74,9 +74,9 @@ insert into Truck_Route values ('Kilinochchi', 4.00);
 insert into Truck_Route values ('Mannar', 4.00);
 insert into Truck_Route values ('Mulathiw', 4.00);
 
-insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1');
-insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
+insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1',233.00);
+insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1',455.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
 
 insert into Truck values ('WP ABC 2891', 1, 'Colombo',25);
 insert into Truck values ('WP QQ 2345', 1, 'Kaluthara',39.25);
@@ -128,6 +128,6 @@ insert into Assistant values ("12345674442V","assis 3",4,"assis3@gmail.com",10.3
 insert into Assistant values ("55545678912V","assis 4",3,"assis4@gmail.com",13.30,0343454239);
 insert into Assistant values ("12999678912V","assis 5",4,"assis5@gmail.com",4,0343454239);
 
-insert into Driver_Assistant values (default,"WP QQ 2345","78964545634V",'12345678912V');
-insert into Driver_Assistant values (default,"EP LK 1889","12567845634V",'12345674442V');
-insert into Driver_Assistant values (default,"SP AAA 3449","78964545634V",'12000008912V');
+insert into Driver_Assistant values (default,"WP QQ 2345","78964545634V",'12345678912V',4);
+insert into Driver_Assistant values (default,"EP LK 1889","12567845634V",'12345674442V',4);
+insert into Driver_Assistant values (default,"SP AAA 3449","78964545634V",'12000008912V',4);
