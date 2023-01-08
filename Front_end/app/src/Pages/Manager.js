@@ -19,10 +19,10 @@ const Manager = () => {
     const [value,setValue] = useState("");
     const [theme] = useThemeHook();
     const navigate = useNavigate();
-    const [driver, setDriver] = useState("");
-    const [assistent, setAssistent] = useState("");
-    const [truck, setTruck] = useState("");
-    const [train, setTrain] = useState("");
+    const [driver, setDriver] = useState([]);
+    const [assistent, setAssistent] = useState([]);
+    const [truck, setTruck] = useState([]);
+    const [train, setTrain] = useState([]);
     // const [year, setYear] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
     const [year, setYear] = React.useState(null);
     const minDate = new Date('2022-04-07');

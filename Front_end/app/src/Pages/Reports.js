@@ -8,10 +8,10 @@ const Reports = () => {
     const [value,setValue] = useState("");
     const [theme] = useThemeHook();
     const navigate = useNavigate();
-    const [QSR, setQSR] = useState("");
-    const [MO, setMO] = useState("");
-    const [COR, setCOR] = useState("");
-    const [CRR, setCRR] = useState("");
+    const [QSR, setQSR] = useState([]);
+    const [MO, setMO] = useState([]);
+    const [COR, setCOR] = useState([]);
+    const [CRR, setCRR] = useState([]);
 
     const lQSR = useRef(null);
     const lMO = useRef(null);
