@@ -47,6 +47,7 @@ group by year, quarter, product
 order by year, quarter, total_income;
 
 
+create or replace view products_details as 
 select p.id, 
     price, 
     product_name, 
@@ -87,10 +88,8 @@ select year(ordered_date) as year,
     product_name, 
     quantity, 
     price*quantity as 'total_price'  from
-
-customer c inner join orders o on c.email = o.customer_email 
-inner join order_product using(order_ID) 
-inner join product using(id) order by ordered_date desc;
+customer c inner join orders_order_product o on c.email = o.customer_email 
+order by ordered_date desc;
 
 
 create or replace view cities_routes_report as 

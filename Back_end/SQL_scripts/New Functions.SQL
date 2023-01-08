@@ -21,7 +21,7 @@ CREATE FUNCTION Sign_authentication(
     pass varchar(255),
     customer_name varchar(255),
     customer_type varchar(15),
-    TP int) 
+    TP int(10)) 
 RETURNS tinyint(1)
 DETERMINISTIC
 BEGIN
@@ -47,4 +47,3 @@ BEGIN
 RETURN tot;
 END
 $$
-
