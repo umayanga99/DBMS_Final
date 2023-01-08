@@ -60,7 +60,7 @@ Manager.getAssistantSchedule = ( result) => {
 
 Manager.getDriverSchedule = ( result) => {
     //check the query
-    mysql.query(`select * from Train`,(err,res) => {
+    mysql.query(`select * from train_schedule`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
