@@ -59,7 +59,7 @@ CREATE TABLE Customer (
 
 CREATE TABLE Truck_Route (
     truck_route VARCHAR(225) PRIMARY KEY,
-    route_duration int
+    route_duration float(4,2)
 );
 
 CREATE TABLE Orders (
@@ -171,6 +171,7 @@ CREATE TABLE Driver_Assistant (
     truck_ID varchar(30),
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
+    turn_dutaion float(4,2),
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (driver_NIC) REFERENCES Driver(NIC),
