@@ -51,7 +51,7 @@ CREATE TABLE Train_Route (
 CREATE TABLE Customer (
     email varchar(255) ,
     customer_name varchar(255),
-    customer_type enum('wholesaler', 'retailer', 'end customer'),
+    customer_type enum('wholesaler', 'retailer', 'end customer','manager'),
     customer_Password varchar(255),
     Telephone_No int(10),
     PRIMARY KEY (email)
