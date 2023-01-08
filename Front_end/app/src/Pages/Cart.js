@@ -84,11 +84,11 @@ const Cart = () => {
                         <Col className="p-0" md={4}>
                             <Button variant="warning"
                                 className="m-2"
-                                onClick={()=>  {
+                                onClick={()=>  { 
                                     // const filteredItems = items.filter((item) => {
                                     //     return { id: item.id, price: item.price };
                                     //   });
-                                    console.log(localStorage.getItem('email'));
+                                    // console.log(localStorage.getItem('email'));
                                       fetch('http://localhost:8000/api/cart/saveCart', {
                                         method: 'POST',
                                         body: JSON.stringify({
@@ -103,7 +103,7 @@ const Cart = () => {
                                         .then(res => {
                                           setResponse(res);
                                         });
-                                        alert("error in saving");
+                                        // alert("error in saving");
                                     }}
                             >
                                 <BsCartCheck size="1.7rem" />
