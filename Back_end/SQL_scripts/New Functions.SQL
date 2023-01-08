@@ -2,11 +2,14 @@ Delimiter $$
 CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
     READS SQL DATA
 BEGIN
-	declare flag boolean default false;
+	declare flag int default 0;
     
     if ((select count(*) from customer c where c.email = email and 
     c.customer_password = pass) = 1) then
-    set flag = true;
+		if (select customer_type from customer where customer.email = email) = 'manager' then set flag = 1;
+        else set flag = 2;
+        end if;
+
     end if;
 RETURN flag;
 END

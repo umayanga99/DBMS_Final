@@ -47,6 +47,7 @@ insert into Train values(default, 2,32345,250);
 insert into Customer values ("abc@gmail.com","abc","wholesaler", 'sdfasdfa', 12345);
 insert into Customer values ("sssd@gmail.com","sss","retailer", 'sdafsd3232', 23556);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g55', 56734);
+insert into Customer values ("manager@gmail.com","manager","manager","manager123",0123456789);
 
 insert into Truck_Route values ('Kandy', 10.30);
 insert into Truck_Route values ('Kurunegala', 8.00);
