@@ -21,9 +21,13 @@ Auth.checkValidity = (email, password,result) => {
             
             // result(null, res);
             console.log(`login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
-            if(res[0].isLoggedIn!='0'){
+            if(res[0].isLoggedIn=='1'){
                 console.log(`success`);
-                result(null,true);
+                result(null,1);
+            }
+            else if(res[0].isLoggedIn=='2'){
+                console.log(`success`);
+                result(null,2);
             }
             else{
                 console.log(`username or password error`);

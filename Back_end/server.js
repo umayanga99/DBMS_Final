@@ -26,8 +26,8 @@ require("./app/routers/product_routers.js")(app);
 require("./app/routers/auth_routers.js")(app);
 require("./app/routers/manager_routers.js")(app);
 require("./app/routers/orders_routers.js")(app);
-// require("./app/routers/login_routers.js")(app);
-// require("./app/routers/register_routers.js")(app);
+require("./app/routers/passage_routers.js")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT ||8000 ;

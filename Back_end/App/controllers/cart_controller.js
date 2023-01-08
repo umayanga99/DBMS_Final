@@ -11,17 +11,15 @@ exports.saveCart = (req, res) => {
 
  
   const email = req.body.email;
-  const productID = req.body.productID;
-  console.log(cartID, productID);
+  let items = req.body.items;
+//   console.log(cartID, productID);
   
-CartModel.saveCart(email, productID, (err, data) => {
+CartModel.saveCart(email, items, (err, data) => {
     if(err) {
        
         res.status(200).send({
             message: "Fail",
-            data: {
-                productId: "dsfsdf"
-            }
+            
         });
     } else {
         res.status(200).send({
@@ -35,10 +33,10 @@ CartModel.saveCart(email, productID, (err, data) => {
 exports.getCartItems = (req, res) => {
  
 
-    let cartID = req.query.cartID;
+    let email = req.query.email;
   
    
- CartModel.GetCartItem(cartID, (err, data) => {
+ CartModel.getCartItem(email, (err, data) => {
      if(err) {
        
         res.status(200).send({
@@ -58,5 +56,3 @@ exports.getCartItems = (req, res) => {
  } )
  
  }
-
-

@@ -16,16 +16,26 @@ exports.checkValidity = (req, res) => {
     AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
             res.status(500).send({
-                message: 0 || "Something went wrong"
+                message: 0 
             })
-        } else {
+        } else if(data==1){
             res.status(200).send({
-                message: data ? 1 : 0
-                
+                message: 1,
+                email:email 
             });
-            
         }
-        console.log("success in controller");
+        else if(data==2){
+            res.status(200).send({
+                message: 2,
+                email:email 
+            });
+        }
+        else {
+            res.status(200).send({
+                message: 0
+            });
+        }
+     
     })
 }
 
@@ -44,6 +54,7 @@ exports.addUser = (req, res) => {
 
     AuthModel.addUser(email,password,name, type, TP, (err, data) => {
         if(err) {
+            console.log(err);
             res.status(500).send({
                 message: err.message || "Something went wrong"
             })

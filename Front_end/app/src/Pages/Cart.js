@@ -18,6 +18,7 @@ const Cart = () => {
     } = useCart();
     
     const [response, setResponse] = useState(null);
+    // const value = localStorage.getItem('myValue');
 
     // const data = getItem() ;
 
@@ -63,9 +64,9 @@ const Cart = () => {
                                     <td>Rs. {item.price}</td>
                                     <td>Quantity ({item.quantity})</td>
                                     <td>
-                                        <Button onClick={()=> updateItemQuantity(item.product_ID, item.quantity - 1)} className="ms-2">-</Button>
-                                        <Button onClick={()=> updateItemQuantity(item.product_ID, item.quantity + 1)} className="ms-2">+</Button>
-                                        <Button variant="danger" onClick={()=> removeItem(item.product_ID)} className="ms-2">Remove Item</Button>
+                                        <Button onClick={()=> updateItemQuantity(item.id, item.quantity - 1)} className="ms-2">-</Button>
+                                        <Button onClick={()=> updateItemQuantity(item.id, item.quantity + 1)} className="ms-2">+</Button>
+                                        <Button variant="danger" onClick={()=> removeItem(item.id)} className="ms-2">Remove Item</Button>
                                     </td>
                                 </tr>
                             )
@@ -83,22 +84,27 @@ const Cart = () => {
                         <Col className="p-0" md={4}>
                             <Button variant="warning"
                                 className="m-2"
-                                // onClick={()=>  {
-                                //       fetch('/my-endpoint', {
-                                //         method: 'POST',
-                                //         body: JSON.stringify({
-                                //           message: 'Hello from the client!'
-                                //         }),
-                                //         headers: {
-                                //           'Content-Type': 'application/json'
-                                //         }
-                                //       })
-                                //         .then(res => res.json())
-                                //         .then(res => {
-                                //           setResponse(res);
-                                //         });
-                                //         alert("Can not login");
-                                //     }}
+                                onClick={()=>  { 
+                                    // const filteredItems = items.filter((item) => {
+                                    //     return { id: item.id, price: item.price };
+                                    //   });
+                                    // console.log(localStorage.getItem('email'));
+                                      fetch('http://localhost:8000/api/cart/saveCart', {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            email : localStorage.getItem('email'),
+                                            items : items
+                                        }),
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        }
+                                      })
+                                        .then(res => res.json())
+                                        .then(res => {
+                                          setResponse(res);
+                                        });
+                                        // alert("error in saving");
+                                    }}
                             >
                                 <BsCartCheck size="1.7rem" />
                                 Save Cart

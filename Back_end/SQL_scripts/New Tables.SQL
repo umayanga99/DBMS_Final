@@ -14,6 +14,8 @@ CREATE TABLE Product (
     PRIMARY KEY (id)
 );
 
+-- sjdfhsdhfisdhfsdf
+
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
     id int,
@@ -53,7 +55,7 @@ CREATE TABLE Customer (
     customer_name varchar(255),
     customer_type enum('wholesaler', 'retailer', 'end customer', 'Manager'),
     customer_Password varchar(255),
-    Telephone_No int(12),
+    Telephone_No int,
     PRIMARY KEY (email)
 );
 
