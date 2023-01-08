@@ -1,4 +1,4 @@
-import React,{ useState, useRef } from 'react';
+import React,{ useState, useRef, useEffect } from 'react';
 import { Container, Row, Col, Button, Form, Spinner, InputGroup, Table} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { Link, useNavigate } from "@reach/router";
@@ -12,10 +12,6 @@ const Reports = () => {
     const [MO, setMO] = useState("");
     const [COR, setCOR] = useState("");
     const [CRR, setCRR] = useState("");
-    // const [year, setYear] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
-    const [year, setYear] = React.useState(null);
-    const minDate = new Date('2022-04-07');
-    // const maxDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000 );
 
     const lQSR = useRef(null);
     const lMO = useRef(null);
@@ -23,85 +19,39 @@ const Reports = () => {
     const lCRR = useRef(null);
 
     async function getQSR(){
-        // const res = await fetch('https://fakestoreapi.com/products')
         const res = await fetch('http://localhost:8000/api/product')
                           .then(res=> res.json());
                           setQSR(await res);
     } 
 
     async function getMO(){
-        // const res = await fetch('https://fakestoreapi.com/products')
         const res = await fetch('http://localhost:8000/api/product')
                           .then(res=> res.json());
                           setMO(await res);
     }
 
     async function getCOR(){
-        // const res = await fetch('https://fakestoreapi.com/products')
         const res = await fetch('http://localhost:8000/api/product')
                           .then(res=> res.json());
                           setCOR(await res);
     }
 
     async function getCRR(){
-        // const res = await fetch('https://fakestoreapi.com/products')
         const res = await fetch('http://localhost:8000/api/product')
                           .then(res=> res.json());
                           setCRR(await res);
     }
 
-    const handleSubmit = (event)=>{
-        const form = event.currentTarget;
-        event.preventDefault();
-        const email = form.email.value;
-        const password = form.password.value;
-        if(email && password){
-            console.log("if", email, password)
-            setLoading(true);
-            fetch('http://localhost:8000/api/auth/checkValidity',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify({
-                    email: email,
-                    password: password
-                })
-                
-            })
-            .then(res=>res.json())
-            .then((data) => {
-                
-                setValue(data);
-                console.log(`value = `,value);
-                console.log(data.message);
-                if(data.message===2){
-                    alert("ok",value);
-                    localStorage.setItem('email', data.email);
-                    navigate('home', {replace: true});
-                }
-                else if(data.message===1){
-                    alert("ok",value);
-                    localStorage.setItem('email', data.email);
-                    navigate('train-schedule', {replace: true});
-                }
-                else{
-                    alert("Can not login",value);   
-                }
-            })
-            .then(json=>sessionStorage.setItem("token", json.token))
-            .catch(error=> console.error(error))
-            .finally(()=>{
-                
-                setLoading(false);
-                // navigate('home', {replace: false});
-                // alert('Login successfully');
-            })
-        }
-    }
+    useEffect(()=>{
+        getQSR();
+        getMO();
+        getCOR();
+        getCRR();
+    },[]);
+
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
-            <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>
+            <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Reports</h1>
         <Container className="py-4 mt-5">
         
         <Button variant="success"

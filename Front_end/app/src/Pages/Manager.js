@@ -1,4 +1,4 @@
-import React,{ useState, useRef } from 'react';
+import React,{ useState, useRef, useEffect } from 'react';
 import { Container, Row, Col, Button, Form, Spinner, InputGroup, Table} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { Link, useNavigate } from "@reach/router";
@@ -11,11 +11,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-import './Manager.css';
-
-import { useCart} from 'react-use-cart';
-import { BsCartCheck, BsCartX} from 'react-icons/bs';
-
 
 //icons
 
@@ -27,6 +22,7 @@ const Manager = () => {
     const [driver, setDriver] = useState("");
     const [assistent, setAssistent] = useState("");
     const [truck, setTruck] = useState("");
+    const [train, setTrain] = useState("");
     // const [year, setYear] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
     const [year, setYear] = React.useState(null);
     const minDate = new Date('2022-04-07');
@@ -39,79 +35,89 @@ const Manager = () => {
 
     async function getDriver(){
         // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
                           .then(res=> res.json());
                           setDriver(await res);
     }
 
     async function getAssistent(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/manager/getAssistantSchedule')
                           .then(res=> res.json());
                           setAssistent(await res);
     }
 
     async function getTruck(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
                           .then(res=> res.json());
                           setTruck(await res);
     }
 
-    const handleSubmit = (event)=>{
-        const form = event.currentTarget;
-        event.preventDefault();
-        const email = form.email.value;
-        const password = form.password.value;
-        if(email && password){
-            console.log("if", email, password)
-            setLoading(true);
-            fetch('http://localhost:8000/api/auth/checkValidity',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify({
-                    email: email,
-                    password: password
-                })
-                
-            })
-            .then(res=>res.json())
-            .then((data) => {
-                
-                setValue(data);
-                console.log(`value = `,value);
-                console.log(data.message);
-                if(data.message===2){
-                    alert("ok",value);
-                    localStorage.setItem('email', data.email);
-                    navigate('home', {replace: true});
-                }
-                else if(data.message===1){
-                    alert("ok",value);
-                    localStorage.setItem('email', data.email);
-                    navigate('train-schedule', {replace: true});
-                }
-                else{
-                    alert("Can not login",value);   
-                }
-            })
-            .then(json=>sessionStorage.setItem("token", json.token))
-            .catch(error=> console.error(error))
-            .finally(()=>{
-                
-                setLoading(false);
-                // navigate('home', {replace: false});
-                // alert('Login successfully');
-            })
-        }
+    async function getTrain(){
+        const res = await fetch('http://localhost:8000/api/manager/getTrainSchedule')
+                          .then(res=> res.json());
+                          setTrain(await res);
     }
+
+    useEffect(()=>{
+        getDriver();
+        getAssistent();
+        getTruck();
+        getTrain();
+    },[]);
+
+    // const handleSubmit = (event)=>{
+    //     const form = event.currentTarget;
+    //     event.preventDefault();
+    //     const email = form.email.value;
+    //     const password = form.password.value;
+    //     if(email && password){
+    //         console.log("if", email, password)
+    //         setLoading(true);
+    //         fetch('http://localhost:8000/api/auth/checkValidity',{
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body:JSON.stringify({
+    //                 email: email,
+    //                 password: password
+    //             })
+                
+    //         })
+    //         .then(res=>res.json())
+    //         .then((data) => {
+                
+    //             setValue(data);
+    //             console.log(`value = `,value);
+    //             console.log(data.message);
+    //             if(data.message===2){
+    //                 alert("ok",value);
+    //                 localStorage.setItem('email', data.email);
+    //                 navigate('home', {replace: true});
+    //             }
+    //             else if(data.message===1){
+    //                 alert("ok",value);
+    //                 localStorage.setItem('email', data.email);
+    //                 navigate('train-schedule', {replace: true});
+    //             }
+    //             else{
+    //                 alert("Can not login",value);   
+    //             }
+    //         })
+    //         .then(json=>sessionStorage.setItem("token", json.token))
+    //         .catch(error=> console.error(error))
+    //         .finally(()=>{
+                
+    //             setLoading(false);
+    //             // navigate('home', {replace: false});
+    //             // alert('Login successfully');
+    //         })
+    //     }
+    // }
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
             <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>
         <Container className="py-4 mt-5">
-        
         <Button variant="success"
                                 className="m-2"
                                 onClick={()=>  lAssistent.current.scrollIntoView()}
@@ -229,6 +235,7 @@ const Manager = () => {
                                 style={{ width: '500px', height: '70px' }}
                                 onClick={()=>  { 
                                     navigate('reports', {replace: false});
+                                    console.log(train,truck,assistent,driver);
                                     // const filteredItems = items.filter((item) => {
                                     //     return { id: item.id, price: item.price };
                                     //   });
