@@ -46,7 +46,7 @@ const SignIn = () => {
                 else if(data.message===1){
                     alert("ok",value);
                     localStorage.setItem('email', data.email);
-                    navigate('train-schedule', {replace: true});
+                    navigate('manager', {replace: true});
                 }
                 else{
                     alert("Can not login",value);   

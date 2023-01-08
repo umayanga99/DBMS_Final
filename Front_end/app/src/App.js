@@ -12,6 +12,7 @@ import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
 import Payment from "./Pages/Payment";
 import TrainSchedule from "./Pages/TrainSchedule";
+import Manager from "./Pages/Manager";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Cart path="/cart" />
         <Payment path="/payment" />
         <TrainSchedule path="/train-schedule" />
+        <Manager path="/manager" />
       </Router>
     </main>
   );
