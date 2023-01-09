@@ -5,12 +5,14 @@ import { BiSearch } from 'react-icons/bi';
 import SearchFilter from 'react-filter-search';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
+import { useCart} from 'react-use-cart';
 
 const Home = () => {
     const [theme] = useThemeHook();
     const [searchInput, setSearchInput] = useState('');
     const [productData, setProductData] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const {setItems} = useCart();
 
     async function getResponse(){
         const res = await fetch('http://localhost:8000/api/product')
@@ -19,13 +21,24 @@ const Home = () => {
     }
 
     async function getCartItems(){
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/cart/getCartItems',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body:JSON.stringify({
+                            email: localStorage.getItem('email')
+                        })
+        })
                           .then(res=> res.json());
-                          setProductData(await res);
+                          setCartItems(await res);
+                          console.log(cartItems);
     }
 
     useEffect(()=>{
         getResponse();
+        getCartItems();
+        setItems(cartItems);
     },[]);
 
     return (

@@ -111,7 +111,28 @@ const Cart = () => {
                             </Button>
                             <Button variant="danger"
                                 className="m-2"
-                                onClick={()=> emptyCart()}
+                                onClick={()=> { 
+                                    // const filteredItems = items.filter((item) => {
+                                    //     return { id: item.id, price: item.price };
+                                    //   });
+                                    // console.log(localStorage.getItem('email'));
+                                      fetch('http://localhost:8000/api/cart/saveCart', {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            email : localStorage.getItem('email'),
+                                            items : items
+                                        }),
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        }
+                                      })
+                                        .then(res => res.json())
+                                        .then(res => {
+                                          setResponse(res);
+                                        });
+                                        emptyCart();
+                                        // alert("error in saving");
+                                    }}
                             >
                                 <BsCartX size="1.7rem" />
                                 Clear Cart

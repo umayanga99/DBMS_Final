@@ -55,7 +55,7 @@ const Payment = () => {
 
         if(Address && route && date && selectedMethod){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/signIn',{
+            fetch('http://localhost:8000/api/order/',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -79,8 +79,7 @@ const Payment = () => {
     }   
 
     async function getRoutes(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/passage')
                           .then(res=> res.json());
                           setRoutes(await res);
     }
