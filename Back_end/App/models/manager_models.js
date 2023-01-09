@@ -92,7 +92,7 @@ Manager.getTrainSchedule = (result) => {
 
 Manager.getQuarterlySalesReport = (year, result) => {
     //check the query
-    mysql.query(`select quarter, total_quantity, total_income from quarterly_sales_report where year = ?`,[year],(err,res) => {
+    mysql.query(`select quarter, total_quantity, total_income from quarterly_sales_report where .year = ?`,[year],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -122,7 +122,8 @@ Manager.getQuarterlyOrderReport = (year, result) => {
 
 Manager.getMostOrdered = (year, result) => {
     //check the query
-    mysql.query(`select product_name, total_quantity from most_ordered where year =?`,[year],(err,res) => {
+    // mysql.query(`select product_name, total_quantity from most_ordered where year =?`,[year],(err,res) => {
+        mysql.query(`select product_name, total_quantity from most_ordered`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

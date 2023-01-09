@@ -34,28 +34,31 @@ const Manager = () => {
     const lTrain = useRef(null);
 
     async function getDriver(){
-        // const res = await fetch('https://fakestoreapi.com/products')
         const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
                           .then(res=> res.json());
-                          setDriver(await res);
+                          setDriver(await res.data);
+                          console.log(driver);
     }
 
     async function getAssistent(){
         const res = await fetch('http://localhost:8000/api/manager/getAssistantSchedule')
                           .then(res=> res.json());
-                          setAssistent(await res);
+                          setAssistent(await res.data);
+                          console.log(assistent);
     }
 
     async function getTruck(){
-        const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
+        const res = await fetch('http://localhost:8000/api/manager/getTruckSchedule')
                           .then(res=> res.json());
-                          setTruck(await res);
+                          setTruck(await res.data);
+                          console.log(truck);
     }
 
     async function getTrain(){
         const res = await fetch('http://localhost:8000/api/manager/getTrainSchedule')
                           .then(res=> res.json());
-                          setTrain(await res);
+                          setTrain(await res.data);
+                          console.log(train);
     }
 
     useEffect(()=>{
@@ -158,7 +161,18 @@ const Manager = () => {
                 </thead>
                     
                     <tbody>
-
+                        {assistent.map((item, index)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>{item.NIC}</td>
+                                    <td>{item.assistant_name}</td>
+                                    <td>{item.store_ID}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.total_duration}</td>
+                                    <td>{item.telephone_No}</td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </Table>
                 <h2 ref={lDriver} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`} path="driver">Driver</h2>
@@ -175,7 +189,18 @@ const Manager = () => {
                 </thead>
                     
                     <tbody>
-
+                        {driver.map((item, index)=>{
+                                return(
+                                    <tr key={index}>
+                                        <td>{item.NIC}</td>
+                                        <td>{item.driver_name}</td>
+                                        <td>{item.store_ID}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.total_duration}</td>
+                                        <td>{item.Telephone_No}</td>
+                                    </tr>
+                                )
+                            })}
                     </tbody>
                 </Table>
                 <h2 ref={lTruck}  className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Truck</h2>
@@ -190,7 +215,16 @@ const Manager = () => {
                 </thead>
                     
                     <tbody>
-
+                        {truck.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.truck_id}</td>
+                                            <td>{item.city}</td>
+                                            <td>{item.truck_route}</td>
+                                            <td>{item.total_duration}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
                 <h2 ref={lTrain} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Train</h2>
@@ -198,14 +232,23 @@ const Manager = () => {
                 <thead>
                     <tr>
                         <th>Train ID</th>
-                        <th>Branch</th>
-                        <th>Route</th>
-                        <th>Total Duration</th>
+                        <th>Capacity</th>
+                        <th>Depart Time</th>
+                        <th>Destination Strore</th>
                     </tr>
                 </thead>
                     
                     <tbody>
-
+                        {train.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.train_id}</td>
+                                            <td>{item.capacity}</td>
+                                            <td>{item.depart_time}</td>
+                                            <td>{item.destination_store}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
             <Row 
@@ -220,9 +263,9 @@ const Manager = () => {
                         label="Select Year"
                         minDate={dayjs('2022-03-01')}
                         maxDate={dayjs('2023-06-01')}
-                        value={value}
+                        value={year}
                         onChange={(newValue) => {
-                            setValue(newValue);
+                            setYear(newValue);
                         }}
                         renderInput={(params) => <TextField {...params} helperText={null} required/>}
                         />
@@ -234,27 +277,9 @@ const Manager = () => {
                                 className="m-2"
                                 style={{ width: '500px', height: '70px' }}
                                 onClick={()=>  { 
+                                    localStorage.setItem('year', year);
                                     navigate('reports', {replace: false});
                                     console.log(train,truck,assistent,driver);
-                                    // const filteredItems = items.filter((item) => {
-                                    //     return { id: item.id, price: item.price };
-                                    //   });
-                                    // // console.log(localStorage.getItem('email'));
-                                    //   fetch('http://localhost:8000/api/cart/saveCart', {
-                                    //     method: 'POST',
-                                    //     body: JSON.stringify({
-                                    //         email : localStorage.getItem('email'),
-                                    //         items : items
-                                    //     }),
-                                    //     headers: {
-                                    //       'Content-Type': 'application/json'
-                                    //     }
-                                    //   })
-                                    //     .then(res => res.json())
-                                    //     .then(res => {
-                                    //       setResponse(res);
-                                    //     });
-                                        // alert("error in saving");
                                     }}
                             >
                                 Report

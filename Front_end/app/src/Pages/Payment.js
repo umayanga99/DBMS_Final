@@ -19,7 +19,6 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import validator from 'validator'
 import { useCart } from 'react-use-cart';
 
 const Payment = () => {
@@ -32,7 +31,7 @@ const Payment = () => {
     const navigate = useNavigate();
     const [selectedMethod, setSelectedMethod] = useState('Visa Card');
     const [routes, setRoutes] = useState([])
-    
+
     const handleChange = (event) => {
         setRoute(event.target.value);
     };
@@ -52,18 +51,21 @@ const Payment = () => {
         const form = event.currentTarget;
         event.preventDefault();
         const Address = form.Address.value;
+        
 
         if(Address && route && date && selectedMethod){
             setLoading(true);
-            fetch('http://localhost:8000/api/order/',{
+            fetch('http://localhost:8000/api/order',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
+                    email: localStorage.getItem('email'),
                     date: date,
                     Address: Address,
                     route: route,
+                    totalPrice: cartTotal,
                     selectedMethod: selectedMethod
                 })
             }).then(res=>res.json())
@@ -81,7 +83,7 @@ const Payment = () => {
     async function getRoutes(){
         const res = await fetch('http://localhost:8000/api/passage')
                           .then(res=> res.json());
-                          setRoutes(await res);
+                          setRoutes(await res.passges);
     }
 
     useEffect(()=>{
@@ -132,18 +134,12 @@ const Payment = () => {
                                 onChange={handleChange}
                                 required
                                 >
-                                    {/* fetch('/api/routes')
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        this.setState({ routes: data.routes });
-                                    }); */}
-                                    {/* {this.state.routes.map(route => (
-                                        <MenuItem key={route.id} value={route.id}>{route.name}</MenuItem>
-                                    ))} */}
-                                <MenuItem key={route.route} value={routes.route}>{routes.route}</MenuItem>
-                                {/* <MenuItem value={10}>Colombo</MenuItem>
-                                <MenuItem value={20}>Kurunegala</MenuItem>
-                                <MenuItem value={30}>Moratuwa</MenuItem> */}
+                                    {routes.map((item, index)=>{
+                            return(
+                                <MenuItem key={index} value={item.truck_route}>{item.truck_route}</MenuItem>
+                                
+                            )
+                        })}
                                 </Select>
                             </FormControl>
                             </Box>

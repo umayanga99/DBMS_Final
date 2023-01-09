@@ -12,41 +12,102 @@ const Reports = () => {
     const [MO, setMO] = useState([]);
     const [COR, setCOR] = useState([]);
     const [CRR, setCRR] = useState([]);
+    const [QOR, setQOR] = useState([]);
 
     const lQSR = useRef(null);
     const lMO = useRef(null);
     const lCOR = useRef(null);
     const lCRR = useRef(null);
+    const lQOR = useRef(null);
+
+    // async function getDriver(){
+    //     const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
+    //                       .then(res=> res.json());
+    //                       setDriver(res.data);
+    //                       console.log(res.data,driver,"driver");
+    // }
 
     async function getQSR(){
-        const res = await fetch('http://localhost:8000/api/product')
-                          .then(res=> res.json());
-                          setQSR(await res);
+        const res = await fetch('http://localhost:8000/api/manager/getQuarterlySalesReport',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                year: localStorage.getItem('year')
+            })
+        })
+        .then(res=> res.json());
+        setQSR(await res.data);
+        console.log(QSR,"QSR");
+    } 
+
+    async function getQOR(){
+        const res = await fetch('http://localhost:8000/api/manager/getQuarterlyOrderReport',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                year: localStorage.getItem('year')
+            })
+        })
+        .then(res=> res.json());
+        setQOR(await res.data);
+        console.log(QOR,"QOR");
     } 
 
     async function getMO(){
-        const res = await fetch('http://localhost:8000/api/product')
-                          .then(res=> res.json());
-                          setMO(await res);
+        const res = await fetch('http://localhost:8000/api/manager/getMostOrdered',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                year: localStorage.getItem('year')
+            })
+        })
+        .then(res=> res.json());
+        setMO(await res.data);
+        console.log(res.data,MO,"MO");
     }
 
     async function getCOR(){
-        const res = await fetch('http://localhost:8000/api/product')
-                          .then(res=> res.json());
-                          setCOR(await res);
+        const res = await fetch('http://localhost:8000/api/manager/getCustomerOrderReport',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                year: localStorage.getItem('year')
+            })
+        })
+        .then(res=> res.json());
+        setCOR(await res.data);
+        console.log(COR,"COR");
     }
 
     async function getCRR(){
-        const res = await fetch('http://localhost:8000/api/product')
-                          .then(res=> res.json());
-                          setCRR(await res);
+        const res = await fetch('http://localhost:8000/api/manager/getCitiesRoutesReport',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                year: localStorage.getItem('year')
+            })
+        })
+        .then(res=> res.json());
+        setCRR(await res.data);
+        console.log(CRR,"CRR");
     }
 
     useEffect(()=>{
-        getQSR();
+        // getQSR();
         getMO();
-        getCOR();
-        getCRR();
+        // getCOR();
+        // getCRR();
+        // getQOR();
     },[]);
 
     return (
@@ -59,6 +120,12 @@ const Reports = () => {
                                 onClick={()=>  lQSR.current.scrollIntoView()}
                             >
                                 Quarter Sales Report
+                            </Button>
+                            <Button variant="success"
+                                className="m-2"
+                                onClick={()=>  lQOR.current.scrollIntoView()}
+                            >
+                                Quarter Order Report
                             </Button>
                             <Button variant="success"
                                 className="m-2"
@@ -81,6 +148,32 @@ const Reports = () => {
             
             <Row className="justify-content-center">
                 <h2 ref={lQSR} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Quarter Sales Report</h2>
+                <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Quarter</th>
+                        <th>Total Quantity</th>
+                        <th>Total Income</th>
+                    </tr>
+                </thead>
+                    
+                    <tbody>
+                        {QSR.map((item, index)=>{
+                                return(
+                                    <tr key={index}>
+                                        <td>{item.NIC}</td>
+                                        <td>{item.assistant_name}</td>
+                                        <td>{item.store_ID}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.total_duration}</td>
+                                        <td>{item.telephone_No}</td>
+                                    </tr>
+                                )
+                            })}
+                    </tbody>
+                </Table>
+                <h2 ref={lQSR} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Quarter Order Report</h2>
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>

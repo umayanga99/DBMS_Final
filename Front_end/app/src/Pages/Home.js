@@ -31,7 +31,8 @@ const Home = () => {
                         })
         })
                           .then(res=> res.json());
-                          setCartItems(await res);
+                          setCartItems(await res.data);
+                          console.log(localStorage.getItem('email'));
                           console.log(cartItems);
     }
 

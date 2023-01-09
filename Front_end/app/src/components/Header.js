@@ -33,7 +33,7 @@ const Header = () => {
                 <b>Home</b>
             </Navbar.Brand>
           </Link>
-          <Link to="/">
+          <Link to="/" >
             <Navbar.Brand className={darkMode? 'text-dark-primary': 'text-light-primary'}>
                 <b>Log Out</b>
             </Navbar.Brand>

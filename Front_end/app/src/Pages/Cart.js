@@ -116,11 +116,10 @@ const Cart = () => {
                                     //     return { id: item.id, price: item.price };
                                     //   });
                                     // console.log(localStorage.getItem('email'));
-                                      fetch('http://localhost:8000/api/cart/saveCart', {
+                                      fetch('http://localhost:8000/api/cart/clearCart', {
                                         method: 'POST',
                                         body: JSON.stringify({
-                                            email : localStorage.getItem('email'),
-                                            items : items
+                                            email : localStorage.getItem('email')
                                         }),
                                         headers: {
                                           'Content-Type': 'application/json'
