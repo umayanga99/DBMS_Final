@@ -102,3 +102,13 @@ BEGIN
 		update driver_assistant set assistant_NIC = current_assistant_nic where turn_ID = current_turn_id;
     COMMIT;    
 end $$
+
+
+drop procedure if exists clear_cart;
+Delimiter $$
+create procedure clear_cart(
+	email varchar(225))
+
+begin
+	delete from cart_product where cart_ID = (select cart_id from cart where cart.email = email);
+end $$
