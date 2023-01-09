@@ -12,19 +12,30 @@ exports.checkValidity = (req, res) => {
     const password = req.body.password;
     console.log(email,password);
 
+
     AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
             res.status(500).send({
-                message: err.message || "Something went wrong"
+                message: 0 
             })
-        } else {
+        } else if(data==1){
             res.status(200).send({
-                message: "Welcome"
-                
+                message: 1,
+                email:email 
             });
-            
         }
-        console.log("success in controller");
+        else if(data==2){
+            res.status(200).send({
+                message: 2,
+                email:email 
+            });
+        }
+        else {
+            res.status(200).send({
+                message: 0
+            });
+        }
+     
     })
 }
 
@@ -41,8 +52,9 @@ exports.addUser = (req, res) => {
     const type = req.body.type;
     const TP = req.body.TP;
 
-    AuthModel.addUser(name, password, email, type, TP, (err, data) => {
+    AuthModel.addUser(email,password,name, type, TP, (err, data) => {
         if(err) {
+            console.log(err);
             res.status(500).send({
                 message: err.message || "Something went wrong"
             })

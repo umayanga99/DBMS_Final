@@ -21,12 +21,7 @@ exports.getProducts=(req,res)=>{
                 message:err.message||"Something went Wrong"
             })
         }else{
-<<<<<<< HEAD
-            res.status(200).send(data
-            );
-=======
             res.status(200).send(data);
->>>>>>> Shehan_23
         }
     })
 }

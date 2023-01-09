@@ -26,26 +26,29 @@ const Register = () => {
         event.preventDefault();
         const password = form.password.value;
         const email = form.email.value;
+        const name = form.name.value;
         
-        if(password && email && number && type){
+        if(password && email && number && type && name){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/signIn',{
+            fetch('http://localhost:8000/api/auth/addUser',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    email: email,
+                    name: name,
                     password: password,
+                    email: email,
                     type: type,
-                    number: number
+                    TP: number
                 })
             }).then(res=>res.json())
-            .then(json=>sessionStorage.setItem("token", json.token))
+            // .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
+                console.log(name,password,email,type,number);
                 setLoading(false);
-                navigate('home', {replace: true})
+                navigate('/', {replace: true})
                 alert('register successfully');
             })
         }
@@ -61,6 +64,10 @@ const Register = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Email</Form.Label>
                             <Form.Control name="email" type="email" placeholder="Email" required />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control name="name" type="text" placeholder="Name" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Mobile number</Form.Label>
@@ -89,9 +96,9 @@ const Register = () => {
                                     onChange={handleChange}
                                     required
                                     >
-                                    <MenuItem value={10}>Wholesalers</MenuItem>
-                                    <MenuItem value={20}>Retailers</MenuItem>
-                                    <MenuItem value={30}>End Customers</MenuItem>
+                                    <MenuItem value={"wholesaler"}>Wholesalers</MenuItem>
+                                    <MenuItem value={"retailer"}>Retailers</MenuItem>
+                                    <MenuItem value={"end customer"}>End Customers</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Box>

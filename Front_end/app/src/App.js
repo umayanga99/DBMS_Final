@@ -2,7 +2,6 @@ import React from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useThemeHook } from './GlobalComponents/ThemeProvider';
-import Header from './components/Header';
 import { Router } from "@reach/router";
 
 //Pages
@@ -12,9 +11,9 @@ import ProductDetails from "./Pages/ProductDetails";
 import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
 import Payment from "./Pages/Payment";
-import Assistant from "./Pages/Assistant";
-import { Table } from "react-bootstrap";
-
+import TrainSchedule from "./Pages/TrainSchedule";
+import Manager from "./Pages/Manager";
+import Reports from "./Pages/Reports";
 
 function App() {
   const [theme] = useThemeHook();
@@ -29,7 +28,9 @@ function App() {
         <ProductDetails path="product-details/:productId"/>
         <Cart path="/cart" />
         <Payment path="/payment" />
-        <Assistant path="/assistant"/>
+        <TrainSchedule path="/train-schedule" />
+        <Manager path="/manager" />
+        <Reports path="reports" />
       </Router>
     </main>
   );

@@ -5,7 +5,7 @@ module.exports = app => {
     // localhost:8080/api/cart/get:isdafnokans
     
     // Get cart iitems router
-    cartRouter.get("/getCartItem", CartController.getCartItems);
+    cartRouter.get("/getCartItems", CartController.getCartItems);
     
     // Add to cart
     cartRouter.post("/saveCart", CartController.saveCart);

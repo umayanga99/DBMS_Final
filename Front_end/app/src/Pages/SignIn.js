@@ -37,19 +37,23 @@ const SignIn = () => {
                 
                 setValue(data);
                 console.log(`value = `,value);
-                if(!Number(data)){
-                    alert("Can not login",value);
+                console.log(data.message);
+                if(data.message===2){
+                    alert("ok",value);
+                    localStorage.setItem('email', data.email);
+                    navigate('home', {replace: true});
+                }
+                else if(data.message===1){
+                    alert("ok",value);
+                    localStorage.setItem('email', data.email);
+                    navigate('manager', {replace: true});
                 }
                 else{
-                    alert("ok",value);
-                    navigate('home', {replace: false});
-                    
-                    
+                    alert("Can not login",value);   
                 }
-                // console.log(value);
             })
             .then(json=>sessionStorage.setItem("token", json.token))
-            // .catch(error=> console.error(error))
+            .catch(error=> console.error(error))
             .finally(()=>{
                 
                 setLoading(false);

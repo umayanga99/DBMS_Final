@@ -2,10 +2,6 @@ const mysql = require("./db.js");
 
 // constructor
 const Product = function(file) {
-<<<<<<< HEAD
-   
-=======
->>>>>>> Shehan_23
 };
 
 Product.getProductsById=(id,result)=>{

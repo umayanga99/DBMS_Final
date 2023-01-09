@@ -1,25 +1,25 @@
-drop database if exists FFinal;
+drop database if exists project_Final;
 
-create database FFinal;
+create database project_Final;
 
-use FFinal;
+use project_Final;
 
 CREATE TABLE Product (
-    product_ID int auto_increment,
+    id int auto_increment,
     price real(7,2),
     product_name VARCHAR(255),
     product_weight real(7,3),
     product_description VARCHAR(4000),
     unit_capacity int,
-    PRIMARY KEY (product_ID)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
-    product_ID int,
+    id int,
     product_image BLOB,
     PRIMARY KEY (image_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
+    FOREIGN KEY (id) REFERENCES Product(id)
 );  
 
 CREATE TABLE Store (
@@ -51,15 +51,15 @@ CREATE TABLE Train_Route (
 CREATE TABLE Customer (
     email varchar(255) ,
     customer_name varchar(255),
-    customer_type enum('wholesaler', 'retailer', 'end customer','manager'),
+    customer_type enum('wholesaler', 'retailer', 'end customer', 'Manager'),
     customer_Password varchar(255),
-    Telephone_No int(10),
+    Telephone_No int(12),
     PRIMARY KEY (email)
 );
 
 CREATE TABLE Truck_Route (
     truck_route VARCHAR(225) PRIMARY KEY,
-    route_duration int
+    route_duration float(4,2)
 );
 
 CREATE TABLE Orders (
@@ -71,6 +71,7 @@ CREATE TABLE Orders (
     truck_route varchar(225),
     tot_capacity int,
     prefered_dilivery_date date,
+    total_price real,
     PRIMARY KEY (order_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route),
     FOREIGN KEY (customer_email) REFERENCES Customer(email)
@@ -80,6 +81,7 @@ CREATE TABLE Truck (
     truck_ID varchar(30),
     store_ID int,
     truck_route varchar(225),
+    total_duration float(5,2), 
     PRIMARY KEY (truck_ID),
     FOREIGN KEY (store_ID) REFERENCES Store(store_ID),
     FOREIGN KEY (truck_route) REFERENCES Truck_Route(truck_route)
@@ -119,10 +121,10 @@ CREATE TABLE Order_Transport(
 CREATE TABLE Order_Product (
     order_product_id int auto_increment PRIMARY KEY,
     order_ID int,
-    product_ID int,
+    id int,
     quantity int,
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID)
+    FOREIGN KEY (id) REFERENCES Product(id)
 );
 
 CREATE TABLE Cart(
@@ -134,10 +136,11 @@ CREATE TABLE Cart(
 
 CREATE TABLE Cart_product (
     cart_product_ID int auto_increment,
-    product_ID int,
+    id int,
     cart_ID int,
+    quantity int,
     PRIMARY KEY(cart_product_ID),
-    FOREIGN KEY (product_ID) REFERENCES Product(product_ID),
+    FOREIGN KEY (id) REFERENCES Product(id),
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID)
 );
 
@@ -168,7 +171,7 @@ CREATE TABLE Driver_Assistant (
     truck_ID varchar(30),
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
-    duration float(4,2),
+    turn_dutaion float(4,2),
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (driver_NIC) REFERENCES Driver(NIC),

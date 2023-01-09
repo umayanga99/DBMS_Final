@@ -40,15 +40,10 @@ exports.getCartItems = (req, res) => {
  CartModel.GetCartItem(email, (err, data) => {
      if(err) {
         res.status(200).send({
-<<<<<<< HEAD
-            message: "Fail",
-        
-=======
             message: "fail",
             data: {
                 products : data
             }
->>>>>>> Shehan_23
         });
      } else {
          

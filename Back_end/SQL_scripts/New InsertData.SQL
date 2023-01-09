@@ -1,3 +1,5 @@
+use project_Final;
+
 insert into Product values (default, 1000, "p1", 12.45, "This is the product 1",10);
 insert into Product values (default, 500, "p2", 45.74, "This is the product 2",100);
 insert into Product values (default, 7550, "p3", 752.21, "This is the product 3",110);
@@ -49,27 +51,13 @@ insert into Product_Image values (default,16,'toppng.com-png-effects-download-50
 insert into Product_Image values (default,17,'toppng.com-png-effects-download-500x500.png');
 
 
-insert into Store values (default, "Colombo","Colombostore",0760600609,"addressColombo");
-insert into Store values (default, "Galle","Gallestore",076060089,"addressGalle");
-insert into Store values (default, "Trinco","Trincostore",0760690609,"addressTrinco");
-insert into Store values (default, "Jaffna","Jaffnastore",0760606609,"addressNegambo");
-insert into Store values (default, "Matara","Matarastore",0760606609,"addressNegambo");
-insert into Store values (default, "Ratnapura","Ratnapurastore",0760606609,"addressNegambo");
-insert into Store values (default, "Badulla","Badullastore",0760606609,"addressNegambo");
-insert into Store values (default, "Kandy","Kandystore",0760606609,"addressNegambo");
-insert into Store values (default, "Gampaha","Gampahastore",0760606609,"addressNegambo");
-insert into Store values (default, "Kegalle","Kegallestore",0760606609,"addressNegambo");
-insert into Store values (default, "Negambo","Negambostore",0760606609,"addressNegambo");
-insert into Store values (default, "Kalutara","Kalutarastore",0760606609,"addressNegambo");
-insert into Store values (default, "Vavniya","Vavniyastore",0760606609,"addressNegambo");
-insert into Store values (default, "Ampara","Amparastore",0760606609,"addressNegambo");
-insert into Store values (default, "Monaragala","Moanaragalastore",0760606609,"addressNegambo");
-insert into Store values (default, "Kurunegala","Kurunegalastore",0760606609,"addressNegambo");
-insert into Store values (default, "Anuradhapura","Anuradhapurastore",0760606609,"addressNegambo");
-insert into Store values (default, "Hambantota","Hambantotastore",0760606609,"addressNegambo");
-insert into Store values (default, "Batticaloa","Batticaloastore",0760606609,"addressNegambo");
-insert into Store values (default, "Matale","Matalestore",0760606609,"addressNegambo");
-insert into Store values (default, "Bambalapitiya","Bambalapitiyastore",0760606609,"addressNegambo");
+insert into Store values (default, "Colombo","Colombostore",0111234567,"addressColombo");
+insert into Store values (default, "Galle","Gallestore",0913256987,"addressGalle");
+insert into Store values (default, "Trinco","Trincostore",0260690609,"addressTrinco");
+insert into Store values (default, "Jaffna","Jaffnastore",0210609409,"addresJaffna");
+insert into Store values (default, "Anuradhapura","Anuradhapurastore",0257899609,"addressAnuradhapura");
+insert into Store values (default, "Monaragala","Monaragalastore",0550601129,"addressMonaragala");
+insert into Store values (default, "Kandy","Kandystore",0810846609,"addressKandy");
 
 insert into Train_Route values (default, 1,'00:00:00');
 insert into Train_Route values (default, 1,'10:30:00');
@@ -107,45 +95,46 @@ insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5556', 0761546889);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5567', 0761546123);
 
+insert into Customer values ("abc@gmail.com","abc","wholesaler", 'sdfasdfa', 12345);
+insert into Customer values ("sssd@gmail.com","sss","retailer", 'sdafsd3232', 23556);
+insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g55', 56734);
+insert into Customer values ("manager@gmail.com","manager","manager","manager123",0123456789);
 
-insert into Truck_Route values ('Kaluthara', 10.30);
-insert into Truck_Route values ('Mathara', 8.00);
-insert into Truck_Route values ('Mulathiw', 22.00);
-insert into Truck_Route values ('Trinco', 20.00);
+insert into Truck_Route values ('Kandy', 10.30);
+insert into Truck_Route values ('Kurunegala', 8.00);
+insert into Truck_Route values ('Kegalla', 22.00);
+insert into Truck_Route values ('Matale', 20.00);
+insert into Truck_Route values ('Nuwara Eliya', 4.00);
+insert into Truck_Route values ('Colombo', 4.00);
 insert into Truck_Route values ('Gampaha', 4.00);
-insert into Truck_Route values ('Colombo', 7.00);
-insert into Truck_Route values ('Galle', 4.45);
-insert into Truck_Route values ('Koattawa', 5.00);
-insert into Truck_Route values ('Kandy', 10.00);
-insert into Truck_Route values ('Ratnapura', 3.00);
+insert into Truck_Route values ('Kaluthara', 4.00);
+insert into Truck_Route values ('Mathara', 4.00);
+insert into Truck_Route values ('Rathnapura', 4.00);
+insert into Truck_Route values ('Galle', 4.00);
+insert into Truck_Route values ('Hambanthota', 4.00);
+insert into Truck_Route values ('Monaragala', 4.00);
+insert into Truck_Route values ('Ampara', 4.00);
+insert into Truck_Route values ('Badulla', 4.00);
+insert into Truck_Route values ('Anuradhapura', 4.00);
+insert into Truck_Route values ('Polonnaruwa', 4.00);
+insert into Truck_Route values ('Puttalama', 4.00);
+insert into Truck_Route values ('Wauniya', 4.00);
+insert into Truck_Route values ('Trinco', 4.00);
+insert into Truck_Route values ('Baticlo', 4.00);
+insert into Truck_Route values ('Jaffna', 4.00);
+insert into Truck_Route values ('Kilinochchi', 4.00);
+insert into Truck_Route values ('Mannar', 4.00);
+insert into Truck_Route values ('Mulathiw', 4.00);
 
+insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1',233.00);
+insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1',455.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
 
-insert into Orders values (default, 'No 22, Kaluthara, Colombo','sulakshigunaratne@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1');
-insert into Orders values (default, 'No 13, Port Road, Trinco','basadithennakoon@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','bashadithennakoon@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Galle Road, Colombo','umayanga.20@cse.mrt.ac.lk','2022-11-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1');
-
-
-insert into Truck values ('WP ABC 2891', 1, 'Colombo');
-insert into Truck values ('WP QQ 2345', 1, 'Kaluthara');
-insert into Truck values ('EP LK 1889', 3, 'Trinco');
-insert into Truck values ('SP AAA 3449', 2, 'Mathara');
-insert into Truck values ('NP XZ 3990', 4, 'Gampaha');
-insert into Truck values ('WP XT 3970', 10, 'Galle');
-insert into Truck values ('NR UZ 1230', 4, 'Kottawa');
-insert into Truck values ('NP LZ 3560', 6, 'Kandy');
-insert into Truck values ('NP TR 3967', 5, 'Ratnapura');
+insert into Truck values ('WP ABC 2891', 1, 'Colombo',25);
+insert into Truck values ('WP QQ 2345', 1, 'Kaluthara',39.25);
+insert into Truck values ('EP LK 1889', 3, 'Trinco',36.45);
+insert into Truck values ('SP AAA 3449', 2, 'Mathara',45.00);
+insert into Truck values ('NP XZ 3990', 4, 'Mulathiw',89.20);
 
 
 
@@ -202,11 +191,11 @@ insert into Cart values ("bashadithennakoon@gmail.com",default);
 insert into Cart values ("sssd@gmail.com",default);
 insert into Cart values ("abwwwc@gmail.com",default);
 
-insert into Cart_Product values (default,4,1);
-insert into Cart_Product values (default,6,1);
-insert into Cart_Product values (default,1,2);
-insert into Cart_Product values (default,2,3);
-insert into Cart_Product values (default,3,3);
+insert into Cart_Product values (default,4,1,3);
+insert into Cart_Product values (default,6,1,4);
+insert into Cart_Product values (default,1,2,2);
+insert into Cart_Product values (default,2,3,3);
+insert into Cart_Product values (default,3,3,7);
 
 insert into Driver values ("basadithennakoon@gmail.com","basadi",1,"78964545634V",34,0054734570);
 insert into Driver values ("bashadithennakoon@gmail.com","sulakshi",2,"78964548634V",26,0054734570);
@@ -220,6 +209,6 @@ insert into Assistant values ("12345674442V","assis 3",4,"assis3@gmail.com",10.3
 insert into Assistant values ("55545678912V","assis 4",3,"assis4@gmail.com",13.30,0343454239);
 insert into Assistant values ("12999678912V","assis 5",4,"assis5@gmail.com",4,0343454239);
 
-insert into Driver_Assistant values (default,"WP QQ 2345","200083301184",'12345678912V',10.30);
-insert into Driver_Assistant values (default,"EP LK 1889","12567845634V",'12345674442V',20);
-insert into Driver_Assistant values (default,"SP AAA 3449","78964545634V",'12000008912V',8);
+insert into Driver_Assistant values (default,"WP QQ 2345","78964545634V",'12345678912V',4);
+insert into Driver_Assistant values (default,"EP LK 1889","12567845634V",'12345674442V',4);
+insert into Driver_Assistant values (default,"SP AAA 3449","78964545634V",'12000008912V',4);

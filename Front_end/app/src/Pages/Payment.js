@@ -1,4 +1,4 @@
-import React,{ useState} from 'react';
+import React,{ useEffect, useState} from 'react';
 import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import PhoneInput from 'react-phone-input-2';
@@ -31,6 +31,7 @@ const Payment = () => {
     const [route, setRoute] = React.useState('');
     const navigate = useNavigate();
     const [selectedMethod, setSelectedMethod] = useState('Visa Card');
+    const [routes, setRoutes] = useState([])
     
     const handleChange = (event) => {
         setRoute(event.target.value);
@@ -41,7 +42,7 @@ const Payment = () => {
     const validateCreditCard = (value) => {
         
     }
-    const { cartTotal } = useCart();
+    const { emptyCart, cartTotal } = useCart();
 
     const handleChangeMethod = (event) => {
         setSelectedMethod(event.target.value);
@@ -70,11 +71,24 @@ const Payment = () => {
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
-                navigate('home', {replace: true})
+                emptyCart();
+                navigate('home', {replace: true});
                 alert('payment successfully');
             })
         }
+    }   
+
+    async function getRoutes(){
+        // const res = await fetch('https://fakestoreapi.com/products')
+        const res = await fetch('http://localhost:8000/api/product')
+                          .then(res=> res.json());
+                          setRoutes(await res);
     }
+
+    useEffect(()=>{
+        getRoutes();
+    },[]);
+
     return (
       <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
           <Header />
@@ -119,9 +133,18 @@ const Payment = () => {
                                 onChange={handleChange}
                                 required
                                 >
-                                <MenuItem value={10}>Colombo</MenuItem>
+                                    {/* fetch('/api/routes')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        this.setState({ routes: data.routes });
+                                    }); */}
+                                    {/* {this.state.routes.map(route => (
+                                        <MenuItem key={route.id} value={route.id}>{route.name}</MenuItem>
+                                    ))} */}
+                                <MenuItem key={route.route} value={routes.route}>{routes.route}</MenuItem>
+                                {/* <MenuItem value={10}>Colombo</MenuItem>
                                 <MenuItem value={20}>Kurunegala</MenuItem>
-                                <MenuItem value={30}>Moratuwa</MenuItem>
+                                <MenuItem value={30}>Moratuwa</MenuItem> */}
                                 </Select>
                             </FormControl>
                             </Box>
@@ -165,6 +188,7 @@ const Payment = () => {
                             className={`${theme? 'bg-dark-primary text-black' : 'bg-light-primary'} m-auto d-block`}
                             disabled={loading}
                             style={{border: 0}}
+                            // onClick = {() => {emptyCart()}}
                         >
                         {loading? 
                             <>
