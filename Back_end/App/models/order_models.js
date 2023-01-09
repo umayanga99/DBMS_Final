@@ -19,9 +19,9 @@
     this.destination = file.destination;
  };
 
- Order.paymentProceed = (product_ID,cart_ID,email,order_ID,address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,destination,result) => {
+ Order.paymentProceed = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
    //check the query
-    mysql.query(`SELECT payment_proceed(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [product_ID,cart_ID,email,order_ID,address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,destination],(err,res) => {
+    mysql.query(`SELECT payment_proceed(?,?,?,?,?)`, [email,prefered_dilivery_date,address,route,totalPrice],(err,res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

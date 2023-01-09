@@ -7,14 +7,14 @@ const orderModel=require("../models/order_models.js");
         });
     }
 
-    let cartID=req.body.cartID;
-    let productID=req.body.productID;
-    let quantity=req.body.quantity;
+    let email=req.body.email;
+    let prefered_dilivery_date=req.body.date;
     let address=req.body.address;
-    let destination=req.body.destination;
-    let diliveryDate=req.body.diliveryDate;
+    let route=req.body.route;
+    let totalPrice=req.body.totalPrice;
+
     
- orderModel.placeOrder(cartID,productID,quantity,address,destination,diliveryDate,(err,data)=>{
+ orderModel.placeOrder(email,prefered_dilivery_date,address,route,totalPrice,(err,data)=>{
     if(err){
         res.status(200).send({
             message:"error occured",
