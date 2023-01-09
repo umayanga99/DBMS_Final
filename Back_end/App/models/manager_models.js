@@ -31,6 +31,7 @@ const Manager = function(file) {
 
 Manager.getTruckSchedule = ( result) => {
     //check the query
+    //Truck schedule
     mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
         if (err) {
             console.log("error: ", err);
