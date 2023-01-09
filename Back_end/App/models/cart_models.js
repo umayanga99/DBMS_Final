@@ -41,4 +41,17 @@ Cart.getCartItem=(email,result)=>{
  })
 };
 
+Cart.clearCart=(email,result)=>{
+  mysql.query("Call clear_cart(?) ",[email],(err,res)=>{
+   if(err){
+     result(err,null);
+     return;
+   }else{
+     result(null,res);
+     return;
+   }
+  })
+ };
+
+
 module.exports=Cart;

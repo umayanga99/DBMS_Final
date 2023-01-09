@@ -31,7 +31,8 @@ const Manager = function(file) {
 
 Manager.getTruckSchedule = ( result) => {
     //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
+    //Truck schedule
+    mysql.query(`select * from truck_report`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -44,9 +45,9 @@ Manager.getTruckSchedule = ( result) => {
 };
 
 
-Manager.getAssistantSchedule = ( result) => {
+Manager.getAssistantSchedule = ( result ) => {
     //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'assistant' order by total_duration`,(err,res) => {
+    mysql.query(`select * from assistant`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -58,9 +59,9 @@ Manager.getAssistantSchedule = ( result) => {
     });
 };
 
-Manager.getDriverSchedule = ( result) => {
+Manager.getDriverSchedule = (result) => {
     //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'driver' order by total_duration`,(err,res) => {
+    mysql.query(` select * from driver`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -74,7 +75,7 @@ Manager.getDriverSchedule = ( result) => {
 
 Manager.getTrainSchedule = (result) => {
     //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
+    mysql.query(`select * from train_schedule`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -87,23 +88,11 @@ Manager.getTrainSchedule = (result) => {
 };
 
 
-Manager.getMostOrderedReport = (year, result) => {
-    //check the query
-    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        } else {
-            result(null, res);
-            
-        }
-    });
-};
+
 
 Manager.getQuarterlySalesReport = (year, result) => {
     //check the query
-    mysql.query(`SELECT quarter, total_quantity, total_income FROM quarterly_sales_report where year = ?`,[year],(err,res) => {
+    mysql.query(`select quarter, total_quantity, total_income from quarterly_sales_report where year = ?`,[year],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -117,7 +106,7 @@ Manager.getQuarterlySalesReport = (year, result) => {
 
 Manager.getQuarterlyOrderReport = (year, result) => {
     //check the query
-    mysql.query(`SELECT quarter, product, total_sells, total_income FROM quarter_order_details where year = ?`,[year],(err,res) => {
+    mysql.query(`select quarter, product, total_sells, total_income from quarter_order_details where year =  ?`,[year],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -133,7 +122,7 @@ Manager.getQuarterlyOrderReport = (year, result) => {
 
 Manager.getMostOrdered = (year, result) => {
     //check the query
-    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+    mysql.query(`select product_name, total_quantity from most_ordered where year =?`,[year],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -147,7 +136,7 @@ Manager.getMostOrdered = (year, result) => {
 
 Manager.getCustomerOrderReport = (year, result) => {
     //check the query
-    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+    mysql.query(`select customer_email,customer_name,customer_type,ordered_date,product_name,quantity,total_price from customer_order_report where year = ?`,[year],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -159,9 +148,9 @@ Manager.getCustomerOrderReport = (year, result) => {
     });
 };
 
-Manager.getCitiesRoutesReport = (result) => {
+Manager.getCitiesRoutesReport = (branch,result) => {
     //check the query
-    mysql.query("SELECT * FROM cities_routes_report",(err,res) => {
+    mysql.query("select truck_route,produFct_name,year,tot_orders from cities_routes_report where city =?",[branch],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -172,5 +161,7 @@ Manager.getCitiesRoutesReport = (result) => {
         }
     });
 };
+
+
 
 module.exports = Manager;

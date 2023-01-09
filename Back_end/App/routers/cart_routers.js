@@ -5,10 +5,13 @@ module.exports = app => {
     // localhost:8080/api/cart/get:isdafnokans
     
     // Get cart iitems router
-    cartRouter.get("/getCartItems", CartController.getCartItems);
+    cartRouter.post("/getCartItems", CartController.getCartItems);
     
     // Add to cart
     cartRouter.post("/saveCart", CartController.saveCart);
     
+    cartRouter.post("/clearCart", CartController.clearCart);
+    
+
     app.use('/api/cart', cartRouter);
     }
