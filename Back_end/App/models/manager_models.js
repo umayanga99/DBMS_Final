@@ -44,7 +44,7 @@ Manager.getTruckSchedule = ( result) => {
 };
 
 
-Manager.getAssistantSchedule = ( result) => {
+Manager.getAssistantSchedule = ( result ) => {
     //check the query
     mysql.query(`Select ID, total_duration from working_hours where roll = 'assistant' order by total_duration`,(err,res) => {
         if (err) {
