@@ -65,7 +65,7 @@ exports.getDriverSchedule=(req,res)=>{
 }
 
 exports.getMostOrderReport=(req,res)=>{
-    const year=req.query.year;
+    const year=req.body.year;
     ManagerModel.getreport(year,(err,data)=>{
         if(err){
             res.status(500).send({
@@ -82,7 +82,7 @@ exports.getMostOrderReport=(req,res)=>{
 }
 
 exports.getQuarterlySalesReport=(req,res)=>{
-    const year=req.query.year;
+    const year=req.body.year;
     ManagerModel.getQuarterlySalesReport(year,(err,data)=>{
         if(err){
             res.status(500).send({
@@ -99,7 +99,7 @@ exports.getQuarterlySalesReport=(req,res)=>{
 }
 
 exports.getQuarterlyOrderReport=(req,res)=>{
-    const year=req.query.year;
+    const year=req.body.year;
     ManagerModel.getQuarterlyOrderReport(year,(err,data)=>{
         if(err){
             res.status(500).send({
@@ -116,7 +116,7 @@ exports.getQuarterlyOrderReport=(req,res)=>{
 }
 
 exports.getMostOrdered=(req,res)=>{
-    const year=req.query.year;
+    const year=req.body.year;
     ManagerModel.getMostOrdered(year,(err,data)=>{
         if(err){
             res.status(500).send({
@@ -133,7 +133,7 @@ exports.getMostOrdered=(req,res)=>{
 }
 
 exports.getCustomerOrderReport=(req,res)=>{
-    const year=req.query.year;
+    const year=req.body.year;
     ManagerModel.getCustomerOrderReport(year,(err,data)=>{
         if(err){
             res.status(500).send({
@@ -150,7 +150,7 @@ exports.getCustomerOrderReport=(req,res)=>{
 }
 
 exports.getCitiesRoutesReport=(req,res)=>{
-    const year=req.query.year;
+    const year=req.body.year;
     ManagerModel.getCitiesRoutesReport(year,(err,data)=>{
         if(err){
             res.status(500).send({
@@ -165,3 +165,4 @@ exports.getCitiesRoutesReport=(req,res)=>{
         }
     })
 }
+

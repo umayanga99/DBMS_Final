@@ -10,5 +10,8 @@ module.exports = app => {
     // Add to cart
     cartRouter.post("/saveCart", CartController.saveCart);
     
+    cartRouter.post("/clearCart", CartController.clearCart);
+    
+
     app.use('/api/cart', cartRouter);
     }
