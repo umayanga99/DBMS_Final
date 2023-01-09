@@ -5,6 +5,7 @@ module.exports = app => {
 
     
     managerRouter.get("/getTrainSchedule",ManagerController.getTrainSchedule);
+    managerRouter.get("/getTruckSchedule",ManagerController.getTruckSchedule);
     managerRouter.get("/getAssistantSchedule",ManagerController.getAssistantSchedule);
     managerRouter.get("/getDriverSchedule",ManagerController.getDriverSchedule);
     managerRouter.get("/getgetMostOrderReport",ManagerController.getMostOrderReport);

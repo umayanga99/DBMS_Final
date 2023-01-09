@@ -33,7 +33,7 @@ CartModel.saveCart(email, items, (err, data) => {
 exports.getCartItems = (req, res) => {
  
 
-    let email = req.query.email;
+    let email = req.body.email;
   
    
  CartModel.getCartItem(email, (err, data) => {
