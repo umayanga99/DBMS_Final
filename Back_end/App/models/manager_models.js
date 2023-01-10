@@ -92,7 +92,7 @@ Manager.getTrainSchedule = (result) => {
 
 Manager.getQuarterlySalesReport = (year, result) => {
     //check the query
-    mysql.query(`select quarter, total_quantity, total_income from quarterly_sales_report where .year = ?`,[year],(err,res) => {
+    mysql.query(`select quarter, total_quantity, total_income from quarterly_sales_report where year = ?`,[year],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -122,8 +122,8 @@ Manager.getQuarterlyOrderReport = (year, result) => {
 
 Manager.getMostOrdered = (year, result) => {
     //check the query
-    // mysql.query(`select product_name, total_quantity from most_ordered where year =?`,[year],(err,res) => {
-        mysql.query(`select product_name, total_quantity from most_ordered`,(err,res) => {
+    mysql.query(`select product_name, total_quantity from most_ordered where year =?`,[year],(err,res) => {
+        // mysql.query(`select product_name, total_quantity from most_ordered`,(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -151,7 +151,7 @@ Manager.getCustomerOrderReport = (year, result) => {
 
 Manager.getCitiesRoutesReport = (branch,result) => {
     //check the query
-    mysql.query("select truck_route,produFct_name,year,tot_orders from cities_routes_report where city =?",[branch],(err,res) => {
+    mysql.query("select truck_route,product_name,year,tot_orders from cities_routes_report where city =?",[branch],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

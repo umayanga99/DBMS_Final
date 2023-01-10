@@ -277,9 +277,8 @@ const Manager = () => {
                                 className="m-2"
                                 style={{ width: '500px', height: '70px' }}
                                 onClick={()=>  { 
-                                    localStorage.setItem('year', year);
+                                    localStorage.setItem('year', year.$y);
                                     navigate('reports', {replace: false});
-                                    console.log(train,truck,assistent,driver);
                                     }}
                             >
                                 Report

@@ -75,6 +75,9 @@ const Payment = () => {
                 setLoading(false);
                 emptyCart();
                 navigate('home', {replace: true});
+                console.log(date.$d);
+                console.log(date);
+                console.log(date.$y);
                 alert('payment successfully');
             })
         }

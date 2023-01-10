@@ -103,11 +103,12 @@ const Reports = () => {
     }
 
     useEffect(()=>{
-        // getQSR();
+        getQSR();
         getMO();
-        // getCOR();
-        // getCRR();
-        // getQOR();
+        getCOR();
+        getCRR();
+        getQOR();
+        console.log(CRR,"CRR");
     },[]);
 
     return (
@@ -151,7 +152,7 @@ const Reports = () => {
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
-                        <th>Year</th>
+                        {/* <th>Year</th> */}
                         <th>Quarter</th>
                         <th>Total Quantity</th>
                         <th>Total Income</th>
@@ -162,12 +163,9 @@ const Reports = () => {
                         {QSR.map((item, index)=>{
                                 return(
                                     <tr key={index}>
-                                        <td>{item.NIC}</td>
-                                        <td>{item.assistant_name}</td>
-                                        <td>{item.store_ID}</td>
-                                        <td>{item.email}</td>
-                                        <td>{item.total_duration}</td>
-                                        <td>{item.telephone_No}</td>
+                                        <td>{item.quarter}</td>
+                                        <td>{item.total_income}</td>
+                                        <td>{item.total_quantity}</td>
                                     </tr>
                                 )
                             })}
@@ -177,7 +175,7 @@ const Reports = () => {
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
-                        <th>Year</th>
+                        {/* <th>Year</th> */}
                         <th>Quarter</th>
                         <th>Product</th>
                         <th>Total Sells</th>
@@ -186,7 +184,16 @@ const Reports = () => {
                 </thead>
                     
                     <tbody>
-
+                    {QOR.map((item, index)=>{
+                                return(
+                                    <tr key={index}>
+                                        <td>{item.quarter}</td>
+                                        <td>{item.product}</td>
+                                        <td>{item.total_sells}</td>
+                                        <td>{item.total_income}</td>
+                                    </tr>
+                                )
+                            })}
                     </tbody>
                 </Table>
                 <h2 ref={lMO} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`} path="driver">Most Ordered </h2>
@@ -199,14 +206,21 @@ const Reports = () => {
                 </thead>
                     
                     <tbody>
-
+                    {MO.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.product_name}</td>
+                                            <td>{item.total_quantity}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
                 <h2 ref={lCOR}  className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Customer Order Report</h2>
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
-                        <th>Year</th>
+                        {/* <th>Year</th> */}
                         <th>Customer Email</th>
                         <th>Customer Name</th>
                         <th>Customer Type</th>
@@ -218,7 +232,19 @@ const Reports = () => {
                 </thead>
                     
                     <tbody>
-
+                    {COR.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.customer_email}</td>
+                                            <td>{item.customer_name}</td>
+                                            <td>{item.customer_type}</td>
+                                            <td>{item.ordered_date}</td>
+                                            <td>{item.product_name}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>{item.total_price}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
                 <h2 ref={lCRR} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Cities Routs Report</h2>
