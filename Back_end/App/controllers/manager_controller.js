@@ -150,8 +150,8 @@ exports.getCustomerOrderReport=(req,res)=>{
 }
 
 exports.getCitiesRoutesReport=(req,res)=>{
-    const year=req.body.year;
-    ManagerModel.getCitiesRoutesReport(year,(err,data)=>{
+    const branch=req.body.branch;
+    ManagerModel.getCitiesRoutesReport(branch,(err,data)=>{
         if(err){
             res.status(500).send({
                 message:"Something went wrong"

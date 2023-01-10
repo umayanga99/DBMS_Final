@@ -8,7 +8,10 @@ const orderModel=require("../models/order_models.js");
     }
 
     let email=req.body.email;
-    let prefered_dilivery_date=req.body.date;
+    let year=req.body.year;
+    let month=req.body.month;
+    let date=req.body.date;
+    let prefered_dilivery_date=year+"-"+month+"-"+date;
     let address=req.body.address;
     let route=req.body.route;
     let totalPrice=req.body.totalPrice;
