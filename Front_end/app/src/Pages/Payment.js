@@ -62,7 +62,9 @@ const Payment = () => {
                 },
                 body:JSON.stringify({
                     email: localStorage.getItem('email'),
-                    date: date,
+                    year: date.$y,
+                    month: date.$M+1,
+                    date: date.$D,
                     Address: Address,
                     route: route,
                     totalPrice: cartTotal,
@@ -75,9 +77,6 @@ const Payment = () => {
                 setLoading(false);
                 emptyCart();
                 navigate('home', {replace: true});
-                console.log(date.$d);
-                console.log(date);
-                console.log(date.$y);
                 alert('payment successfully');
             })
         }
