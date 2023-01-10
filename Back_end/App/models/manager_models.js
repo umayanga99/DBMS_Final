@@ -148,9 +148,9 @@ Manager.getCustomerOrderReport = (year, result) => {
     });
 };
 
-Manager.getCitiesRoutesReport = (branch,result) => {
+Manager.getCitiesRoutesReport = (result) => {
     //check the query
-    mysql.query("select truck_route,product_name,year,tot_orders from cities_routes_report where city =?",[branch],(err,res) => {
+    mysql.query("select truck_route,product_name,year,tot_orders from cities_routes_report where city = ?",[branch],(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

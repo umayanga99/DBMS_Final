@@ -149,7 +149,7 @@ exports.getCustomerOrderReport=(req,res)=>{
     })
 }
 
-exports.getCitiesRoutesReport=(req,res)=>{
+exports.getCitiesRoutesReport=(res)=>{
     
     ManagerModel.getCitiesRoutesReport((err,data)=>{
         if(err){
