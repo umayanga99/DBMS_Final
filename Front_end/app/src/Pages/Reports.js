@@ -171,7 +171,7 @@ const Reports = () => {
                             })}
                     </tbody>
                 </Table>
-                <h2 ref={lQSR} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Quarter Order Report</h2>
+                <h2 ref={lQOR} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Quarter Order Report</h2>
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
