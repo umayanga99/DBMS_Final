@@ -38,17 +38,19 @@ const SignIn = () => {
                 setValue(data);
                 console.log(`value = `,value);
                 console.log(data.message);
-                if(data.message!==1){
-                    alert("Can not login",value);
-                }
-                else{
+                if(data.message===2){
                     alert("ok",value);
                     localStorage.setItem('email', data.email);
                     navigate('home', {replace: true});
-                    
-                    
                 }
-                // console.log(value);
+                else if(data.message===1){
+                    alert("ok",value);
+                    localStorage.setItem('email', data.email);
+                    navigate('manager', {replace: true});
+                }
+                else{
+                    alert("Can not login",value);   
+                }
             })
             .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))

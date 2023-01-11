@@ -18,13 +18,22 @@ exports.checkValidity = (req, res) => {
             res.status(500).send({
                 message: 0 
             })
-        } else {
+        } else if(data==1){
             res.status(200).send({
-                message: data ? 1 : 0,
-                email:email
-                
+                message: 1,
+                email:email 
             });
-            
+        }
+        else if(data==2){
+            res.status(200).send({
+                message: 2,
+                email:email 
+            });
+        }
+        else {
+            res.status(200).send({
+                message: 0
+            });
         }
      
     })
