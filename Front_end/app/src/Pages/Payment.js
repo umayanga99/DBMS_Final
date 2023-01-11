@@ -31,7 +31,7 @@ const Payment = () => {
     const [route, setRoute] = React.useState('');
     const navigate = useNavigate();
     const [selectedMethod, setSelectedMethod] = useState('Visa Card');
-    const [routes, setRoutes] = useState([])
+    const [routes, setRoutes] = useState([]);
     
     const handleChange = (event) => {
         setRoute(event.target.value);
@@ -54,17 +54,21 @@ const Payment = () => {
         const Address = form.Address.value;
 
         if(Address && route && date && selectedMethod){
+            console.log(date);
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/signIn',{
+            fetch('http://localhost:8000/api/order',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    date: date,
+                    email: localStorage.getItem('email'),
+                    year: date.$y,
+                    month: date.$M + 1,
+                    date: date.$D,
                     Address: Address,
                     route: route,
-                    selectedMethod: selectedMethod
+                    totalPrice: cartTotal
                 })
             }).then(res=>res.json())
             .then(json=>sessionStorage.setItem("token", json.token))
@@ -79,7 +83,6 @@ const Payment = () => {
     }   
 
     async function getRoutes(){
-        // const res = await fetch('https://fakestoreapi.com/products')
         const res = await fetch('http://localhost:8000/api/passage')
                           .then(res=> res.json());
                           setRoutes(await res.passges);
@@ -182,7 +185,7 @@ const Payment = () => {
                             className={`${theme? 'bg-dark-primary text-black' : 'bg-light-primary'} m-auto d-block`}
                             disabled={loading}
                             style={{border: 0}}
-                            // onClick = {() => {emptyCart()}}
+                            onClick = {() => {emptyCart()}}
                         >
                         {loading? 
                             <>
