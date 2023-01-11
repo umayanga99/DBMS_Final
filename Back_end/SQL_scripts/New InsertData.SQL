@@ -58,12 +58,33 @@ insert into Store values (default, "Jaffna","Jaffnastore",0210609409,"addresJaff
 insert into Store values (default, "Anuradhapura","Anuradhapurastore",0257899609,"addressAnuradhapura");
 insert into Store values (default, "Monaragala","Monaragalastore",0550601129,"addressMonaragala");
 insert into Store values (default, "Kandy","Kandystore",0810846609,"addressKandy");
+insert into Store values (default, "Matale","Matalestore",0810846609,"addressMatale");
+insert into Store values (default, "Ratnapura","Ratnapurastore",0810846609,"addressRatnapura");
+insert into Store values (default, "Hambantota","Hambantotastore",0810846609,"addressHambantota");
+insert into Store values (default, "Badulla","Badullastore",0810846609,"addressBadulla");
+insert into Store values (default, "Matara","Matarastore",0810846609,"addressMatara");
+insert into Store values (default, "Negambo","Negambostore",0810846609,"addressNegambo");
+insert into Store values (default, "Batticaloa","Batticaloastore",0810846609,"addressBatticaloa");
+
+
 
 insert into Train_Route values (default, 1,'00:00:00');
 insert into Train_Route values (default, 1,'10:30:00');
 insert into Train_Route values (default, 3,'00:10:00');
 insert into Train_Route values (default, 4,'13:00:00');
-insert into Train_Route values (default, 2,'23:34:00');
+insert into Train_Route values (default, 5,'23:34:00');
+insert into Train_Route values (default, 6,'00:00:00');
+insert into Train_Route values (default, 7,'00:00:00');
+insert into Train_Route values (default, 8,'00:00:00');
+insert into Train_Route values (default, 9,'00:00:00');
+insert into Train_Route values (default, 10,'00:00:00');
+insert into Train_Route values (default, 11,'00:00:00');
+insert into Train_Route values (default, 12,'00:00:00');
+insert into Train_Route values (default, 13,'00:00:00');
+insert into Train_Route values (default, 14,'00:00:00');
+insert into Train_Route values (default, 15,'00:00:00');
+insert into Train_Route values (default, 16,'00:00:00');
+insert into Traian_Route values (default, 17,'00:00:00');
 
 insert into Train values(default, 1,3210,500);
 insert into Train values(default, 2,3401,0);
@@ -94,7 +115,6 @@ insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5545', 0761546878);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5556', 0761546889);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g5567', 0761546123);
-
 insert into Customer values ("abc@gmail.com","abc","wholesaler", 'sdfasdfa', 12345);
 insert into Customer values ("sssd@gmail.com","sss","retailer", 'sdafsd3232', 23556);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g55', 56734);
@@ -128,7 +148,51 @@ insert into Truck_Route values ('Mulathiw', 4.00);
 
 insert into Orders values (default, 'No 22, Kaluthara, Colombo','sssd@gmail.com','2022-8-20','12:20:57','Kaluthara',440,'2022-9-1',233.00);
 insert into Orders values (default, 'No 13, Port Road, Trinco','abc@gmail.com','2022-10-1','16:23:24','Trinco',990,'2022-12-1',455.00);
+insert into Orders values (default, 'No 117, Temple Road, Kandy','bwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 17, Galle Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Main Road, Ratnapura','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Main Road, Pollonnaruwa','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Kovil Road, Mannar','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Badulla','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Hill Road, Matale','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Hambantota','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Maliga Road, Kandy','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
 insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+insert into Orders values (default, 'No 117, Temple Road, Mathara','abwwwc@gmail.com','2022-12-20','4:16:23','Mathara',440,'2023-1-1',200.00);
+
+
+
+
 
 insert into Truck values ('WP ABC 2891', 1, 'Colombo',25);
 insert into Truck values ('WP QQ 2345', 1, 'Kaluthara',39.25);
