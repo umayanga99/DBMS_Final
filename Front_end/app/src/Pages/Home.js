@@ -5,11 +5,14 @@ import { BiSearch } from 'react-icons/bi';
 import SearchFilter from 'react-filter-search';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
+import { useCart } from 'react-use-cart';
 
 const Home = () => {
     const [theme] = useThemeHook();
     const [searchInput, setSearchInput] = useState('');
     const [productData, setProductData] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+    const {setItem} = useCart();
 
     async function getResponse(){
         const res = await fetch('http://localhost:8000/api/product')
@@ -18,14 +21,33 @@ const Home = () => {
     }
 
     async function getCartItems(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
-                          .then(res=> res.json());
-                          setProductData(await res);
+        const res = await  fetch('http://localhost:8000/api/cart/getCartItems',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                email: localStorage.getItem('email')
+            })
+            
+        })
+        .then(res=>res.json())
+        .then((data) => {
+            
+            setCartItems(data.data);
+            // console.log(cartItems);
+        })
+        .then(json=>sessionStorage.setItem("token", json.token))
+        .catch(error=> console.error(error))
+        .finally(()=>{
+            console.log(cartItems);
+            setCartItems(cartItems);
+        })
     }
 
     useEffect(()=>{
         getResponse();
+        getCartItems();
     },[]);
 
     return (

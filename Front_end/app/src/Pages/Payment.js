@@ -80,9 +80,10 @@ const Payment = () => {
 
     async function getRoutes(){
         // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/passage')
                           .then(res=> res.json());
-                          setRoutes(await res);
+                          setRoutes(await res.passges);
+                          console.log(routes);
     }
 
     useEffect(()=>{
@@ -133,18 +134,11 @@ const Payment = () => {
                                 onChange={handleChange}
                                 required
                                 >
-                                    {/* fetch('/api/routes')
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        this.setState({ routes: data.routes });
-                                    }); */}
-                                    {/* {this.state.routes.map(route => (
-                                        <MenuItem key={route.id} value={route.id}>{route.name}</MenuItem>
-                                    ))} */}
-                                <MenuItem key={route.route} value={routes.route}>{routes.route}</MenuItem>
-                                {/* <MenuItem value={10}>Colombo</MenuItem>
-                                <MenuItem value={20}>Kurunegala</MenuItem>
-                                <MenuItem value={30}>Moratuwa</MenuItem> */}
+                                {routes.map((item, index)=>{
+                            return(
+                                <MenuItem key={index} value={item.truck_route}>{item.truck_route}</MenuItem>
+                            )
+                                })}
                                 </Select>
                             </FormControl>
                             </Box>
