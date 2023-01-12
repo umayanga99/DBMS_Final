@@ -33,7 +33,7 @@ const Home = () => {
         })
         .then(res=>res.json())
         .then((data) => {
-            
+            console.log(data);
             setCartItems(data.data);
             console.log(cartItems);
         })

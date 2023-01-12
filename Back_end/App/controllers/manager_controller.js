@@ -149,9 +149,25 @@ exports.getCustomerOrderReport=(req,res)=>{
     })
 }
 
-exports.getCitiesRoutesReport=(req,res)=>{
+// exports.getCitiesRoutesReport=(req,res)=>{
     
-    ManagerModel.getCitiesRoutesReport((err,data)=>{
+//     ManagerModel.getCitiesRoutesReport((err,data)=>{
+//         if(err){
+//             res.status(500).send({
+//                 message:"Something went wrong"
+//             })
+//         }else{
+//             // console.log(data);
+//             res.status(200).send({
+//                 message:"Success",
+//                 data:data
+//             })
+//         }
+//     })
+// }
+exports.getCitiesRoutesReport=(req,res)=>{
+    let year=req.body.year;
+    ManagerModel.getCitiesRoutesReport(year,(err,data)=>{
         if(err){
             res.status(500).send({
                 message:"Something went wrong"
@@ -165,4 +181,5 @@ exports.getCitiesRoutesReport=(req,res)=>{
         }
     })
 }
+
 

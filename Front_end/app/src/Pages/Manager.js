@@ -23,6 +23,7 @@ const Manager = () => {
     const [assistent, setAssistent] = useState([]);
     const [truck, setTruck] = useState([]);
     const [train, setTrain] = useState([]);
+    const [order, setOrder] = useState([]);
     // const [year, setYear] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
     const [year, setYear] = React.useState(null);
     const minDate = new Date('2022-04-07');
@@ -32,6 +33,7 @@ const Manager = () => {
     const lAssistent = useRef(null);
     const lTruck = useRef(null);
     const lTrain = useRef(null);
+    const lOrder = useRef(null);
 
     async function getDriver(){
         const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
@@ -61,11 +63,19 @@ const Manager = () => {
                           console.log(train);
     }
 
+    // async function getOrder(){
+    //     const res = await fetch('http://localhost:8000/api/manager/getOrder')
+    //                       .then(res=> res.json());
+    //                       setTrain(await res.data);
+    //                       console.log(train);
+    // }
+
     useEffect(()=>{
         getDriver();
         getAssistent();
         getTruck();
         getTrain();
+        // getOrder();
     },[]);
 
     // const handleSubmit = (event)=>{
@@ -120,8 +130,14 @@ const Manager = () => {
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
             <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>
-        <Container className="py-4 mt-5">
-        <Button variant="success"
+            <Container className="py-4 mt-5">
+                            <Button variant="success"
+                                className="m-2"
+                                onClick={()=>  lOrder.current.scrollIntoView()}
+                            >
+                                Orders
+                            </Button>
+                            <Button variant="success"
                                 className="m-2"
                                 onClick={()=>  lAssistent.current.scrollIntoView()}
                             >
@@ -147,7 +163,38 @@ const Manager = () => {
                             </Button>
             
             <Row className="justify-content-center">
-            <h2 ref={lAssistent} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Assistent</h2>
+            <h2 ref={lOrder} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Orders</h2>
+            <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Ordered Date</th>
+                        <th>Time</th>
+                        <th>Truck Route</th>
+                        <th>Capacity</th>
+                        <th>Prefered Delivery Date</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                    
+                    <tbody>
+                        {order.map((item, index)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>{item.NIC}</td>
+                                    <td>{item.assistant_name}</td>
+                                    <td>{item.store_ID}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.total_duration}</td>
+                                    <td>{item.telephone_No}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <h2 ref={lAssistent} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Assistent</h2>
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>

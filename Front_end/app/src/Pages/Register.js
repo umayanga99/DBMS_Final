@@ -16,6 +16,7 @@ const Register = () => {
     const [theme] = useThemeHook();
     const [type, setType] = React.useState('');
     const navigate = useNavigate();
+    const [value,setValue] = useState('');
 
     const handleChange = (event) => {
         setType(event.target.value);
@@ -43,13 +44,31 @@ const Register = () => {
                     TP: number
                 })
             }).then(res=>res.json())
+            .then((data) => {
+                
+                setValue(data);
+                console.log(`value = `,value);
+                console.log(data.message);
+                if(data.message===1){
+                    alert("Email is already registered",value);
+                }
+                else if(data.message===0){
+                    alert("ok",value);
+                    localStorage.setItem('email', data.email);
+                    alert('register successfully');
+                    navigate('/', {replace: true});
+                }
+                else{
+                    alert("Error Occured",value);   
+                }
+            })
             // .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
-                console.log(name,password,email,type,number);
+                // console.log(name,password,email,type,number);
                 setLoading(false);
-                navigate('/', {replace: true})
-                alert('register successfully');
+                // navigate('/', {replace: true})
+                // alert('register successfully');
             })
         }
     }

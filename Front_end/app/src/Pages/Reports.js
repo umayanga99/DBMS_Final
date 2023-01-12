@@ -20,13 +20,6 @@ const Reports = () => {
     const lCRR = useRef(null);
     const lQOR = useRef(null);
 
-    // async function getDriver(){
-    //     const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
-    //                       .then(res=> res.json());
-    //                       setDriver(res.data);
-    //                       console.log(res.data,driver,"driver");
-    // }
-
     async function getQSR(){
         const res = await fetch('http://localhost:8000/api/manager/getQuarterlySalesReport',{
             method: 'POST',
