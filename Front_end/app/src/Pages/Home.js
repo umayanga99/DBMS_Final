@@ -12,7 +12,7 @@ const Home = () => {
     const [searchInput, setSearchInput] = useState('');
     const [productData, setProductData] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-    const {setItem} = useCart();
+    const {addItem,setItems} = useCart();
 
     async function getResponse(){
         const res = await fetch('http://localhost:8000/api/product')
@@ -35,14 +35,14 @@ const Home = () => {
         .then((data) => {
             
             setCartItems(data.data);
-            // console.log(cartItems);
+            console.log(cartItems);
         })
-        .then(json=>sessionStorage.setItem("token", json.token))
+        // .then(json=>sessionStorage.setItem("token", json.token))
         .catch(error=> console.error(error))
         .finally(()=>{
-            console.log(cartItems);
-            setCartItems(cartItems);
-        })
+            // console.log(cartItems.itemTotal,cartItems.price,cartItems.product_description,cartItems.product_name,cartItems.product_weight,cartItems.quantity);
+            setItems(cartItems);
+})
     }
 
     useEffect(()=>{
