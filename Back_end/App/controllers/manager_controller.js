@@ -149,9 +149,9 @@ exports.getCustomerOrderReport=(req,res)=>{
     })
 }
 
-exports.getCitiesRoutesReport=(req,res)=>{
+exports.getLastMonthOrders=(req,res)=>{
     let year=req.body.year;
-    ManagerModel.getCitiesRoutesReport(year,(err,data)=>{
+    ManagerModel.getgetLastMonthOrders(year,(err,data)=>{
         if(err){
             res.status(500).send({
                 message:"Something went wrong"
@@ -165,4 +165,5 @@ exports.getCitiesRoutesReport=(req,res)=>{
         }
     })
 }
+
 
