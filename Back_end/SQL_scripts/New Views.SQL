@@ -22,7 +22,8 @@ select year(ordered_date) as year,
     sum(quantity) as total_quantity from 
 orders_order_product
 group by year, product_name
-order by total_quantity;
+order by total_quantity desc
+limit 5;
 
 
 create or replace view Quarterly_sales_report as
@@ -46,6 +47,7 @@ group by year, quarter, product
 order by year, quarter, total_income;
 
 
+create or replace view products_details as 
 select p.id, 
     price, 
     product_name, 
@@ -78,17 +80,16 @@ create or replace view Working_Hours as
 
 
 create or replace view Customer_Order_Report as
-select customer_email, 
+select year(ordered_date) as year,
+	customer_email, 
     customer_name, 
     customer_type, 
     ordered_date, 
     product_name, 
     quantity, 
     price*quantity as 'total_price'  from
-
-customer c inner join orders o on c.email = o.customer_email 
-inner join order_product using(order_ID) 
-inner join product using(id) order by ordered_date desc;
+customer c inner join orders_order_product o on c.email = o.customer_email 
+order by ordered_date desc;
 
 
 create or replace view cities_routes_report as 
@@ -96,8 +97,20 @@ select city,
     truck_route, 
     product_name, 
     year(ordered_date) as year, 
-    sum(quantity) as tot_orders from 
+    sum(quantity) as tot_orders,
+    sum(quantity * price) as total_income from
 store inner join truck using(store_ID)
 inner join orders_order_product using(truck_route) 
 group by city, truck_route, product_name;
 
+
+create or replace view train_schedule as
+select train_id, capacity, depart_time, store_name as destination_store from 
+train inner join train_route using(route_id) inner join store using(store_id)
+group by train_id, store_id;
+
+
+create or replace view truck_report as
+select truck_id, city, truck_route, total_duration from 
+store inner join truck using(store_id) inner join truck_route using(truck_route)
+group by truck_id, store_name, truck_route;

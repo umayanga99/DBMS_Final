@@ -102,7 +102,10 @@ const Cart = () => {
                                         .then(res => res.json())
                                         .then(res => {
                                           setResponse(res);
-                                        });
+                                        })
+                                        .finally(()=>{
+                                            alert("Successfully saved");
+                                        })
                                         // alert("error in saving");
                                     }}
                             >
@@ -111,7 +114,27 @@ const Cart = () => {
                             </Button>
                             <Button variant="danger"
                                 className="m-2"
-                                onClick={()=> emptyCart()}
+                                onClick={()=> 
+                                    fetch('http://localhost:8000/api/cart/clearCart', {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            email : localStorage.getItem('email')
+                                        }),
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        }
+                                      })
+                                        .then(res => res.json())
+                                        .then(res => {
+                                          setResponse(res);
+                                        })
+                                        .finally(()=>{
+                                            emptyCart();
+                                            alert("Successfully cleared");
+                                        })
+                                        // alert("error in saving");
+                                    
+                                    }
                             >
                                 <BsCartX size="1.7rem" />
                                 Clear Cart

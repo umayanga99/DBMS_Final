@@ -47,6 +47,7 @@ insert into Train values(default, 2,32345,250);
 insert into Customer values ("abc@gmail.com","abc","wholesaler", 'sdfasdfa', 12345);
 insert into Customer values ("sssd@gmail.com","sss","retailer", 'sdafsd3232', 23556);
 insert into Customer values ("abwwwc@gmail.com","abww","end customer", 'se44g5g55', 56734);
+insert into Customer values ("manager@gmail.com","manager","manager","manager123",0123456789);
 
 insert into Truck_Route values ('Kandy', 10.30);
 insert into Truck_Route values ('Kurunegala', 8.00);
@@ -128,6 +129,6 @@ insert into Assistant values ("12345674442V","assis 3",4,"assis3@gmail.com",10.3
 insert into Assistant values ("55545678912V","assis 4",3,"assis4@gmail.com",13.30,0343454239);
 insert into Assistant values ("12999678912V","assis 5",4,"assis5@gmail.com",4,0343454239);
 
-insert into Driver_Assistant values (default,"WP QQ 2345","78964545634V",'12345678912V',4);
-insert into Driver_Assistant values (default,"EP LK 1889","12567845634V",'12345674442V',4);
-insert into Driver_Assistant values (default,"SP AAA 3449","78964545634V",'12000008912V',4);
+insert into Driver_Assistant values (default,"WP QQ 2345","78964545634V",'12345678912V',4,'2022-9-1');
+insert into Driver_Assistant values (default,"EP LK 1889","12567845634V",'12345674442V',4,'2022-12-1');
+insert into Driver_Assistant values (default,"SP AAA 3449","78964545634V",'12000008912V',4,'2023-1-1');
