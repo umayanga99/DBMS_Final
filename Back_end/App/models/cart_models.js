@@ -2,7 +2,7 @@ const mysql = require("./db.js");
 // let pool = require('../../database/connection');
 // const {decodeToken} = require('../../middleware/authMiddleware') // add this middle ware to authenticate without login
 
-constructor
+
 const Cart = function(file) {
   this.email=email;
   this.items=items;
@@ -13,21 +13,15 @@ const Cart = function(file) {
 
 
 Cart.saveCart = (email,items, result) => {
-  let newItems=[];
-  
-  for (let i=0;i<items.length;i++){
-    let subArray=items[i];
-    let tempArray=[];
-    tempArray.push(subArray.id);
-    tempArray.push(subArray.quantity);
-    newItems.push(tempArray);
-}
-for(let i =0;i<newItems.length;i++){
-  mysql.query("Call Save_To_Cart(?,?,?)",[email,newItems[i].id,newItems[i].quantity],(err,res)=>{
+for(let i =0;i<items.length;i++){
+  let subArray=items[i]
+  mysql.query("Call Save_To_Cart(?,?,?)",[email,subArray.id,subArray.quantity],(err,res)=>{
     if(err){result(err,null);
     return;}
   })
 }
+result(null,res);
+return;
 }
 
 

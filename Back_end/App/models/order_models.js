@@ -19,9 +19,9 @@
     this.destination = file.destination;
  };
 
- Order.paymentProceed = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
+ Order.placeOrder = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
    //check the query
-    mysql.query(`SELECT payment_proceed(?,?,?,?,?)`, [email,prefered_dilivery_date,address,route,totalPrice],(err,res) => {
+    mysql.query(`CALL payment_proceed(?,?,?,?,?)`, [email,prefered_dilivery_date,address,route,totalPrice],(err,res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

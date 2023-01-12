@@ -47,7 +47,7 @@ exports.addUser = (req, res) => {
         if(err) {
             console.log(err);
             res.status(500).send({
-                message: err.message || "Something went wrong"
+                message: err.message
             })
         } else {
             res.status(200).send({

@@ -11,11 +11,26 @@ const orderModel=require("../models/order_models.js");
     let year=req.body.year;
     let month=req.body.month;
     let date=req.body.date;
-    let prefered_dilivery_date=year+"-"+month+"-"+date;
+    let monthS;
+    let dateS;
+    if(month<10){
+         monthS="0"+String(month);
+    }
+    else{
+         monthS=String(month);
+    }
+    if(date<10){
+         dateS="0"+String(date);
+    }
+    else{
+        dateS=String(date)
+    }
+    let prefered_dilivery_date=String(year)+"-"+monthS+"-"+dateS;
+    // console.log(date,dates,prefered_dilivery_date)
     let address=req.body.address;
     let route=req.body.route;
     let totalPrice=req.body.totalPrice;
-
+    console.log(prefered_dilivery_date);
     
  orderModel.placeOrder(email,prefered_dilivery_date,address,route,totalPrice,(err,data)=>{
     if(err){
@@ -35,22 +50,22 @@ const orderModel=require("../models/order_models.js");
     })
  } 
 
- exports.getTotal=(req,res)=>{
-    let email=req.query.email;
-    const data=req.query.date
+//  exports.getTotal=(req,res)=>{
+//     let email=req.query.email;
+//     const data=req.query.date
 
-    orderModel.getTotal(email,(err,data)=>{
-        if(err){
-            res.status(200).send({
-                message:"Fail",            
-            })
-        }else{
-            res.status(200).send({
-                message:"Successfull"
-            });
-        }
-    });
- }
+//     orderModel.getTotal(email,(err,data)=>{
+//         if(err){
+//             res.status(200).send({
+//                 message:"Fail",            
+//             })
+//         }else{
+//             res.status(200).send({
+//                 message:"Successfull"
+//             });
+//         }
+//     });
+//  }
 
 //  const obj1 = {
 //     "truck":truck1,
