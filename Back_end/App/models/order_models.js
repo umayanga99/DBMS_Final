@@ -21,12 +21,14 @@
 
  Order.placeOrder = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
    //check the query
-    mysql.query(`CALL payment_proceed(?,?,?,?,?)`, [email,prefered_dilivery_date,address,route,totalPrice],(err,res) => {
+   let flag;
+    mysql.query(`call payment_proceed(?,?,?,?,?,@?)`, [email,prefered_dilivery_date,address,route,totalPrice,flag],(err,res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
             return;
         } else {
+            console.log(flag);
             result(null, res);
         }
     });

@@ -27,7 +27,7 @@ const orderModel=require("../models/order_models.js");
     }
     let prefered_dilivery_date=String(year)+"-"+monthS+"-"+dateS;
     // console.log(date,dates,prefered_dilivery_date)
-    let address=req.body.address;
+    let address=req.body.Address;
     let route=req.body.route;
     let totalPrice=req.body.totalPrice;
     console.log(prefered_dilivery_date);

@@ -20,8 +20,6 @@ for(let i =0;i<items.length;i++){
     return;}
   })
 }
-result(null,res);
-return;
 }
 
 
