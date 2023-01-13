@@ -168,6 +168,8 @@ insert into Train values(default, 21,600,68);
 insert into Customer values ("manager@gmail.com",",Main Manager","manager", 'managerpassword', 0761546870);
 insert into Customer values ("customer1@gmail.com","customer1","retailer", 'customer1password', 0761546871);
 insert into Customer values ("customer2@gmail.com","customer2","wholesaler", 'customer2password', 0783546872);
+insert into Customer values ("customer3@gmail.com","customer3","end customer", 'customer3password', 0783546872);
+
 
 
 -- Done
