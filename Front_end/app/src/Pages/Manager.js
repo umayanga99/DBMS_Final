@@ -1,9 +1,7 @@
-import React,{ useState, useRef } from 'react';
-import { Container, Row, Col, Button, Form, Spinner, InputGroup, Table} from 'react-bootstrap';
+import React,{ useState, useRef, useEffect } from 'react';
+import { Container, Row, Col, Button, Table} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
-import { Link, useNavigate } from "@reach/router";
-
-//icons
+import {  useNavigate } from "@reach/router";
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -11,108 +9,66 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-import './Manager.css';
-
-import { useCart} from 'react-use-cart';
-import { BsCartCheck, BsCartX} from 'react-icons/bs';
-
-
-//icons
-
 const Manager = () => {
-    const [loading, setLoading] = useState(false);
-    const [value,setValue] = useState("");
     const [theme] = useThemeHook();
     const navigate = useNavigate();
-    const [driver, setDriver] = useState("");
-    const [assistent, setAssistent] = useState("");
-    const [truck, setTruck] = useState("");
-    // const [year, setYear] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
+    const [driver, setDriver] = useState([]);
+    const [assistent, setAssistent] = useState([]);
+    const [truck, setTruck] = useState([]);
+    const [train, setTrain] = useState([]);
+    const [order, setOrder] = useState([]);
     const [year, setYear] = React.useState(null);
-    const minDate = new Date('2022-04-07');
-    // const maxDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000 );
-
     const lDriver = useRef(null);
     const lAssistent = useRef(null);
     const lTruck = useRef(null);
     const lTrain = useRef(null);
+    const lOrder = useRef(null);
 
     async function getDriver(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
                           .then(res=> res.json());
-                          setDriver(await res);
+                          setDriver(await res.data);
     }
-
     async function getAssistent(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/manager/getAssistantSchedule')
                           .then(res=> res.json());
-                          setAssistent(await res);
+                          setAssistent(await res.data);
     }
-
     async function getTruck(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/manager/getTruckSchedule')
                           .then(res=> res.json());
-                          setTruck(await res);
+                          setTruck(await res.data);
+    }
+    async function getTrain(){
+        const res = await fetch('http://localhost:8000/api/manager/getTrainSchedule')
+                          .then(res=> res.json());
+                          setTrain(await res.data);
+    }
+    async function getOrder(){
+        const res = await fetch('http://localhost:8000/api/manager/getLastMonthOrders')
+                          .then(res=> res.json());
+                          setOrder(await res.data);
     }
 
-    const handleSubmit = (event)=>{
-        const form = event.currentTarget;
-        event.preventDefault();
-        const email = form.email.value;
-        const password = form.password.value;
-        if(email && password){
-            console.log("if", email, password)
-            setLoading(true);
-            fetch('http://localhost:8000/api/auth/checkValidity',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify({
-                    email: email,
-                    password: password
-                })
-                
-            })
-            .then(res=>res.json())
-            .then((data) => {
-                
-                setValue(data);
-                console.log(`value = `,value);
-                console.log(data.message);
-                if(data.message===2){
-                    alert("ok",value);
-                    localStorage.setItem('email', data.email);
-                    navigate('home', {replace: true});
-                }
-                else if(data.message===1){
-                    alert("ok",value);
-                    localStorage.setItem('email', data.email);
-                    navigate('train-schedule', {replace: true});
-                }
-                else{
-                    alert("Can not login",value);   
-                }
-            })
-            .then(json=>sessionStorage.setItem("token", json.token))
-            .catch(error=> console.error(error))
-            .finally(()=>{
-                
-                setLoading(false);
-                // navigate('home', {replace: false});
-                // alert('Login successfully');
-            })
-        }
-    }
+    useEffect(()=>{
+        getDriver();
+        getAssistent();
+        getTruck();
+        getTrain();
+        getOrder();
+    },[]);
+
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
             <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>
-        <Container className="py-4 mt-5">
-        
-        <Button variant="success"
+            <Container className="py-4 mt-5">
+                            <Button variant="success"
+                                className="m-2"
+                                onClick={()=>  lOrder.current.scrollIntoView()}
+                            >
+                                This Month Orders
+                            </Button>
+                            <Button variant="success"
                                 className="m-2"
                                 onClick={()=>  lAssistent.current.scrollIntoView()}
                             >
@@ -138,7 +94,41 @@ const Manager = () => {
                             </Button>
             
             <Row className="justify-content-center">
-            <h2 ref={lAssistent} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Assistent</h2>
+            <h2 ref={lOrder} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>This Month Orders</h2>
+            <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Ordered Date</th>
+                        <th>Time</th>
+                        <th>Truck Route</th>
+                        <th>Capacity</th>
+                        <th>Prefered Delivery Date</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                    
+                    <tbody>
+                        {order.map((item, index)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>{item.order_ID}</td>
+                                    <td>{item.customer_address}</td>
+                                    <td>{item.customer_email}</td>
+                                    <td>{item.ordered_date}</td>
+                                    <td>{item.ordered_time}</td>
+                                    <td>{item.truck_route}</td>
+                                    <td>{item.tot_capacity}</td>
+                                    <td>{item.prefered_dilivery_date}</td>
+                                    <td>{item.total_price}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <h2 ref={lAssistent} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Assistent</h2>
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
@@ -152,7 +142,18 @@ const Manager = () => {
                 </thead>
                     
                     <tbody>
-
+                        {assistent.map((item, index)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>{item.NIC}</td>
+                                    <td>{item.assistant_name}</td>
+                                    <td>{item.store_ID}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.total_duration}</td>
+                                    <td>{item.telephone_No}</td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </Table>
                 <h2 ref={lDriver} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`} path="driver">Driver</h2>
@@ -169,7 +170,18 @@ const Manager = () => {
                 </thead>
                     
                     <tbody>
-
+                        {driver.map((item, index)=>{
+                                return(
+                                    <tr key={index}>
+                                        <td>{item.NIC}</td>
+                                        <td>{item.driver_name}</td>
+                                        <td>{item.store_ID}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.total_duration}</td>
+                                        <td>{item.Telephone_No}</td>
+                                    </tr>
+                                )
+                            })}
                     </tbody>
                 </Table>
                 <h2 ref={lTruck}  className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Truck</h2>
@@ -184,7 +196,16 @@ const Manager = () => {
                 </thead>
                     
                     <tbody>
-
+                        {truck.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.truck_id}</td>
+                                            <td>{item.city}</td>
+                                            <td>{item.truck_route}</td>
+                                            <td>{item.total_duration}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
                 <h2 ref={lTrain} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Train</h2>
@@ -192,14 +213,23 @@ const Manager = () => {
                 <thead>
                     <tr>
                         <th>Train ID</th>
-                        <th>Branch</th>
-                        <th>Route</th>
-                        <th>Total Duration</th>
+                        <th>Capacity</th>
+                        <th>Depart Time</th>
+                        <th>Destination Strore</th>
                     </tr>
                 </thead>
                     
                     <tbody>
-
+                        {train.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.train_id}</td>
+                                            <td>{item.capacity}</td>
+                                            <td>{item.depart_time}</td>
+                                            <td>{item.destination_store}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
             <Row 
@@ -214,9 +244,9 @@ const Manager = () => {
                         label="Select Year"
                         minDate={dayjs('2022-03-01')}
                         maxDate={dayjs('2023-06-01')}
-                        value={value}
+                        value={year}
                         onChange={(newValue) => {
-                            setValue(newValue);
+                            setYear(newValue);
                         }}
                         renderInput={(params) => <TextField {...params} helperText={null} required/>}
                         />
@@ -228,26 +258,8 @@ const Manager = () => {
                                 className="m-2"
                                 style={{ width: '500px', height: '70px' }}
                                 onClick={()=>  { 
+                                    localStorage.setItem('year', year.$y);
                                     navigate('reports', {replace: false});
-                                    // const filteredItems = items.filter((item) => {
-                                    //     return { id: item.id, price: item.price };
-                                    //   });
-                                    // // console.log(localStorage.getItem('email'));
-                                    //   fetch('http://localhost:8000/api/cart/saveCart', {
-                                    //     method: 'POST',
-                                    //     body: JSON.stringify({
-                                    //         email : localStorage.getItem('email'),
-                                    //         items : items
-                                    //     }),
-                                    //     headers: {
-                                    //       'Content-Type': 'application/json'
-                                    //     }
-                                    //   })
-                                    //     .then(res => res.json())
-                                    //     .then(res => {
-                                    //       setResponse(res);
-                                    //     });
-                                        // alert("error in saving");
                                     }}
                             >
                                 Report

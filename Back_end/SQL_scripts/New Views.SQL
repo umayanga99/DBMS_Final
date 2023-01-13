@@ -113,4 +113,8 @@ group by train_id, store_id;
 create or replace view truck_report as
 select truck_id, city, truck_route, total_duration from 
 store inner join truck using(store_id) inner join truck_route using(truck_route)
+<<<<<<< HEAD
 group by truck_id, store_name, truck_route;
+=======
+group by truck_id, store_name, truck_route;
+>>>>>>> Shehan_23

@@ -3,6 +3,7 @@ module.exports={
     USER:"root",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     PASSWORD:"UmayangaSQL",
     DB:"FFinal"
 =======
@@ -11,6 +12,9 @@ module.exports={
 >>>>>>> Shehan_23
 =======
     PASSWORD:"UmayangaSQL",
+=======
+    PASSWORD:"Shehan",
+>>>>>>> Shehan_23
     DB:"project_final"
 >>>>>>> sheshan
 }

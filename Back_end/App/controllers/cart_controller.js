@@ -1,5 +1,8 @@
 const CartModel = require("../models/cart_models");
+<<<<<<< HEAD
 
+=======
+>>>>>>> Shehan_23
 
 exports.saveCart = (req, res) => {
  
@@ -8,12 +11,14 @@ exports.saveCart = (req, res) => {
       message: "Content can not be empty!"
     });
   } 
-
- 
   const email = req.body.email;
+<<<<<<< HEAD
   const quantity=req.body.cartID;
   const productID = req.body.productID;
   console.log(cartID, productID);
+=======
+  const items = req.body.items;
+>>>>>>> Shehan_23
   
 CartModel.saveCart(email, productID,quantity, (err, data) => {
     if(err) {
@@ -54,9 +59,6 @@ exports.clearCart = (req, res) => {
   } )
   }
 
-
-
-
 exports.getCartItems = (req, res) => {
     let email = req.body.email;
 
@@ -85,7 +87,6 @@ exports.getCartItems = (req, res) => {
                     products : data
                 }
          });
-         console.log(data);
      }
  } )
  

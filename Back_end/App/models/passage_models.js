@@ -1,11 +1,8 @@
 const mysql=require("./db");
 
-const Passage=function(file){
-
-}
+const Passage=function(file){}
 
 Passage.getPassages=(result)=>{
-    // put the sql query
     mysql.query("SELECT * FROM truck_route",(err,res)=>{
         if(err){
             result(err,null);
