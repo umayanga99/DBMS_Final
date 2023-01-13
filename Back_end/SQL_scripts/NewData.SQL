@@ -113,13 +113,7 @@ insert into Store values (default, "Galle","Galle Store",0260690609,"Address of 
 insert into Store values (default, "Matara","Matara Store",0210609409,"Address of Matara Store");
 insert into Store values (default, "Jaffna","Jaffna Store",0257899609,"Address of Jaffna Store");
 insert into Store values (default, "Trinco","Trinco Store",0550601129,"Address of Trinco Store");
-insert into Store values (default, "Kandy","Kandy Store",03126011291,"Address of Kandy Store");
-insert into Store values (default, "Ratnapura","Ratnapurastore",0810846609,"addressRatnapura");
-insert into Store values (default, "Hambantota","Hambantotastore",0810846609,"addressHambantota");
-insert into Store values (default, "Badulla","Badullastore",0810846609,"addressBadulla");
-insert into Store values (default, "Matara","Matarastore",0810846609,"addressMatara");
 
-insert into Store values (default, "Batticaloa","Batticaloastore",0810846609,"addressBatticaloa");
 
 
 -- Done
