@@ -7,7 +7,6 @@ BEGIN
     VALUES (new.email, default);
 END $$
 
-drop trigger clear_cart_product;
 delimiter $$
 CREATE TRIGGER clear_cart_product_update_order_product
 AFTER insert on Orders
