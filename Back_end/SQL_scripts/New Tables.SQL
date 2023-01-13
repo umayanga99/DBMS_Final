@@ -15,10 +15,7 @@ CREATE TABLE Product (
     PRIMARY KEY (id)
 );
 
-<<<<<<< HEAD
-=======
 drop table if exists Product_Image;
->>>>>>> Shehan_23
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
     id int,
@@ -176,7 +173,7 @@ CREATE TABLE Driver_Assistant (
     truck_ID varchar(30),
     driver_NIC varchar(12),
     assistant_NIC varchar(12),
-    turn_dutaion float(4,2),
+    turn_duraion float(4,2),
     delivery_date date,
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
