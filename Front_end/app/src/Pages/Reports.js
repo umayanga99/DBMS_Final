@@ -1,5 +1,6 @@
 import React,{ useState, useRef, useEffect } from 'react';
 import { Container, Row, Button, Table} from 'react-bootstrap';
+import Header2 from '../components/Header2';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 
 const Reports = () => {
@@ -15,6 +16,8 @@ const Reports = () => {
     const lCOR = useRef(null);
     const lCRR = useRef(null);
     const lQOR = useRef(null);
+
+    const year = localStorage.getItem('year');
 
     async function getQSR(){
         const res = await fetch('http://localhost:8000/api/manager/getQuarterlySalesReport',{
@@ -93,11 +96,13 @@ const Reports = () => {
         getCOR();
         getCRR();
         getQOR();
+        console.log(year);
     },[]);
 
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
-            <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Reports</h1>
+            <Header2 />
+            <h1 style={{ textShadow: '2px 2px #333'}} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`} >Reports of {year}</h1>
         <Container className="py-4 mt-5">
         
         <Button variant="success"

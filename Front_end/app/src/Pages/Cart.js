@@ -79,6 +79,7 @@ const Cart = () => {
                                           'Content-Type': 'application/json'
                                         }
                                       })
+                                      alert("Successfully seved");
                                     }}
                             >
                                 <BsCartCheck size="1.7rem" />
@@ -103,7 +104,6 @@ const Cart = () => {
                                         .finally(()=>{
                                             emptyCart();
                                         })
-                                    
                                     }
                             >
                                 <BsCartX size="1.7rem" />

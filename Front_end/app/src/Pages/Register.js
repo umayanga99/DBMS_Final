@@ -60,6 +60,7 @@ const Register = () => {
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
+                console.log(name, password, email ,type, number);
             })
         }
     }
