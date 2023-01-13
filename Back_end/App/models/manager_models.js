@@ -162,15 +162,15 @@ Manager.getCitiesRoutesReport = (year,result) => {
     });
 };
 
-Manager.getLastMonthOrders = (year,result) => {
+Manager.getLastMonthOrders = (result) => {
     //check the query
-    mysql.query("select * from cities_routes_report where year=? order by truck_route ",[year],(err,res) => {
+    mysql.query("CALL get_order_details()",(err,res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         } else {
-            result(null, res);
+            result(null, res[0]);
             
         }
     });

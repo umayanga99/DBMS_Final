@@ -150,8 +150,8 @@ exports.getCustomerOrderReport=(req,res)=>{
 }
 
 exports.getLastMonthOrders=(req,res)=>{
-    let year=req.body.year;
-    ManagerModel.getLastMonthOrders(year,(err,data)=>{
+    
+    ManagerModel.getLastMonthOrders((err,data)=>{
         if(err){
             res.status(500).send({
                 message:"Something went wrong"
