@@ -1,6 +1,4 @@
 const mysql = require("./db.js");
-// let pool = require('../../database/connection');
-// const {decodeToken} = require('../../middleware/authMiddleware') // add this middle ware to authenticate without login
 
 
 const Cart = function(file) {
@@ -10,7 +8,6 @@ const Cart = function(file) {
   this.description = file.description;
   this.published = file.published;
 };
-
 
 Cart.saveCart = (email,items, result) => {
 for(let i =0;i<items.length;i++){
@@ -25,7 +22,7 @@ for(let i =0;i<items.length;i++){
 
 
 Cart.getCartItem=(email,result)=>{
- mysql.query("select itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = ? ",[email],(err,res)=>{
+ mysql.query("select id,itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = ? ",[email],(err,res)=>{
   if(err){
     result(err,null);
     return;

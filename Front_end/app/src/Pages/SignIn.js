@@ -2,8 +2,6 @@ import React,{ useState} from 'react';
 import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { Link, useNavigate } from "@reach/router";
-
-//icons
 import { AiOutlineUser } from 'react-icons/ai';
 import { VscKey } from 'react-icons/vsc';
 
@@ -12,14 +10,12 @@ const SignIn = () => {
     const [value,setValue] = useState("");
     const [theme] = useThemeHook();
     const navigate = useNavigate();
-
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
         const email = form.email.value;
         const password = form.password.value;
         if(email && password){
-            console.log("if", email, password)
             setLoading(true);
             fetch('http://localhost:8000/api/auth/checkValidity',{
                 method: 'POST',
@@ -36,30 +32,26 @@ const SignIn = () => {
             .then((data) => {
                 
                 setValue(data);
-                console.log(`value = `,value);
-                console.log(data.message);
-                if(data.message!==1){
-                    alert("Can not login",value);
-                }
-                else{
-                    alert("ok",value);
+                if(data.message===2){
                     localStorage.setItem('email', data.email);
                     navigate('home', {replace: true});
-                    
-                    
                 }
-                // console.log(value);
+                else if(data.message===1){
+                    localStorage.setItem('email', data.email);
+                    navigate('manager', {replace: true});
+                }
+                else{
+                    alert("Incorrect Email or Password");
+                }
             })
             .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
-                
                 setLoading(false);
-                // navigate('home', {replace: false});
-                // alert('Login successfully');
             })
         }
     }
+
     return (
        <Container className="py-5 mt-5">
             <Row className="justify-content-center mt-5">
@@ -72,7 +64,6 @@ const SignIn = () => {
                             <InputGroup.Text>
                                 <AiOutlineUser size="1.8rem" />
                             </InputGroup.Text>
-                            {/* <Form.Control name="username" type="text" placeholder="Email" minLength={3} required /> */}
                             <Form.Control name="email" type="email" placeholder="Email" required />
                         </InputGroup>
                         <InputGroup className="mb-4">

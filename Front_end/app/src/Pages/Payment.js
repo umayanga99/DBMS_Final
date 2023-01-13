@@ -1,10 +1,9 @@
 import React,{ useEffect, useState} from 'react';
-import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, Spinner} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
 import Header from '../components/Header';
-import { Link, useNavigate } from "@reach/router";
+import { useNavigate } from "@reach/router";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,7 +18,6 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import validator from 'validator'
 import { useCart } from 'react-use-cart';
 
 const Payment = () => {
@@ -31,23 +29,14 @@ const Payment = () => {
     const [route, setRoute] = React.useState('');
     const navigate = useNavigate();
     const [selectedMethod, setSelectedMethod] = useState('Visa Card');
-    const [routes, setRoutes] = useState([])
-    
+    const [routes, setRoutes] = useState([]);
     const handleChange = (event) => {
         setRoute(event.target.value);
-    };
-
-    const [errorMessage, setErrorMessage] = useState('')
-        
-    const validateCreditCard = (value) => {
-        
     }
-    const { emptyCart, cartTotal } = useCart();
-
+    const { cartTotal } = useCart();
     const handleChangeMethod = (event) => {
         setSelectedMethod(event.target.value);
       };
-
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
@@ -55,34 +44,35 @@ const Payment = () => {
 
         if(Address && route && date && selectedMethod){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/signIn',{
+            fetch('http://localhost:8000/api/order',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    date: date,
+                    email: localStorage.getItem('email'),
+                    year: date.$y,
+                    month: date.$M + 1,
+                    date: date.$D,
                     Address: Address,
                     route: route,
-                    selectedMethod: selectedMethod
+                    totalPrice: cartTotal
                 })
             }).then(res=>res.json())
             .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
-                emptyCart();
                 navigate('home', {replace: true});
-                alert('payment successfully');
+                alert('payment successfull');
             })
         }
     }   
 
     async function getRoutes(){
-        // const res = await fetch('https://fakestoreapi.com/products')
-        const res = await fetch('http://localhost:8000/api/product')
+        const res = await fetch('http://localhost:8000/api/passage')
                           .then(res=> res.json());
-                          setRoutes(await res);
+                          setRoutes(await res.passges);
     }
 
     useEffect(()=>{
@@ -105,7 +95,6 @@ const Payment = () => {
                                 <Stack spacing={3}>
                                 <DatePicker
                                     views={['day']}
-                                    // label="Just date"
                                     minDate={minDate}
                                     value={date}
                                     onChange={(newValue) => {
@@ -133,18 +122,11 @@ const Payment = () => {
                                 onChange={handleChange}
                                 required
                                 >
-                                    {/* fetch('/api/routes')
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        this.setState({ routes: data.routes });
-                                    }); */}
-                                    {/* {this.state.routes.map(route => (
-                                        <MenuItem key={route.id} value={route.id}>{route.name}</MenuItem>
-                                    ))} */}
-                                <MenuItem key={route.route} value={routes.route}>{routes.route}</MenuItem>
-                                {/* <MenuItem value={10}>Colombo</MenuItem>
-                                <MenuItem value={20}>Kurunegala</MenuItem>
-                                <MenuItem value={30}>Moratuwa</MenuItem> */}
+                                {routes.map((item, index)=>{
+                            return(
+                                <MenuItem key={index} value={item.truck_route}>{item.truck_route}</MenuItem>
+                            )
+                                })}
                                 </Select>
                             </FormControl>
                             </Box>
@@ -171,12 +153,11 @@ const Payment = () => {
                                 marginLeft: '20px',
                                 }}>
                                 <pre>
-                                    <span>Enter Card Number: </span><input type="text"
-                                    onChange={(e) => validateCreditCard(e.target.value)} required></input> <br />
+                                    <span>Enter Card Number: </span><input type="text"required></input> <br />
                                     <span style={{
                                     fontWeight: 'bold',
                                     color: 'red',
-                                    }}>{errorMessage}</span>
+                                    }}></span>
                                 </pre>
                             </div>
                         </Form.Group>
@@ -188,7 +169,6 @@ const Payment = () => {
                             className={`${theme? 'bg-dark-primary text-black' : 'bg-light-primary'} m-auto d-block`}
                             disabled={loading}
                             style={{border: 0}}
-                            // onClick = {() => {emptyCart()}}
                         >
                         {loading? 
                             <>

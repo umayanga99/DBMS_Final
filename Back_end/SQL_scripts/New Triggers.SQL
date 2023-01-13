@@ -14,4 +14,3 @@ FOR EACH ROW
 BEGIN
     delete from cart_product where cart_ID = (select cart_id from cart where email = (select customer_email from orders where orders.order_id = new.order_id));
 END $$
-

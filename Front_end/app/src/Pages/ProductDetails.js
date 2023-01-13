@@ -13,15 +13,16 @@ const ProductDetails = (props) => {
     const [theme] = useThemeHook();
     const { addItem } = useCart();
 
-    useEffect(()=>{
-        getResponse();
-    },[]);
-
     const getResponse = async()=>{
         const res = await fetch(`http://localhost:8000/api/product/${props.productId}`)
                           .then(res=> res.json());
                           setProductData(await res[0]);
     }
+
+    useEffect(()=>{
+        getResponse();
+    },[]);
+    
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
           <Header />

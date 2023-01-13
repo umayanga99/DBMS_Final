@@ -1,13 +1,9 @@
 import React,{ useState, useRef, useEffect } from 'react';
-import { Container, Row, Col, Button, Form, Spinner, InputGroup, Table} from 'react-bootstrap';
+import { Container, Row, Button, Table} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
-import { Link, useNavigate } from "@reach/router";
 
 const Reports = () => {
-    const [loading, setLoading] = useState(false);
-    const [value,setValue] = useState("");
     const [theme] = useThemeHook();
-    const navigate = useNavigate();
     const [QSR, setQSR] = useState([]);
     const [MO, setMO] = useState([]);
     const [COR, setCOR] = useState([]);
@@ -19,13 +15,6 @@ const Reports = () => {
     const lCOR = useRef(null);
     const lCRR = useRef(null);
     const lQOR = useRef(null);
-
-    // async function getDriver(){
-    //     const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
-    //                       .then(res=> res.json());
-    //                       setDriver(res.data);
-    //                       console.log(res.data,driver,"driver");
-    // }
 
     async function getQSR(){
         const res = await fetch('http://localhost:8000/api/manager/getQuarterlySalesReport',{
@@ -39,7 +28,6 @@ const Reports = () => {
         })
         .then(res=> res.json());
         setQSR(await res.data);
-        console.log(QSR,"QSR");
     } 
 
     async function getQOR(){
@@ -54,7 +42,6 @@ const Reports = () => {
         })
         .then(res=> res.json());
         setQOR(await res.data);
-        console.log(QOR,"QOR");
     } 
 
     async function getMO(){
@@ -69,7 +56,7 @@ const Reports = () => {
         })
         .then(res=> res.json());
         setMO(await res.data);
-        console.log(res.data,MO,"MO");
+        console.log(res.data);
     }
 
     async function getCOR(){
@@ -84,7 +71,6 @@ const Reports = () => {
         })
         .then(res=> res.json());
         setCOR(await res.data);
-        console.log(COR,"COR");
     }
 
     async function getCRR(){
@@ -99,7 +85,6 @@ const Reports = () => {
         })
         .then(res=> res.json());
         setCRR(await res.data);
-        console.log(CRR,"CRR");
     }
 
     useEffect(()=>{
@@ -108,7 +93,6 @@ const Reports = () => {
         getCOR();
         getCRR();
         getQOR();
-        console.log(CRR,"CRR");
     },[]);
 
     return (
@@ -152,7 +136,6 @@ const Reports = () => {
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
-                        {/* <th>Year</th> */}
                         <th>Quarter</th>
                         <th>Total Quantity</th>
                         <th>Total Income</th>
@@ -175,7 +158,6 @@ const Reports = () => {
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
-                        {/* <th>Year</th> */}
                         <th>Quarter</th>
                         <th>Product</th>
                         <th>Total Sells</th>
@@ -209,7 +191,7 @@ const Reports = () => {
                     {MO.map((item, index)=>{
                                     return(
                                         <tr key={index}>
-                                            <td>{item.product_name}</td>
+                                            <td>{item.Product_name}</td>
                                             <td>{item.total_quantity}</td>
                                         </tr>
                                     )
@@ -220,7 +202,6 @@ const Reports = () => {
                 <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
-                        {/* <th>Year</th> */}
                         <th>Customer Email</th>
                         <th>Customer Name</th>
                         <th>Customer Type</th>
@@ -261,7 +242,18 @@ const Reports = () => {
                 </thead>
                     
                     <tbody>
-
+                    {CRR.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.city}</td>
+                                            <td>{item.truck_route}</td>
+                                            <td>{item.product_name}</td>
+                                            <td>{item.year}</td>
+                                            <td>{item.tot_orders}</td>
+                                            <td>{item.total_income}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
                 </Row>

@@ -1,6 +1,5 @@
 const AuthModel = require("../models/auth_models");
 
-// Check for validity of username and password
 exports.checkValidity = (req, res) => {
     if(!req.body) {
         res.status(400).send({
@@ -10,8 +9,6 @@ exports.checkValidity = (req, res) => {
 
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email,password);
-
 
     AuthModel.checkValidity(email, password, (err, data) => {
         if(err) {
@@ -54,7 +51,6 @@ exports.addUser = (req, res) => {
 
     AuthModel.addUser(email,password,name, type, TP, (err, data) => {
         if(err) {
-            console.log(err);
             res.status(500).send({
                 message: err.message
             })
