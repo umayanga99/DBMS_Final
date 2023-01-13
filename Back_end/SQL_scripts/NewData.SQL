@@ -399,3 +399,6 @@ insert into Assistant values ("Assistant30@gmail.com","Assistant 30",7,"87345456
 insert into Driver_Assistant values (default,"NP XZ 3990","12367854634V",'72367854634V',4);
 insert into Driver_Assistant values (default,"NP PO 2345","12367890634V",'71367854634V',4);
 insert into Driver_Assistant values (default,"ER XZ 1234","12367856634V",'90367854634V',4);
+
+insert into Driver_Assistant values (default,"WE XZ 3990","74445456345V",'76445456345V',4);
+
