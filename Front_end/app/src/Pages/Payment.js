@@ -54,7 +54,7 @@ const Payment = () => {
         const Address = form.Address.value;
 
         if(Address && route && date && selectedMethod){
-            console.log(date);
+            // console.log(date);
             setLoading(true);
             fetch('http://localhost:8000/api/order',{
                 method: 'POST',
@@ -74,8 +74,17 @@ const Payment = () => {
             .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
+                console.log(Address,{cartTotal});
                 setLoading(false);
-                emptyCart();
+                // fetch('http://localhost:8000/api/cart/clearCart', {
+                //                         method: 'POST',
+                //                         body: JSON.stringify({
+                //                             email : localStorage.getItem('email')
+                //                         }),
+                //                         headers: {
+                //                           'Content-Type': 'application/json'
+                //                         }
+                //                       })
                 navigate('home', {replace: true});
                 alert('payment successfully');
             })
@@ -185,7 +194,7 @@ const Payment = () => {
                             className={`${theme? 'bg-dark-primary text-black' : 'bg-light-primary'} m-auto d-block`}
                             disabled={loading}
                             style={{border: 0}}
-                            onClick = {() => {emptyCart()}}
+                            // onClick = {() => {emptyCart()}}
                         >
                         {loading? 
                             <>

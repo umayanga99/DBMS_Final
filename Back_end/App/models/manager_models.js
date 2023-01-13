@@ -175,6 +175,18 @@ Manager.getCitiesRoutesReport = (year,result) => {
     });
 };
 
-
+Manager.getLastMonthOrders = (result) => {
+    //check the query
+    mysql.query("CALL get_order_details()",(err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            result(null, res[0]);
+            
+        }
+    });
+};
 
 module.exports = Manager;

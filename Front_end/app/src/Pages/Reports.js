@@ -254,7 +254,18 @@ const Reports = () => {
                 </thead>
                     
                     <tbody>
-
+                    {CRR.map((item, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{item.city}</td>
+                                            <td>{item.truck_route}</td>
+                                            <td>{item.product_name}</td>
+                                            <td>{item.year}</td>
+                                            <td>{item.tot_orders}</td>
+                                            <td>{item.total_income}</td>
+                                        </tr>
+                                    )
+                                })}
                     </tbody>
                 </Table>
                 </Row>

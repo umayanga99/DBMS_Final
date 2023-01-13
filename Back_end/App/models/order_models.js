@@ -19,18 +19,23 @@
     this.destination = file.destination;
  };
 
- Order.paymentProceed = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
-   //check the query
-    mysql.query(`SELECT payment_proceed(?,?,?,?,?)`, [email,prefered_dilivery_date,address,route,totalPrice],(err,res) => {
-        if(err){
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        } else {
-            result(null, res);
-        }
-    });
-};
+ Order.placeOrder = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
+    //check the query
+    let flag;
+     mysql.query(`call payment_proceed(?,?,?,?,?,@?)`, [email,prefered_dilivery_date,address,route,totalPrice,flag],(err,res) => {
+         if(err){
+             console.log("error: ", err);
+             result(err, null);
+             return;
+         } else {
+             console.log(flag);
+             console.log(email,prefered_dilivery_date,address,route,totalPrice)
+             result(null, res);
+         }
+     });
+ };
+
+
 
 // Order.validate_Date = (prefered_dilivery_date) => {
 //     mysql.query(`SELECT validate_Day(${prefered_dilivery_date})`, (err,res) => {

@@ -63,19 +63,19 @@ const Manager = () => {
                           console.log(train);
     }
 
-    // async function getOrder(){
-    //     const res = await fetch('http://localhost:8000/api/manager/getOrder')
-    //                       .then(res=> res.json());
-    //                       setTrain(await res.data);
-    //                       console.log(train);
-    // }
+    async function getOrder(){
+        const res = await fetch('http://localhost:8000/api/manager/getLastMonthOrders')
+                          .then(res=> res.json());
+                          setOrder(await res.data);
+                          console.log(order,'orders');
+    }
 
     useEffect(()=>{
         getDriver();
         getAssistent();
         getTruck();
         getTrain();
-        // getOrder();
+        getOrder();
     },[]);
 
     // const handleSubmit = (event)=>{
@@ -135,7 +135,7 @@ const Manager = () => {
                                 className="m-2"
                                 onClick={()=>  lOrder.current.scrollIntoView()}
                             >
-                                Orders
+                                This Month Orders
                             </Button>
                             <Button variant="success"
                                 className="m-2"
@@ -163,7 +163,7 @@ const Manager = () => {
                             </Button>
             
             <Row className="justify-content-center">
-            <h2 ref={lOrder} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Orders</h2>
+            <h2 ref={lOrder} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>This Month Orders</h2>
             <Table responsive="sm" striped bordered hover variant={theme? 'dark': 'light'} className="mb-5">
                 <thead>
                     <tr>
@@ -183,12 +183,15 @@ const Manager = () => {
                         {order.map((item, index)=>{
                             return(
                                 <tr key={index}>
-                                    <td>{item.NIC}</td>
-                                    <td>{item.assistant_name}</td>
-                                    <td>{item.store_ID}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.total_duration}</td>
-                                    <td>{item.telephone_No}</td>
+                                    <td>{item.order_ID}</td>
+                                    <td>{item.customer_address}</td>
+                                    <td>{item.customer_email}</td>
+                                    <td>{item.ordered_date}</td>
+                                    <td>{item.ordered_time}</td>
+                                    <td>{item.truck_route}</td>
+                                    <td>{item.tot_capacity}</td>
+                                    <td>{item.prefered_dilivery_date}</td>
+                                    <td>{item.total_price}</td>
                                 </tr>
                             )
                         })}

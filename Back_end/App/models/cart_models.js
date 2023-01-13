@@ -22,7 +22,7 @@ Cart.saveCart = (email,items, result) => {
   }
 
 Cart.getCartItem=(email,result)=>{
- mysql.query("select itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = ? ",[email],(err,res)=>{
+ mysql.query("select id,itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = ? ",[email],(err,res)=>{
   if(err){
     result(err,null);
     return;

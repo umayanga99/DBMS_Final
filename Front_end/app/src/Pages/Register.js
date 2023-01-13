@@ -10,6 +10,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Link, useNavigate } from "@reach/router";
 
+// import { isPossiblePhoneNumber } from 'react-phone-number-input'
+
 const Register = () => {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(null);
@@ -31,6 +33,7 @@ const Register = () => {
         
         if(password && email && number && type && name){
             setLoading(true);
+            // console.log(number);
             fetch('http://localhost:8000/api/auth/addUser',{
                 method: 'POST',
                 headers: {
@@ -65,6 +68,7 @@ const Register = () => {
             // .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
+                console.log(number);
                 // console.log(name,password,email,type,number);
                 setLoading(false);
                 // navigate('/', {replace: true})
@@ -94,6 +98,10 @@ const Register = () => {
                                 international={false}
                                 country={'lk'}
                                 onlyCountries={['lk']}
+                                disableDropdown={true}
+                                // maxLength={14}
+                                // enableLongNumbers={14}
+                                countryCodeEditable={false}
                                 value={number}
                                 onChange={phone=> setNumber(phone)}
                                 className="text-dark"

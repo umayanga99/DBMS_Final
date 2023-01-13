@@ -12,7 +12,7 @@ const orderModel=require("../models/order_models.js");
     let month=req.body.month;
     let date=req.body.date;
     let prefered_dilivery_date=year+"-"+month+"-"+date;
-    let address=req.body.address;
+    let address=req.body.Address;
     let route=req.body.route;
     let totalPrice=req.body.totalPrice;
 
@@ -30,6 +30,7 @@ const orderModel=require("../models/order_models.js");
         else{
             res.status(200).send({
             message:"successfull"
+            
 });
         }
     })

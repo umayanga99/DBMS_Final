@@ -18,22 +18,6 @@ const Cart = () => {
     } = useCart();
     
     const [response, setResponse] = useState(null);
-    // const value = localStorage.getItem('myValue');
-
-    // const data = getItem() ;
-
-
-    // const [cartData, setCartData] = useState([]);
-    // async function getResponse(){
-    //     const res = await fetch('https://fakestoreapi.com/products')
-    //                       .then(res=> res.json());
-    //                       setCartData(await res);
-    // }
-
-    // useEffect(()=>{
-    //     getResponse();
-    // },[]);
-
 
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
@@ -99,13 +83,14 @@ const Cart = () => {
                                           'Content-Type': 'application/json'
                                         }
                                       })
-                                        .then(res => res.json())
-                                        .then(res => {
-                                          setResponse(res);
-                                        })
-                                        .finally(()=>{
+                                        // .then(res => res.json())
+                                        // .then(res => {
+                                        //   setResponse(res);
+                                        // })
+                                        // .finally(()=>{
+                                            console.log(items);
                                             alert("Successfully saved");
-                                        })
+                                        // })
                                         // alert("error in saving");
                                     }}
                             >

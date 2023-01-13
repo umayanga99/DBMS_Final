@@ -12,7 +12,7 @@ const Home = () => {
     const [searchInput, setSearchInput] = useState('');
     const [productData, setProductData] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-    const {addItem,setItems} = useCart();
+    const {addItem,setItems,cartTotal} = useCart();
 
     async function getResponse(){
         const res = await fetch('http://localhost:8000/api/product')
@@ -32,17 +32,20 @@ const Home = () => {
             
         })
         .then(res=>res.json())
-        .then((data) => {
-            console.log(data);
-            setCartItems(data.data);
-            console.log(cartItems);
-        })
+        // .then((data) => {
+        //     console.log(data);
+        //     setCartItems(data.data);
+        //     console.log(cartItems);
+        // })
+        setCartItems(await res.data);
+        setItems(res.data);
+        console.log(cartTotal);
         // .then(json=>sessionStorage.setItem("token", json.token))
-        .catch(error=> console.error(error))
-        .finally(()=>{
+        // .catch(error=> console.error(error))
+        // .finally(()=>{
             // console.log(cartItems.itemTotal,cartItems.price,cartItems.product_description,cartItems.product_name,cartItems.product_weight,cartItems.quantity);
-            setItems(cartItems);
-})
+            // setItems(cartItems);
+// })
     }
 
     useEffect(()=>{

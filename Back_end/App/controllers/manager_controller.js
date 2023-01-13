@@ -149,6 +149,22 @@ exports.getCustomerOrderReport=(req,res)=>{
     })
 }
 
+exports.getLastMonthOrders=(req,res)=>{
+    
+    ManagerModel.getLastMonthOrders((err,data)=>{
+        if(err){
+            res.status(500).send({
+                message:"Something went wrong"
+            })
+        }else{
+            // console.log(data);
+            res.status(200).send({
+                message:"Success",
+                data:data
+            })
+        }
+    })
+}
 // exports.getCitiesRoutesReport=(req,res)=>{
     
 //     ManagerModel.getCitiesRoutesReport((err,data)=>{

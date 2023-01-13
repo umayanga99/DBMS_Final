@@ -2,6 +2,7 @@ import React,{ useState} from 'react';
 import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { Link, useNavigate } from "@reach/router";
+import { useAlert } from 'react-alert'
 
 //icons
 import { AiOutlineUser } from 'react-icons/ai';

@@ -14,6 +14,8 @@ module.exports = app => {
     managerRouter.post("/getCustomerOrderReport",ManagerController.getCustomerOrderReport);
     managerRouter.post("/getMostOrdered",ManagerController.getMostOrdered);
     managerRouter.post("/getCitiesRoutesReport",ManagerController.getCitiesRoutesReport);
-   
+    managerRouter.get("/getLastMonthOrders",ManagerController.getLastMonthOrders);
+
+    // getLastMonthOrders
     app.use('/api/manager', managerRouter);
     }
