@@ -1,9 +1,6 @@
 const mysql = require("./db.js");
 
-// constructor
-const Product = function(file) {
-   
-};
+const Product = function(file) {};
 
 Product.getProductsById=(id,result)=>{
     mysql.query("select * from product where id = ?",[id], (err,res)=>{

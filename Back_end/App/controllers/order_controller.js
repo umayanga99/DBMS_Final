@@ -52,16 +52,3 @@ const orderModel=require("../models/order_models.js");
         }
     });
  }
-
-//  const obj1 = {
-//     "truck":truck1,
-//     "driver":driver1
-//  }
-
-//  res.status(200).json({
-//     "values" :[
-//         {},
-//         {},
-
-//     ]
-//  })

@@ -7,7 +7,6 @@ exports.getTrainSchedule=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -23,7 +22,6 @@ exports.getTruckSchedule=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -39,7 +37,6 @@ exports.getAssistantSchedule=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -55,7 +52,6 @@ exports.getDriverSchedule=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -72,7 +68,6 @@ exports.getMostOrderReport=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -89,7 +84,6 @@ exports.getQuarterlySalesReport=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -106,7 +100,6 @@ exports.getQuarterlyOrderReport=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -123,7 +116,6 @@ exports.getMostOrdered=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -140,7 +132,6 @@ exports.getCustomerOrderReport=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -157,7 +148,6 @@ exports.getLastMonthOrders=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data
@@ -165,22 +155,7 @@ exports.getLastMonthOrders=(req,res)=>{
         }
     })
 }
-// exports.getCitiesRoutesReport=(req,res)=>{
-    
-//     ManagerModel.getCitiesRoutesReport((err,data)=>{
-//         if(err){
-//             res.status(500).send({
-//                 message:"Something went wrong"
-//             })
-//         }else{
-//             // console.log(data);
-//             res.status(200).send({
-//                 message:"Success",
-//                 data:data
-//             })
-//         }
-//     })
-// }
+
 exports.getCitiesRoutesReport=(req,res)=>{
     let year=req.body.year;
     ManagerModel.getCitiesRoutesReport(year,(err,data)=>{
@@ -189,7 +164,6 @@ exports.getCitiesRoutesReport=(req,res)=>{
                 message:"Something went wrong"
             })
         }else{
-            // console.log(data);
             res.status(200).send({
                 message:"Success",
                 data:data

@@ -1,9 +1,7 @@
 import React,{ useState, useRef, useEffect } from 'react';
-import { Container, Row, Col, Button, Form, Spinner, InputGroup, Table} from 'react-bootstrap';
+import { Container, Row, Col, Button, Table} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
-import { Link, useNavigate } from "@reach/router";
-
-//icons
+import {  useNavigate } from "@reach/router";
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -11,12 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-
-//icons
-
 const Manager = () => {
-    const [loading, setLoading] = useState(false);
-    const [value,setValue] = useState("");
     const [theme] = useThemeHook();
     const navigate = useNavigate();
     const [driver, setDriver] = useState([]);
@@ -24,11 +17,7 @@ const Manager = () => {
     const [truck, setTruck] = useState([]);
     const [train, setTrain] = useState([]);
     const [order, setOrder] = useState([]);
-    // const [year, setYear] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
     const [year, setYear] = React.useState(null);
-    const minDate = new Date('2022-04-07');
-    // const maxDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000 );
-
     const lDriver = useRef(null);
     const lAssistent = useRef(null);
     const lTruck = useRef(null);
@@ -39,35 +28,26 @@ const Manager = () => {
         const res = await fetch('http://localhost:8000/api/manager/getDriverSchedule')
                           .then(res=> res.json());
                           setDriver(await res.data);
-                          console.log(driver);
     }
-
     async function getAssistent(){
         const res = await fetch('http://localhost:8000/api/manager/getAssistantSchedule')
                           .then(res=> res.json());
                           setAssistent(await res.data);
-                          console.log(assistent);
     }
-
     async function getTruck(){
         const res = await fetch('http://localhost:8000/api/manager/getTruckSchedule')
                           .then(res=> res.json());
                           setTruck(await res.data);
-                          console.log(truck);
     }
-
     async function getTrain(){
         const res = await fetch('http://localhost:8000/api/manager/getTrainSchedule')
                           .then(res=> res.json());
                           setTrain(await res.data);
-                          console.log(train);
     }
-
     async function getOrder(){
         const res = await fetch('http://localhost:8000/api/manager/getLastMonthOrders')
                           .then(res=> res.json());
                           setOrder(await res.data);
-                          console.log(order,'orders');
     }
 
     useEffect(()=>{
@@ -78,55 +58,6 @@ const Manager = () => {
         getOrder();
     },[]);
 
-    // const handleSubmit = (event)=>{
-    //     const form = event.currentTarget;
-    //     event.preventDefault();
-    //     const email = form.email.value;
-    //     const password = form.password.value;
-    //     if(email && password){
-    //         console.log("if", email, password)
-    //         setLoading(true);
-    //         fetch('http://localhost:8000/api/auth/checkValidity',{
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body:JSON.stringify({
-    //                 email: email,
-    //                 password: password
-    //             })
-                
-    //         })
-    //         .then(res=>res.json())
-    //         .then((data) => {
-                
-    //             setValue(data);
-    //             console.log(`value = `,value);
-    //             console.log(data.message);
-    //             if(data.message===2){
-    //                 alert("ok",value);
-    //                 localStorage.setItem('email', data.email);
-    //                 navigate('home', {replace: true});
-    //             }
-    //             else if(data.message===1){
-    //                 alert("ok",value);
-    //                 localStorage.setItem('email', data.email);
-    //                 navigate('train-schedule', {replace: true});
-    //             }
-    //             else{
-    //                 alert("Can not login",value);   
-    //             }
-    //         })
-    //         .then(json=>sessionStorage.setItem("token", json.token))
-    //         .catch(error=> console.error(error))
-    //         .finally(()=>{
-                
-    //             setLoading(false);
-    //             // navigate('home', {replace: false});
-    //             // alert('Login successfully');
-    //         })
-    //     }
-    // }
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
             <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>

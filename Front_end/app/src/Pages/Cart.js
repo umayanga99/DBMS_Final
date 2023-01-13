@@ -1,10 +1,11 @@
-// import React from 'react';
-import React, {useEffect, useState} from 'react';
+
+import React, {useState} from 'react';
 import { Button, Container, Col, Row, Table} from 'react-bootstrap';
 import { useCart} from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
 import Header from '../components/Header';
+
 
 const Cart = () => {
     const [theme] = useThemeHook();
@@ -16,7 +17,6 @@ const Cart = () => {
         removeItem,
         emptyCart,
     } = useCart();
-    
     const [response, setResponse] = useState(null);
 
     return (
@@ -69,10 +69,6 @@ const Cart = () => {
                             <Button variant="warning"
                                 className="m-2"
                                 onClick={()=>  { 
-                                    // const filteredItems = items.filter((item) => {
-                                    //     return { id: item.id, price: item.price };
-                                    //   });
-                                    // console.log(localStorage.getItem('email'));
                                       fetch('http://localhost:8000/api/cart/saveCart', {
                                         method: 'POST',
                                         body: JSON.stringify({
@@ -83,15 +79,6 @@ const Cart = () => {
                                           'Content-Type': 'application/json'
                                         }
                                       })
-                                        // .then(res => res.json())
-                                        // .then(res => {
-                                        //   setResponse(res);
-                                        // })
-                                        // .finally(()=>{
-                                            console.log(items);
-                                            alert("Successfully saved");
-                                        // })
-                                        // alert("error in saving");
                                     }}
                             >
                                 <BsCartCheck size="1.7rem" />
@@ -115,9 +102,7 @@ const Cart = () => {
                                         })
                                         .finally(()=>{
                                             emptyCart();
-                                            alert("Successfully cleared");
                                         })
-                                        // alert("error in saving");
                                     
                                     }
                             >

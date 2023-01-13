@@ -1,10 +1,9 @@
 import React,{ useEffect, useState} from 'react';
-import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, Spinner} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
 import Header from '../components/Header';
-import { Link, useNavigate } from "@reach/router";
+import { useNavigate } from "@reach/router";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,7 +18,6 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import validator from 'validator'
 import { useCart } from 'react-use-cart';
 
 const Payment = () => {
@@ -32,29 +30,19 @@ const Payment = () => {
     const navigate = useNavigate();
     const [selectedMethod, setSelectedMethod] = useState('Visa Card');
     const [routes, setRoutes] = useState([]);
-    
     const handleChange = (event) => {
         setRoute(event.target.value);
-    };
-
-    const [errorMessage, setErrorMessage] = useState('')
-        
-    const validateCreditCard = (value) => {
-        
     }
-    const { emptyCart, cartTotal } = useCart();
-
+    const { cartTotal } = useCart();
     const handleChangeMethod = (event) => {
         setSelectedMethod(event.target.value);
       };
-
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
         const Address = form.Address.value;
 
         if(Address && route && date && selectedMethod){
-            // console.log(date);
             setLoading(true);
             fetch('http://localhost:8000/api/order',{
                 method: 'POST',
@@ -74,19 +62,9 @@ const Payment = () => {
             .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
-                console.log(Address,{cartTotal});
                 setLoading(false);
-                // fetch('http://localhost:8000/api/cart/clearCart', {
-                //                         method: 'POST',
-                //                         body: JSON.stringify({
-                //                             email : localStorage.getItem('email')
-                //                         }),
-                //                         headers: {
-                //                           'Content-Type': 'application/json'
-                //                         }
-                //                       })
                 navigate('home', {replace: true});
-                alert('payment successfully');
+                alert('payment successfull');
             })
         }
     }   
@@ -95,7 +73,6 @@ const Payment = () => {
         const res = await fetch('http://localhost:8000/api/passage')
                           .then(res=> res.json());
                           setRoutes(await res.passges);
-                          console.log(routes);
     }
 
     useEffect(()=>{
@@ -118,7 +95,6 @@ const Payment = () => {
                                 <Stack spacing={3}>
                                 <DatePicker
                                     views={['day']}
-                                    // label="Just date"
                                     minDate={minDate}
                                     value={date}
                                     onChange={(newValue) => {
@@ -177,12 +153,11 @@ const Payment = () => {
                                 marginLeft: '20px',
                                 }}>
                                 <pre>
-                                    <span>Enter Card Number: </span><input type="text"
-                                    onChange={(e) => validateCreditCard(e.target.value)} required></input> <br />
+                                    <span>Enter Card Number: </span><input type="text"required></input> <br />
                                     <span style={{
                                     fontWeight: 'bold',
                                     color: 'red',
-                                    }}>{errorMessage}</span>
+                                    }}></span>
                                 </pre>
                             </div>
                         </Form.Group>
@@ -194,7 +169,6 @@ const Payment = () => {
                             className={`${theme? 'bg-dark-primary text-black' : 'bg-light-primary'} m-auto d-block`}
                             disabled={loading}
                             style={{border: 0}}
-                            // onClick = {() => {emptyCart()}}
                         >
                         {loading? 
                             <>

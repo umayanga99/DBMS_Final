@@ -20,63 +20,15 @@
  };
 
  Order.placeOrder = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
-    //check the query
     let flag;
      mysql.query(`call payment_proceed(?,?,?,?,?,@?)`, [email,prefered_dilivery_date,address,route,totalPrice,flag],(err,res) => {
          if(err){
-             console.log("error: ", err);
              result(err, null);
              return;
          } else {
-             console.log(flag);
-             console.log(email,prefered_dilivery_date,address,route,totalPrice)
              result(null, res);
          }
      });
  };
-
-
-
-// Order.validate_Date = (prefered_dilivery_date) => {
-//     mysql.query(`SELECT validate_Day(${prefered_dilivery_date})`, (err,res) => {
-//         if(err){
-//             console.log("error: ", err);
-//             result(err, null);
-//             return;
-//         } else {
-//             result(null, res);
-//         }
-//     });
-// };
-
-//  Order.placeOrder= (customerID,cartID,qunatity,address,destination,diliveryDate,result)=>{
-//     mysql.query(`select place_order(${customerID},${cartID},${quantity},${address},${destination},${diliveryDate})`,(err,res)=>{
-//         if(err){
-//             console.log("error: ",err);
-//             result(err,null);
-//             return;
-//         }
-//         else{
-//             result(null,true);
-            
-//         }
-
-//     });
-// };
-
-//  Order.getTotal=(email,result)=>{
-
-//     mysql.query(`CALL Total_Price(${email})`,(err,res)=>{
-//         if(err){
-//             console.log("error ",err);
-//             result(err,null);
-//             return;
-//         }else{
-//             result(null,res);
-//         }
-//         console.log("added : ",res);
-//     });
-
-//  };
 
  module.exports=Order;

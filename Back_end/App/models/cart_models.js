@@ -1,6 +1,4 @@
 const mysql = require("./db.js");
-// let pool = require('../../database/connection');
-// const {decodeToken} = require('../../middleware/authMiddleware') // add this middle ware to authenticate without login
 
 constructor
 const Cart = function(file) {
