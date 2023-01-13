@@ -109,13 +109,14 @@ exports.getQuarterlyOrderReport=(req,res)=>{
 }
 
 exports.getMostOrdered=(req,res)=>{
-    let year=req.body.year;
+    const year=req.body.year;
     ManagerModel.getMostOrdered(year,(err,data)=>{
         if(err){
             res.status(500).send({
                 message:"Something went wrong"
             })
         }else{
+        
             res.status(200).send({
                 message:"Success",
                 data:data
