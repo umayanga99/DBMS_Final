@@ -96,11 +96,11 @@ insert into Train values(default, 2,32345,250);
 insert into Train values(default, 2,3467,300);
 
 
-insert into Customer values ("bashadithennakoon@gmail.com","basadi","wholesaler", 'sdfasdfa', 0761546870);
-insert into Customer values ("basadithennakoon@gmail.com","umayanga","retailer", 'sdafsd3232', 0761546871);
-insert into Customer values ("sulakshigunaratne@gmail.com","sualkshi","end customer", 'se44g5g55', 0761546872);
-insert into Customer values ("basadee.20@cse.mrt.ac.lk","bashadi","manager", 'se44g5g56', 0761546873);
-insert into Customer values ("umayanga.20@cse.mrt.ac.lk","uamayanga","retailer", 'se44g5g57', 0761546874);
+insert into Customer values ("cutomer1@gmail.com","cutomer1","wholesaler", 'sdfasdfa', 0761546670);
+insert into Customer values ("customer2@gmail.com","cutomer2","retailer", 'sdafsd3232', 0761546871);
+insert into Customer values ("customer3@gmail.com","customer3","endcustomer", 'se44g5g55', 0761546872);
+insert into Customer values ("customer3@gmail.com","customer4","manager", 'se44g5g56', 0761546873);
+insert into Customer values ("cutsomer4@gmail.com","customer5","retailer", 'se44g5g57', 0761546874);
 insert into Customer values ("abwwwc@gmail.com","abww","manager", 'se44g5g58', 0761546875);
 insert into Customer values ("abwwwc@gmail.com","abww","wholesaler", 'se44g5g50', 0761546876);
 insert into Customer values ("abwwwc@gmail.com","abww","retailer", 'se44g5g512', 0761546877);
@@ -202,10 +202,10 @@ insert into Truck values ('NP XZ 3990', 4, 'Mulathiw',89.20);
 
 
 
-insert into Delivery values (default, "sulakshigunratne@gmail.com",'WP QQ 2345');
-insert into Delivery values (default, "basadithennakkoon@gmail.com",'EP LK 1889');
-insert into Delivery values (default, "bashadithennakoon@gmail.com",'SP AAA 3449');
-insert into Delivery values (default, "umayanga.20@cse.mrt.ac.lk",'SP AAA 3449');
+insert into Delivery values (default, "customer2@gmail.com",'WP QQ 2345');
+insert into Delivery values (default, "customer3@gmail.com",'EP LK 1889');
+insert into Delivery values (default, "customer4@gmail.com",'SP AAA 3449');
+insert into Delivery values (default, "customer1@gmail.com",'SP AAA 3449');
 insert into Delivery values (default, "abwwwc@gmail.com",'SP AAA 3449');
 insert into Delivery values (default, "abwwwc@gmail.com",'SP AAA 3449');
 insert into Delivery values (default, "abwwwc@gmail.com",'SP AAA 3449');
@@ -251,9 +251,9 @@ insert into Order_Product values (default,2,1,80);
 insert into Order_Product values (default,3,2,4);
 insert into Order_Product values (default,3,6,3);
 
-insert into Cart values ("bashadithennakoon@gmail.com",default);
-insert into Cart values ("sssd@gmail.com",default);
-insert into Cart values ("abwwwc@gmail.com",default);
+insert into Cart values ("customer1@gmail.com",default);
+insert into Cart values ("customer2@gmail.com",default);
+insert into Cart values ("customer3@gmail.com",default);
 
 insert into Cart_Product values (default,4,1,3);
 insert into Cart_Product values (default,6,1,4);
@@ -261,14 +261,14 @@ insert into Cart_Product values (default,1,2,2);
 insert into Cart_Product values (default,2,3,3);
 insert into Cart_Product values (default,3,3,7);
 
-insert into Driver values ("basadithennakoon@gmail.com","basadi",1,"78964545634V",34,0054734570);
-insert into Driver values ("bashadithennakoon@gmail.com","sulakshi",2,"78964548634V",26,0054734570);
-insert into Driver values ("dinithi.20@cse.mrt.ac.lk","dinithi",3,"12567845634V",23,0954731170);
+insert into Driver values ("driver1@gmail.com","driver1",1,"78964545634V",34,0054734570);
+insert into Driver values ("driver2@gmail.com","driver2",2,"78964548634V",26,0054734570);
+insert into Driver values ("driver3@gmail.com","driver3",3,"12567845634V",23,0954731170);
 insert into Driver values ("driver4@gmail.com","driver 4",4,"12367854634V",2,0222111770);
 insert into Driver values ("driver5@gmail.com","driver 5",3,"14445456345V",5,0547310000);
 
-insert into Assistant values ("200083301184","basadhi",1,"sulakshigunaratne@gmail.com",26.40,0761546870);
-insert into Assistant values ("12000008912V","sualkshi",2,"bashadithennakoon2@gmail.com",23.30,0343454239);
+insert into Assistant values ("200083401184","Assis1",1,"Assis1@gmail.com",26.40,0761546870);
+insert into Assistant values ("12000008912V","Assis2",2,"assis2@gmail.com",23.30,0343454239);
 insert into Assistant values ("12345674442V","assis 3",4,"assis3@gmail.com",10.30,0343454239);
 insert into Assistant values ("55545678912V","assis 4",3,"assis4@gmail.com",13.30,0343454239);
 insert into Assistant values ("12999678912V","assis 5",4,"assis5@gmail.com",4,0343454239);
