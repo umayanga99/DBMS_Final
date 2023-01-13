@@ -1,39 +1,10 @@
 const mysql = require("./db.js");
 
-// constructor
-const Manager = function(file) {
-    // this.email = file.email;
-    // this.password = file.password;
-};
-
-// Manager.getSchedules = async (result) => {
-//     let queryArray = ["Select * from customer", "Select * from customer", "Select * from customer"];
-//     let resultArray = [];
-  
-//     for (const q of queryArray) {
-//       mysql.query(q, (err, res) => {
-//         if (err) {
-//           console.log(err);
-//           return;
-//         }
-        
-//         resultArray.push(res);
-//         console.log(resultArray);
-//       });
-//     }
-//     console.log(resultArray);
-
-//     result(null, resultArray);
-//     return;
-//   }
-  
-
+const Manager = function(file) {};
 
 Manager.getTruckSchedule = ( result) => {
-    //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
+    mysql.query(`select * from truck_report`,(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -43,12 +14,9 @@ Manager.getTruckSchedule = ( result) => {
     });
 };
 
-
-Manager.getAssistantSchedule = ( result) => {
-    //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'assistant' order by total_duration`,(err,res) => {
+Manager.getAssistantSchedule = ( result ) => {
+    mysql.query(`select * from assistant`,(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -58,11 +26,9 @@ Manager.getAssistantSchedule = ( result) => {
     });
 };
 
-Manager.getDriverSchedule = ( result) => {
-    //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'driver' order by total_duration`,(err,res) => {
+Manager.getDriverSchedule = (result) => {
+    mysql.query(` select * from driver`,(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -73,25 +39,8 @@ Manager.getDriverSchedule = ( result) => {
 };
 
 Manager.getTrainSchedule = (result) => {
-    //check the query
-    mysql.query(`Select ID, total_duration from working_hours where roll = 'truck' order by total_duration;`,(err,res) => {
+    mysql.query(`select * from train_schedule`,(err,res) => {
         if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        } else {
-            result(null, res);
-            
-        }
-    });
-};
-
-
-Manager.getMostOrderedReport = (year, result) => {
-    //check the query
-    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
-        if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -102,10 +51,8 @@ Manager.getMostOrderedReport = (year, result) => {
 };
 
 Manager.getQuarterlySalesReport = (year, result) => {
-    //check the query
-    mysql.query(`SELECT quarter, total_quantity, total_income FROM quarterly_sales_report where year = ?`,[year],(err,res) => {
+    mysql.query(`select quarter, total_quantity, total_income from quarterly_sales_report where year = ?`,[year],(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -116,10 +63,8 @@ Manager.getQuarterlySalesReport = (year, result) => {
 };
 
 Manager.getQuarterlyOrderReport = (year, result) => {
-    //check the query
-    mysql.query(`SELECT quarter, product, total_sells, total_income FROM quarter_order_details where year = ?`,[year],(err,res) => {
+    mysql.query(`select quarter, product, total_sells, total_income from quarter_order_details where year =  ?`,[year],(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -129,27 +74,22 @@ Manager.getQuarterlyOrderReport = (year, result) => {
     });
 };
 
-
-
 Manager.getMostOrdered = (year, result) => {
-    //check the query
-    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+    // mysql.query(`select product_name, total_quantity from most_ordered where year =?`,[year],(err,res) => {
+    mysql.query(`call most_ordered_report(?)`,[year],(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
-            result(null, res);
+            result(null, res[0]);
             
         }
     });
 };
 
 Manager.getCustomerOrderReport = (year, result) => {
-    //check the query
-    mysql.query(`SELECT product_name, total_quantity FROM most_ordered where year = ?`,[year],(err,res) => {
+    mysql.query(`select customer_email,customer_name,customer_type,ordered_date,product_name,quantity,total_price from customer_order_report where year = ?`,[year],(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
@@ -159,15 +99,25 @@ Manager.getCustomerOrderReport = (year, result) => {
     });
 };
 
-Manager.getCitiesRoutesReport = (result) => {
-    //check the query
-    mysql.query("SELECT * FROM cities_routes_report",(err,res) => {
+Manager.getCitiesRoutesReport = (year,result) => {
+    mysql.query("select * from cities_routes_report where year=? order by truck_route ",[year],(err,res) => {
         if (err) {
-            console.log("error: ", err);
             result(err, null);
             return;
         } else {
             result(null, res);
+            
+        }
+    });
+};
+
+Manager.getLastMonthOrders = (result) => {
+    mysql.query("CALL get_order_details()",(err,res) => {
+        if (err) {
+            result(err, null);
+            return;
+        } else {
+            result(null, res[0]);
             
         }
     });

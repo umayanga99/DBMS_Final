@@ -1,10 +1,11 @@
-// import React from 'react';
-import React, {useEffect, useState} from 'react';
+
+import React, {useState} from 'react';
 import { Button, Container, Col, Row, Table} from 'react-bootstrap';
 import { useCart} from 'react-use-cart';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
 import Header from '../components/Header';
+
 
 const Cart = () => {
     const [theme] = useThemeHook();
@@ -16,24 +17,7 @@ const Cart = () => {
         removeItem,
         emptyCart,
     } = useCart();
-    
     const [response, setResponse] = useState(null);
-    // const value = localStorage.getItem('myValue');
-
-    // const data = getItem() ;
-
-
-    // const [cartData, setCartData] = useState([]);
-    // async function getResponse(){
-    //     const res = await fetch('https://fakestoreapi.com/products')
-    //                       .then(res=> res.json());
-    //                       setCartData(await res);
-    // }
-
-    // useEffect(()=>{
-    //     getResponse();
-    // },[]);
-
 
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
@@ -85,10 +69,6 @@ const Cart = () => {
                             <Button variant="warning"
                                 className="m-2"
                                 onClick={()=>  { 
-                                    // const filteredItems = items.filter((item) => {
-                                    //     return { id: item.id, price: item.price };
-                                    //   });
-                                    // console.log(localStorage.getItem('email'));
                                       fetch('http://localhost:8000/api/cart/saveCart', {
                                         method: 'POST',
                                         body: JSON.stringify({
@@ -99,11 +79,6 @@ const Cart = () => {
                                           'Content-Type': 'application/json'
                                         }
                                       })
-                                        .then(res => res.json())
-                                        .then(res => {
-                                          setResponse(res);
-                                        });
-                                        // alert("error in saving");
                                     }}
                             >
                                 <BsCartCheck size="1.7rem" />
@@ -111,7 +86,25 @@ const Cart = () => {
                             </Button>
                             <Button variant="danger"
                                 className="m-2"
-                                onClick={()=> emptyCart()}
+                                onClick={()=> 
+                                    fetch('http://localhost:8000/api/cart/clearCart', {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            email : localStorage.getItem('email')
+                                        }),
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        }
+                                      })
+                                        .then(res => res.json())
+                                        .then(res => {
+                                          setResponse(res);
+                                        })
+                                        .finally(()=>{
+                                            emptyCart();
+                                        })
+                                    
+                                    }
                             >
                                 <BsCartX size="1.7rem" />
                                 Clear Cart

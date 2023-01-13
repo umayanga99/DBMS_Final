@@ -4,7 +4,6 @@ create database project_Final;
 
 use project_Final;
 
-drop table if exists Driver_ProductAssistant;
 CREATE TABLE Product (
     id int auto_increment,
     price real(7,2) not null,
@@ -15,7 +14,8 @@ CREATE TABLE Product (
     PRIMARY KEY (id)
 );
 
-drop table if exists Product_Image;
+-- sjdfhsdhfisdhfsdf
+
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
     id int not null,
