@@ -66,7 +66,6 @@ BEGIN
 		select train_ID into current_train_id from train inner join 
 		train_route using(route_id) where store_ID in (select store_ID from
 		truck where truck_route = route) and 
-		truck where truck_route = route) and 
 		train.loaded_Capacity + tot_capacity <= train.capacity 
 		order by IF(SIGN(TIMEDIFF(train_route.depart_time, CURTIME())) = 1, 1, 0) limit 1;    
 		insert into transport values (default, current_train_id);
