@@ -166,9 +166,17 @@ insert into Train values(default, 21,600,68);
 
 -- Done
 insert into Customer values ("manager@gmail.com",",Main Manager","manager", 'managerpassword', 0761546870);
-insert into Customer values ("customer1@gmail.com","customer1","retailer", 'customer1password', 0761546871);
+insert into Customer values ("customer1@gmail.com","customer1","retailer", 'customer1password', 0563829140);
 insert into Customer values ("customer2@gmail.com","customer2","wholesaler", 'customer2password', 0783546872);
-insert into Customer values ("customer3@gmail.com","customer3","end customer", 'customer3password', 0783546872);
+insert into Customer values ("customer3@gmail.com","customer3","retailer", 'customer3password', 0695483127);
+insert into Customer values ("customer4@gmail.com","customer4","end customer", 'customer4password', 0975140620);
+insert into Customer values ("customer5@gmail.com","customer5","wholeslaer", 'customer5password', 0803495621);
+insert into Customer values ("customer6@gmail.com","customer6","retailer", 'customer6password', 0369857421);
+insert into Customer values ("customer7@gmail.com","customer7","wholesaler", 'customer7password', 0572319648);
+insert into Customer values ("customer8@gmail.com","customer8","end customer", 'customer8password', 0891275346);
+insert into Customer values ("customer9@gmail.com","customer9","wholesalerr", 'customer9password', 0472598631);
+insert into Customer values ("customer10@gmail.com","customer10","end customer", 'customer10password', 0957384562);
+
 
 
 
@@ -211,36 +219,36 @@ insert into Orders values (default, 'No 13, Port Road, Monaragala','customer7@gm
 insert into Orders values (default, 'No 13, Port Road, Badulla','customer8@gmail.com','2022-1-1','16:23:24','Badulla',44100,'2022-1-15',341800.00);
 insert into Orders values (default, 'No 13, Port Road, Mannar','customer9@gmail.com','2022-12-1','16:23:24','Mannar',44100,'2023-1-15',341800.00);
 insert into Orders values (default, 'No 13, Port Road, Mualathiw','customer10@gmail.com','2022-11-1','16:23:24','Mualthiw',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Puttalam','customer11@gmail.com','2023-1-11','16:23:24','Puttalama',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Batticlo','customer12@gmail.com','2022-2-1','16:23:24','Batticlo',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Polonnaruwa','customer13@gmail.com','2022-9-1','16:23:24','Polonnaruwa',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Ampara','custome14@gmail.com','2023-1-6','16:23:24','Ampara',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Jaffna','customer15@gmail.com','2023-1-7','16:23:24','Jaffna',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Anuradhapura','customer16@gmail.com','2023-1-8','16:23:24','Anuradhapura',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Colombo','customer17@gmail.com','2023-1-9','16:23:24','Colombo',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Kurunegala','customer18@gmail.com','2023-1-10','16:23:24','Kurunegala',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Matara','customer19@gmail.com','2023-1-11','16:23:24','Matara',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Hambantota','customer20@gmail.com','2023-1-12','16:23:24','Hambantota',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Rathnapura','customer21@gmail.com','2023-1-13','16:23:24','Rathnapura',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Galle','customer22@gmail.com','2023-1-14','16:23:24','Galle',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Mannar','customer23@gmail.com','2023-1-15','16:23:24','Mannar',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Trinco','customer24@gmail.com','2023-1-16','16:23:24','Trinco',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Hill Road, Badulla','customer25@gmail.com','2023-1-17','16:23:24','Nuwara Eliya',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Kovil Road, Mulathiw','customer26@gmail.com','2023-1-18','16:23:24','Mulathiw',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Colombo','customer27@gmail.com','2022-1-19','16:23:24','Negambo',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Temple Road, Ampara','customer28@gmail.com','2022-1-13','16:23:24','Amapara',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Kovil Road, Kalutara','customer29@gmail.com','2022-1-1','16:23:24','Kalutara',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Temple Road, Kurunegala','customer30@gmail.com','2023-1-1','16:23:24','Kurunegala',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Maliga Road, Kandy','customer31@gmail.com','2023-1-1','16:23:24','Nuwara Eliya',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 124, Port Road, Trinco','customer32@gmail.com','2023-1-1','16:23:24','Trinco',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Kovil Road, Trinco','customer33@gmail.com','2023-1-1','16:23:24','Trinco',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 124, Temple Road, Kandy','customer34@gmail.com','2023-1-1','16:23:24','Kandy',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Colombo Road, Rathnapura','customer35@gmail.com','2023-1-1','16:23:24','Rathnapura',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Main Road, Hambantota','customer36@gmail.com','2023-1-1','16:23:24','Hambanthota',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Church Road, Ampara','customer37@gmail.com','2023-1-1','16:23:24','Ampara',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 78, Port Road, Trinco','customer38@gmail.com','2023-1-23','16:23:24','Trinco',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 13, Port Road, Colombo','customer39@gmail.com','2023-1-3','16:23:24','Colombo',44100,'2023-1-15',341800.00);
-insert into Orders values (default, 'No 56, Port Road, Colombo','customer40@gmail.com','2022-1-1','16:23:24','Kaluthara',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Puttalam','customer1@gmail.com','2023-1-11','16:23:24','Puttalama',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Batticlo','customer2@gmail.com','2022-2-1','16:23:24','Batticlo',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Polonnaruwa','customer3@gmail.com','2022-9-1','16:23:24','Polonnaruwa',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Ampara','custome4@gmail.com','2023-1-6','16:23:24','Ampara',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Jaffna','customer5@gmail.com','2023-1-7','16:23:24','Jaffna',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Anuradhapura','customer6@gmail.com','2023-1-8','16:23:24','Anuradhapura',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Colombo','customer7@gmail.com','2023-1-9','16:23:24','Colombo',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Kurunegala','customer8@gmail.com','2023-1-10','16:23:24','Kurunegala',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Matara','customer9@gmail.com','2023-1-11','16:23:24','Matara',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Hambantota','customer10@gmail.com','2023-1-12','16:23:24','Hambantota',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Rathnapura','customer1@gmail.com','2023-1-13','16:23:24','Rathnapura',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Galle','customer2@gmail.com','2023-1-14','16:23:24','Galle',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Mannar','customer3@gmail.com','2023-1-15','16:23:24','Mannar',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Trinco','customer4@gmail.com','2023-1-16','16:23:24','Trinco',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Hill Road, Badulla','customer5@gmail.com','2023-1-17','16:23:24','Nuwara Eliya',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Kovil Road, Mulathiw','customer6@gmail.com','2023-1-18','16:23:24','Mulathiw',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Colombo','customer7@gmail.com','2022-1-19','16:23:24','Negambo',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Temple Road, Ampara','customer8@gmail.com','2022-1-13','16:23:24','Amapara',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Kovil Road, Kalutara','customer9@gmail.com','2022-1-1','16:23:24','Kalutara',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Temple Road, Kurunegala','customer10@gmail.com','2023-1-1','16:23:24','Kurunegala',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Maliga Road, Kandy','customer1@gmail.com','2023-1-1','16:23:24','Nuwara Eliya',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 124, Port Road, Trinco','customer2@gmail.com','2023-1-1','16:23:24','Trinco',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Kovil Road, Trinco','customer3@gmail.com','2023-1-1','16:23:24','Trinco',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 124, Temple Road, Kandy','customer4@gmail.com','2023-1-1','16:23:24','Kandy',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Colombo Road, Rathnapura','customer5@gmail.com','2023-1-1','16:23:24','Rathnapura',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Main Road, Hambantota','customer6@gmail.com','2023-1-1','16:23:24','Hambanthota',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Church Road, Ampara','customer7@gmail.com','2023-1-1','16:23:24','Ampara',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 78, Port Road, Trinco','customer8@gmail.com','2023-1-23','16:23:24','Trinco',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 13, Port Road, Colombo','customer9@gmail.com','2023-1-3','16:23:24','Colombo',44100,'2023-1-15',341800.00);
+insert into Orders values (default, 'No 56, Port Road, Colombo','customer10@gmail.com','2022-1-1','16:23:24','Kaluthara',44100,'2023-1-15',341800.00);
 
 
 
@@ -261,7 +269,7 @@ insert into Truck values ('NP XZ 1245', 5, 'Mulathiw',1.00);
 insert into Truck values ('NP XZ 4576', 5, 'Mannar',3.30);
 insert into Truck values ('NP XZ 1289', 5, 'Wauniya',5.30);
 insert into Truck values ('NP XZ 6780', 6, 'Trinco',6.00);
-insert into Truck values ('NP XZ 7891', 6, 'Anuradhapura',20.00);
+insert into Truck values ('NP XZ 7091', 6, 'Anuradhapura',20.00);
 insert into Truck values ('NP XZ 3451', 6, 'Polonnaruwa',20.30);
 insert into Truck values ('NP XZ 7891', 6, 'Baticlo',8.00);
 insert into Truck values ('NP XZ 3450', 6, 'Ampara',8.30);
@@ -283,32 +291,184 @@ INSERT INTO Delivery VALUES(DEFAULT,"customer7@gmail.com","NP XZ 2349");
 INSERT INTO Delivery VALUES(DEFAULT,"customer8@gmail.com","NP XZ 3490");
 INSERT INTO Delivery VALUES(DEFAULT,"customer9@gmail.com","NP XZ 4576");
 INSERT INTO Delivery VALUES(DEFAULT,"customer10@gmail.com","NP XZ 1245");
-INSERT INTO Delivery VALUES(DEFAULT,"customer11@gmail.com","WE XZ 3990");
-INSERT INTO Delivery VALUES(DEFAULT,"customer12@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer1@gmail.com","WE XZ 3990");
+INSERT INTO Delivery VALUES(DEFAULT,"customer2@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer3@gmail.com","NP XZ 3451");
+INSERT INTO Delivery VALUES(DEFAULT,"customer4@gmail.com","NP XZ 3450");
+INSERT INTO Delivery VALUES(DEFAULT,"customer5@gmail.com","NP XZ 8900");
+INSERT INTO Delivery VALUES(DEFAULT,"customer6@gmail.com","NP XZ 7091");
+INSERT INTO Delivery VALUES(DEFAULT,"customer7@gmail.com","NP XZ 3990");
+INSERT INTO Delivery VALUES(DEFAULT,"customer8@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer9@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer10@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer1@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer2@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer3@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer4@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer5@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer6@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer7@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer8@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer9@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer10@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer1@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer2@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer3@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer4@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer5@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer6@gmail.com","NP XZ 7891");
+INSERT INTO Delivery VALUES(DEFAULT,"customer7@gmail.com","NP XZ 3450");
+INSERT INTO Delivery VALUES(DEFAULT,"customer8@gmail.com","NP XZ 6780");
+INSERT INTO Delivery VALUES(DEFAULT,"customer9@gmail.com","NP XZ 3990");
+INSERT INTO Delivery VALUES(DEFAULT,"customer10@gmail.com","NP PO 2345");
+
+
 
 
 
 -- Done
 insert into Order_Delivery values (default,1,1);
 insert into Order_Delivery values (default,2,2);
+insert into Order_Delivery values (default,3,2);
+insert into Order_Delivery values (default,4,2);
+insert into Order_Delivery values (default,5,2);
+insert into Order_Delivery values (default,6,2);
+insert into Order_Delivery values (default,7,2);
+insert into Order_Delivery values (default,8,2);
+insert into Order_Delivery values (default,9,2);
+insert into Order_Delivery values (default,10,2);
+insert into Order_Delivery values (default,11,2);
+insert into Order_Delivery values (default,12,2);
+insert into Order_Delivery values (default,13,2);
+insert into Order_Delivery values (default,14,2);
+insert into Order_Delivery values (default,15,2);
+insert into Order_Delivery values (default,16,2);
+insert into Order_Delivery values (default,17,2);
+insert into Order_Delivery values (default,18,2);
+insert into Order_Delivery values (default,19,2);
+insert into Order_Delivery values (default,20,2);
+insert into Order_Delivery values (default,21,2);
+insert into Order_Delivery values (default,22,2);
+insert into Order_Delivery values (default,23,2);
+insert into Order_Delivery values (default,24,2);
+insert into Order_Delivery values (default,25,2);
+insert into Order_Delivery values (default,26,2);
+insert into Order_Delivery values (default,27,2);
+insert into Order_Delivery values (default,28,2);
+insert into Order_Delivery values (default,29,2);
+insert into Order_Delivery values (default,30,2);
+insert into Order_Delivery values (default,31,2);
+insert into Order_Delivery values (default,32,2);
+insert into Order_Delivery values (default,33,2);
+insert into Order_Delivery values (default,34,2);
+insert into Order_Delivery values (default,35,2);
+insert into Order_Delivery values (default,36,2);
+insert into Order_Delivery values (default,37,2);
+insert into Order_Delivery values (default,38,2);
+insert into Order_Delivery values (default,39,2);
+insert into Order_Delivery values (default,40,2);
+
 
 -- Done
+insert into Transport values (default,1);
 insert into Transport values (default,2);
-insert into Transport values (default,17);
+insert into Transport values (default,3);
+insert into Transport values (default,4);
+
+insert into Transport values (default,7);
+insert into Transport values (default,6);
+insert into Transport values (default,5);
+insert into Transport values (default,8);
+insert into Transport values (default,9);
+insert into Transport values (default,10);
 
 
 -- Done
 insert into Order_Transport values (default,1,1);
 insert into Order_Transport values (default,2,2);
+insert into Order_Transport values (default,3,3);
+insert into Order_Transport values (default,4,4);
+insert into Order_Transport values (default,5,5);
+insert into Order_Transport values (default,6,6);
+insert into Order_Transport values (default,7,7);
+insert into Order_Transport values (default,8,8);
+insert into Order_Transport values (default,9,9);
+insert into Order_Transport values (default,10,10);
+insert into Order_Transport values (default,1,11);
+insert into Order_Transport values (default,2,12);
+insert into Order_Transport values (default,3,13);
+insert into Order_Transport values (default,4,214);
+insert into Order_Transport values (default,5,15);
+insert into Order_Transport values (default,6,16);
+insert into Order_Transport values (default,7,17);
+insert into Order_Transport values (default,8,18);
+insert into Order_Transport values (default,9,19);
+insert into Order_Transport values (default,10,20);
+insert into Order_Transport values (default,1,21);
+insert into Order_Transport values (default,2,22);
+insert into Order_Transport values (default,3,23);
+insert into Order_Transport values (default,4,24);
+insert into Order_Transport values (default,5,25);
+insert into Order_Transport values (default,6,26);
+insert into Order_Transport values (default,7,27);
+insert into Order_Transport values (default,8,28);
+insert into Order_Transport values (default,9,29);
+insert into Order_Transport values (default,10,30);
+insert into Order_Transport values (default,2,31);
+insert into Order_Transport values (default,3,32);
+insert into Order_Transport values (default,4,33);
+insert into Order_Transport values (default,5,34);
+insert into Order_Transport values (default,6,35);
+insert into Order_Transport values (default,7,36);
+insert into Order_Transport values (default,8,37);
+insert into Order_Transport values (default,9,38);
+insert into Order_Transport values (default,4,39);
+insert into Order_Transport values (default,5,40);
+
 
 
 -- Done
 insert into Order_Product values (default,1,4,10);
-insert into Order_Product values (default,1,6,20);
-insert into Order_Product values (default,1,1,25);
-insert into Order_Product values (default,2,2,400);
-insert into Order_Product values (default,2,10,150);
-insert into Order_Product values (default,2,21,200);
+insert into Order_Product values (default,2,6,20);
+insert into Order_Product values (default,3,1,25);
+insert into Order_Product values (default,4,2,400);
+insert into Order_Product values (default,5,10,150);
+insert into Order_Product values (default,6,1,200);
+insert into Order_Product values (default,7,2,200);
+
+insert into Order_Product values (default,8,8,200);
+insert into Order_Product values (default,9,5,200);
+insert into Order_Product values (default,10,1,200);
+insert into Order_Product values (default,11,2,200);
+insert into Order_Product values (default,12,3,200);
+insert into Order_Product values (default,13,4,200);
+insert into Order_Product values (default,14,5,200);
+insert into Order_Product values (default,15,7,200);
+insert into Order_Product values (default,16,8,200);
+insert into Order_Product values (default,17,45,200);
+insert into Order_Product values (default,18,46,200);
+insert into Order_Product values (default,19.21,200);
+insert into Order_Product values (default,20,27,200);
+insert into Order_Product values (default,21,28,200);
+insert into Order_Product values (default,22,39,200);
+insert into Order_Product values (default,23,10,200);
+insert into Order_Product values (default,24,13,200);
+insert into Order_Product values (default,25,18,200);
+insert into Order_Product values (default,26,32,200);
+insert into Order_Product values (default,27,22,200);
+insert into Order_Product values (default,28,31,200);
+insert into Order_Product values (default,29,24,200);
+insert into Order_Product values (default,30,27,200);
+insert into Order_Product values (default,31,29,200);
+insert into Order_Product values (default,32,28,200);
+insert into Order_Product values (default,33,10,200);
+insert into Order_Product values (default,34,2,200);
+insert into Order_Product values (default,35,7,200);
+insert into Order_Product values (default,36,6,200);
+insert into Order_Product values (default,37,5,200);
+insert into Order_Product values (default,38,4,200);
+insert into Order_Product values (default,39,6,200);
+insert into Order_Product values (default,40,8,200);
 
 
 -- Done
