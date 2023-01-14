@@ -169,19 +169,11 @@ CREATE TABLE Assistant (
 drop table if exists Driver_Assistant;  
 CREATE TABLE Driver_Assistant (
     turn_ID int auto_increment ,
-<<<<<<< HEAD
-    truck_ID varchar(30),
-    driver_NIC varchar(12),
-    assistant_NIC varchar(12),
-    turn_duraion float(4,2),
-    delivery_date date,
-=======
     truck_ID varchar(30) ,
     driver_NIC varchar(12) ,
     assistant_NIC varchar(12) ,
     turn_dutaion float(4,2) ,
     delivery_date date , 
->>>>>>> final-branch
     PRIMARY KEY (turn_ID),
     FOREIGN KEY (truck_ID) REFERENCES Truck(truck_ID),
     FOREIGN KEY (driver_NIC) REFERENCES Driver(NIC),
