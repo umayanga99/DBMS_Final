@@ -136,20 +136,20 @@ begin
 	select * from orders WHERE datediff(curdate(), ordered_date) <= 30;
 end $$
 
--- drop procedure if exists most_ordered_report;
--- delimiter $$
--- create procedure most_ordered_report(
--- 	r_year year)
--- begin
--- 	select year(ordered_date) as selected_year, 
--- 		Product_name, 
--- 		sum(quantity) as total_quantity from 
--- 		order_product inner join orders  using(order_ID) inner join product p using(id)
--- 	where year(ordered_date) = r_year
---     group by selected_year, product_name
--- 	order by total_quantity desc
--- 	limit 5;
--- end $$
+drop procedure if exists most_ordered_report;
+delimiter $$
+create procedure most_ordered_report(
+	r_year year)
+begin
+	select year(ordered_date) as selected_year, 
+		Product_name, 
+		sum(quantity) as total_quantity from 
+		order_product inner join orders  using(order_ID) inner join product p using(id)
+	where year(ordered_date) = r_year
+    group by selected_year, product_name
+	order by total_quantity desc
+	limit 5;
+end $$
 
 -- drop procedure if exists quarter_sales_report;
 -- delimiter $$

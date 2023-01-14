@@ -152,8 +152,8 @@ const Reports = () => {
                                 return(
                                     <tr key={index}>
                                         <td>{item.quarter}</td>
-                                        <td>{item.total_income}</td>
                                         <td>{item.total_quantity}</td>
+                                        <td>{item.total_income}</td>
                                     </tr>
                                 )
                             })}
