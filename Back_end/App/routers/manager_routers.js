@@ -3,6 +3,7 @@ module.exports = app => {
     
     var managerRouter = require("express").Router();
  
+    
     managerRouter.get("/getTrainSchedule",ManagerController.getTrainSchedule);
     managerRouter.get("/getTruckSchedule",ManagerController.getTruckSchedule);
     managerRouter.get("/getAssistantSchedule",ManagerController.getAssistantSchedule);

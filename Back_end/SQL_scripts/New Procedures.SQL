@@ -12,15 +12,17 @@ begin
 end$$
 delimiter ;
 
+
 drop procedure if exists payment_proceed;
 DELIMITER $$
 CREATE PROCEDURE payment_proceed(
-	email varchar(225),
-    prefered_deliver_date date,
-    address varchar(225),
-    route varchar(50),
-    total_price real)
-BEGIN    
+	in email varchar(225),
+    in prefered_deliver_date date,
+    in address varchar(225),
+    in route varchar(50),
+    in total_price real,
+	out flag boolean)
+BEGIN       
 	-- update orders table
     declare tot_capacity real;
     declare last_order_id int;
@@ -50,7 +52,9 @@ BEGIN
     BEGIN
         ROLLBACK;
     END;
-
+	
+    set flag = false;
+    
     START TRANSACTION;
 		
 	-- update Orders table ---------------------------------------------------------------
@@ -67,7 +71,7 @@ BEGIN
 		insert into transport values (default, current_train_id);
 		select max(transport_ID) into current_transport_ID from transport;
 		insert into order_transport values (default, current_transport_ID, last_order_id);
-		update train set loaded_capacity = loaded_capacity + total_capacity where train_ID = current_train_id;
+		update train set loaded_capacity = loaded_capacity + tot_capacity where train_ID = current_train_id;
 
 
 		if ((select count(truck_ID) from  truck inner join driver_assistant using(truck_ID) where truck_route = route and delivery_date=curdate()) = 0) then
@@ -104,11 +108,16 @@ BEGIN
 				update assistant set assistant.total_duration = assistant.total_duration + tot_duration where assistant.nic = current_assistant_nic;
 				update driver_assistant set assistant_NIC = current_assistant_nic where turn_ID = current_turn_id;
                 
+                set flag = true;
 			else 
-				select truck_id into current_truck_id from truck inner join driver_assistant using(truck_ID) where truck_route = route and date=curdate();
+				select truck_id into current_truck_id from truck inner join driver_assistant using(truck_ID) where truck_route = route and delivery_date=curdate();
 				insert into delivery values (default, email, current_truck_id);
+				insert into order_delivery values (default, last_order_id, (select max(delivery_number) from delivery));
+                
+                set flag = true;
         end if;
-    COMMIT;    
+    COMMIT;
+    select @flag;
 end $$
 
 
@@ -116,7 +125,57 @@ drop procedure if exists clear_cart;
 Delimiter $$
 create procedure clear_cart(
 	email varchar(225))
-
 begin
 	delete from cart_product where cart_ID = (select cart_id from cart where cart.email = email);
 end $$
+
+drop procedure if exists get_order_details;
+delimiter $$
+create procedure get_order_details()
+begin
+	select * from orders WHERE datediff(curdate(), ordered_date) <= 30;
+end $$
+
+drop procedure if exists most_ordered_report;
+delimiter $$
+create procedure most_ordered_report(
+	r_year year)
+begin
+	select year(ordered_date) as selected_year, 
+		Product_name, 
+		sum(quantity) as total_quantity from 
+		order_product inner join orders  using(order_ID) inner join product p using(id)
+	where year(ordered_date) = r_year
+    group by selected_year, product_name
+	order by total_quantity desc
+	limit 5;
+end $$
+
+-- drop procedure if exists quarter_sales_report;
+-- delimiter $$
+-- create procedure quarter_sales_report(
+-- 	r__year year)
+-- begin
+-- 	select year(ordered_date) as year,
+-- 		quarter(ordered_date) as quarter, 
+-- 		sum(quantity) as total_quantity,
+-- 		sum(quantity * price) as total_income
+-- 	FROM order_product inner join orders  using(order_ID) inner join product using(id)
+-- 	group by year, quarter
+-- 	order by year, quarter;    
+-- END $$
+
+-- drop procedure if exists quarter_order_report;
+-- delimiter $$
+-- create procedure quarter_order_report(
+-- 	r_year year)
+-- begin
+-- 	select year(ordered_date) as year,
+-- 		quarter(ordered_date) as quarter, 
+-- 		product_name as product,
+-- 		sum(quantity) as total_sells,
+-- 		sum(quantity * price) as total_income
+-- 	from order_product inner join orders  using(order_ID) inner join product using(id)
+-- 	group by year, quarter, product
+-- 	order by year, quarter, total_income;
+-- end $$

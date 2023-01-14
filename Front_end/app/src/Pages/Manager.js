@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Header2 from '../components/Header2';
 
 const Manager = () => {
     const [theme] = useThemeHook();
@@ -60,7 +61,8 @@ const Manager = () => {
 
     return (
         <main className={theme? 'bg-black': 'bg-light-2'} style={{ height: '100vh', overflowY: 'auto'}}>
-            <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>
+            <Header2 />
+            <h1 style={{ textShadow: '2px 2px #333'}} className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`}>Manager</h1>
             <Container className="py-4 mt-5">
                             <Button variant="success"
                                 className="m-2"
