@@ -16,17 +16,11 @@ Auth.checkValidity = (email, password,result) => {
             return;
         } else {
             console.log(`login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
-<<<<<<< HEAD
-            if(res[0].isLoggedIn!='0'){
-                console.log(`success`);
-                result(null,true);
-=======
             if(res[0].isLoggedIn=='1'){
                 result(null,1);
             }
             else if(res[0].isLoggedIn=='2'){
                 result(null,2);
->>>>>>> Shehan_23
             }
             else{
                 result(null,false);
