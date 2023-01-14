@@ -111,13 +111,13 @@ BEGIN
                 
                 set flag = true;
 			else 
-				select truck_id into current_truck_id from truck inner join driver_assistant using(truck_ID) where truck_route = route and date=curdate();
+				select truck_id into current_truck_id from truck inner join driver_assistant using(truck_ID) where truck_route = route and delivery_date=curdate();
 				insert into delivery values (default, email, current_truck_id);
+				insert into order_delivery values (default, last_order_id, (select max(delivery_number) from delivery));
                 
                 set flag = true;
         end if;
     COMMIT;
-    
     select @flag;
 end $$
 
@@ -126,7 +126,6 @@ drop procedure if exists clear_cart;
 Delimiter $$
 create procedure clear_cart(
 	email varchar(225))
-
 begin
 	delete from cart_product where cart_ID = (select cart_id from cart where cart.email = email);
 end $$
@@ -138,49 +137,46 @@ begin
 	select * from orders WHERE datediff(curdate(), ordered_date) <= 30;
 end $$
 
-drop procedure if exists most_ordered_report;
+-- drop procedure if exists most_ordered_report;
+-- delimiter $$
+-- create procedure most_ordered_report(
+-- 	r_year year)
+-- begin
+-- 	select year(ordered_date) as selected_year, 
+-- 		Product_name, 
+-- 		sum(quantity) as total_quantity from 
+-- 		order_product inner join orders  using(order_ID) inner join product p using(id)
+-- 	where year(ordered_date) = r_year
+--     group by selected_year, product_name
+-- 	order by total_quantity desc
+-- 	limit 5;
+-- end $$
 
-delimiter $$
-create procedure most_ordered_report(
-	r_year year)
-begin
-	select year(ordered_date) as selected_year, 
-		Product_name, 
-		sum(quantity) as total_quantity from 
-		order_product inner join orders  using(order_ID) inner join product p using(id)
-	where year(ordered_date) = r_year
-    group by selected_year, product_name
-	order by total_quantity desc
-	limit 5;
-end $$
+-- drop procedure if exists quarter_sales_report;
+-- delimiter $$
+-- create procedure quarter_sales_report(
+-- 	r__year year)
+-- begin
+-- 	select year(ordered_date) as year,
+-- 		quarter(ordered_date) as quarter, 
+-- 		sum(quantity) as total_quantity,
+-- 		sum(quantity * price) as total_income
+-- 	FROM order_product inner join orders  using(order_ID) inner join product using(id)
+-- 	group by year, quarter
+-- 	order by year, quarter;    
+-- END $$
 
-drop procedure if exists quarter_sales_report;
-
-delimiter $$
-create procedure quarter_sales_report(
-	r__year year)
-begin
-	select year(ordered_date) as year,
-		quarter(ordered_date) as quarter, 
-		sum(quantity) as total_quantity,
-		sum(quantity * price) as total_income
-	FROM order_product inner join orders  using(order_ID) inner join product using(id)
-	group by year, quarter
-	order by year, quarter;    
-END $$
-
-drop procedure if exists quarter_order_report;
-
-delimiter $$
-create procedure quarter_order_report(
-	r_year year)
-begin
-	select year(ordered_date) as year,
-		quarter(ordered_date) as quarter, 
-		product_name as product,
-		sum(quantity) as total_sells,
-		sum(quantity * price) as total_income
-	from order_product inner join orders  using(order_ID) inner join product using(id)
-	group by year, quarter, product
-	order by year, quarter, total_income;
-end $$ 
+-- drop procedure if exists quarter_order_report;
+-- delimiter $$
+-- create procedure quarter_order_report(
+-- 	r_year year)
+-- begin
+-- 	select year(ordered_date) as year,
+-- 		quarter(ordered_date) as quarter, 
+-- 		product_name as product,
+-- 		sum(quantity) as total_sells,
+-- 		sum(quantity * price) as total_income
+-- 	from order_product inner join orders  using(order_ID) inner join product using(id)
+-- 	group by year, quarter, product
+-- 	order by year, quarter, total_income;
+-- end $$ 

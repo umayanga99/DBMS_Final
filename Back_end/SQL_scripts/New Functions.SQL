@@ -22,7 +22,7 @@ CREATE FUNCTION Sign_authentication(
     pass varchar(255),
     customer_name varchar(255),
     customer_type varchar(15),
-    TP int(10)) 
+    TP varchar(20)) 
 RETURNS tinyint(1)
 DETERMINISTIC
 BEGIN
@@ -35,16 +35,16 @@ BEGIN
 END
 $$
 
-Delimiter $$
-CREATE FUNCTION Total_Price(
-	email varchar(255)) RETURNS int
-    DETERMINISTIC
-BEGIN
-	declare tot int;
-    select sum(OP.quantity * P.price) into tot 
-    from Orders O right join Order_Product OP using (order_ID) 
-    left join Product P using (id) 
-    where O.customer_email = email;
-RETURN tot;
-END
-$$
+-- Delimiter $$
+-- CREATE FUNCTION Total_Price(
+-- 	email varchar(255)) RETURNS int
+--     DETERMINISTIC
+-- BEGIN
+-- 	declare tot int;
+--     select sum(OP.quantity * P.price) into tot 
+--     from Orders O right join Order_Product OP using (order_ID) 
+--     left join Product P using (id) 
+--     where O.customer_email = email;
+-- RETURN tot;
+-- END
+-- $$

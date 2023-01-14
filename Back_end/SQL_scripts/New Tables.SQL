@@ -14,7 +14,6 @@ CREATE TABLE Product (
     PRIMARY KEY (id)
 );
 
--- sjdfhsdhfisdhfsdf
 
 CREATE TABLE Product_Image(
     image_ID int auto_increment,
@@ -55,7 +54,7 @@ CREATE TABLE Customer (
     customer_name varchar(255) not null,
     customer_type enum('wholesaler', 'retailer', 'end customer', 'Manager') not null,
     customer_Password varchar(255) not null,
-    Telephone_No varchar(11) not null,
+    Telephone_No varchar(12) not null,
     PRIMARY KEY (email)
 );
 drop table if exists Truck_Route;
