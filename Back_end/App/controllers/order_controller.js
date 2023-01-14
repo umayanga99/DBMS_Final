@@ -36,17 +36,24 @@ const orderModel=require("../models/order_models.js");
     if(err){
         res.status(200).send({
             message:"error occured",
-            date:{
-                cartID:null
-            }
+            date:false
             
         });
     }
         else{
-            res.status(200).send({
-            message:"successfull"
-            
-});
+            if(data==0){
+                res.status(200).send({
+                    message:"payment can not be accept",
+                    data:false
+                })
+            }
+            else{
+                res.status(200).send({
+                    message:"successfull",
+                    data:true
+                    
+        });
+            }
         }
     })
  } 

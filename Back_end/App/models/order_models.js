@@ -21,14 +21,28 @@
 
  Order.placeOrder = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
     let flag;
+    
      mysql.query(`call payment_proceed(?,?,?,?,?,@?)`, [email,prefered_dilivery_date,address,route,totalPrice,flag],(err,res) => {
+       
          if(err){
              result(err, null);
+             console.log("1");
              return;
-         } else {
-             result(null, res);
-         }
+         } 
+        
      });
+     mysql.query("select @?",[flag],(err,res)=>{
+        if(err){
+            result(err,null);
+            console.log("2");
+            return;
+        }
+        else{
+            result(null,res);
+            console.log(res)
+            return;
+        }
+     })
  };
 
  module.exports=Order;

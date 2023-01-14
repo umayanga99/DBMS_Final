@@ -9,13 +9,15 @@ const Auth = function(file) {
     this.TP = file.TP;
 } ; 
 
+
+//select login_authentication($[email],$[password])
 Auth.checkValidity = (email, password,result) => {
     mysql.query(`select login_authentication(?,?) as isLoggedIn`, [email, password], (err,res) => {
         if (err) {
             result(err, null);
             return;
         } else {
-            console.log(`login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
+           // console.log(`login_authentication('${email}','${password}')`, res[0].isLoggedIn != '0' );
             if(res[0].isLoggedIn=='1'){
                 result(null,1);
             }
@@ -32,7 +34,7 @@ Auth.checkValidity = (email, password,result) => {
 Auth.addUser = (email, password, name, type, TP, result) => {
     let subTP=TP.substring(2);
     console.log(subTP);
-    mysql.query(`SELECT Sign_authentication (?,?,?,?,?) as message`,[email,password,name,type,subTP], (err,res) => {
+    mysql.query(`SELECT Sign_authentication (?,?,?,?,?) as message`,[email,password,name,type,su], (err,res) => {
         if (err) {
             result(err, null);
             return;
