@@ -36,7 +36,9 @@ Auth.checkValidity = (email, password,result) => {
 };
 
 Auth.addUser = (email, password, name, type, TP, result) => {
-    mysql.query(`SELECT Sign_authentication (?,?,?,?,?) as message`,[email,password,name,type,TP], (err,res) => {
+    let subTP=TP.substring(2);
+    console.log(subTP);
+    mysql.query(`SELECT Sign_authentication (?,?,?,?,?) as message`,[email,password,name,type,subTP], (err,res) => {
         if (err) {
             result(err, null);
             return;
