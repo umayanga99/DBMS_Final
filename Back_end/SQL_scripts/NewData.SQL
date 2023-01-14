@@ -252,7 +252,7 @@ insert into Orders values (default, 'No 56, Port Road, Colombo','customer10@gmai
 
 
 
--- Change truck id and total duration. Change Delivery table according to truck ID
+-- done
 insert into Truck values ('NP XZ 3990', 1, 'Colombo',02.00);
 insert into Truck values ('NP PO 2345', 1, 'Kaluthara',4.00);
 insert into Truck values ('ER XZ 1234', 2, 'Gampaha',3.45);
@@ -280,10 +280,9 @@ insert into Truck values ('EP LK 1889', 7, 'Kegalla',10.00);
 insert into Truck values ('NP XZ 3490', 7, 'Badulla',10.30);
 
 
--- Shoud change acccording to truck table
-insert into Delivery values (default, "customer1@gmail.com",'NP XZ 3990'); -- Truck id must Truck id of Kaluthara
-insert into Delivery values (default, "customer2@gmail.com",'NP XZ 3990'); -- Truck id must truck id of Trinco
-INSERT INTO Delivery VALUES(DEFAULT,"customer3@gmail.com","NP XZ 4567");
+-- done
+insert into Delivery values (default, "customer1@gmail.com",'NP XZ 3990'); -- 
+insert into Delivery values (default, "customer2@gmail.com",'NP XZ 3990'); -- 
 INSERT INTO Delivery VALUES(DEFAULT,"customer4@gmail.com","NP XZ 5678");
 INSERT INTO Delivery VALUES(DEFAULT,"customer5@gmail.com","NP XZ 3456");
 INSERT INTO Delivery VALUES(DEFAULT,"customer6@gmail.com","TY GH 6578");
@@ -374,7 +373,6 @@ insert into Transport values (default,1);
 insert into Transport values (default,2);
 insert into Transport values (default,3);
 insert into Transport values (default,4);
-
 insert into Transport values (default,7);
 insert into Transport values (default,6);
 insert into Transport values (default,5);
@@ -435,7 +433,6 @@ insert into Order_Product values (default,4,2,400);
 insert into Order_Product values (default,5,10,150);
 insert into Order_Product values (default,6,1,200);
 insert into Order_Product values (default,7,2,200);
-
 insert into Order_Product values (default,8,8,200);
 insert into Order_Product values (default,9,5,200);
 insert into Order_Product values (default,10,1,200);
@@ -474,6 +471,15 @@ insert into Order_Product values (default,40,8,200);
 -- Done
 insert into Cart values ("customer1@gmail.com",default);
 insert into Cart values ("customer2@gmail.com",default);
+insert into Cart values ("customer3@gmail.com",default);
+insert into Cart values ("customer4@gmail.com",default);
+insert into Cart values ("customer5@gmail.com",default);
+insert into Cart values ("customer6@gmail.com",default);
+insert into Cart values ("customer7@gmail.com",default);
+insert into Cart values ("customer8@gmail.com",default);
+insert into Cart values ("customer9@gmail.com",default);
+insert into Cart values ("customer10@gmail.com",default);
+
 
 
 -- Done
