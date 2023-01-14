@@ -79,7 +79,7 @@ const Cart = () => {
                                           'Content-Type': 'application/json'
                                         }
                                       })
-                                      alert("Successfully seved");
+                                      alert("Successfully saved");
                                     }}
                             >
                                 <BsCartCheck size="1.7rem" />
