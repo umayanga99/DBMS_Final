@@ -1,4 +1,3 @@
--- have to join orders table and order_product tablw many times. So creted this view
 create or replace view orders_order_product as
 select id,
 	order_id,
@@ -17,7 +16,6 @@ from order_product op inner join orders o using(order_ID)
 inner join product p using(id);
 
 
--- Most ordered 5 products for each year will display in here
 create or replace view Most_Ordered as
 select year(ordered_date) as year, 
     Product_name, 
@@ -28,7 +26,6 @@ order by total_quantity desc
 limit 5;
 
 
--- Total number of sells and total income for each quarter for each year
 create or replace view Quarterly_sales_report as
 select year(ordered_date) as year,
 	quarter(ordered_date) as quarter, 
@@ -39,7 +36,6 @@ group by year, quarter
 order by year, quarter;
 
 
--- total orders for each product and total income for each quarter of each year
 create or replace view Quarter_Order_Details as
 select year(ordered_date) as year,
 	quarter(ordered_date) as quarter, 
@@ -51,15 +47,15 @@ group by year, quarter, product
 order by year, quarter, total_income;
 
 
--- create or replace view products_details as 
--- select p.id, 
---     price, 
---     product_name, 
---     product_weight,
---     product_description, 
---     unit_capacity, 
---     pi.product_image
---  from product p inner join product_image pi group by id order by id;
+create or replace view products_details as 
+select p.id, 
+    price, 
+    product_name, 
+    product_weight,
+    product_description, 
+    unit_capacity, 
+    pi.product_image
+ from product p inner join product_image pi group by id order by id;
 
 
 create or replace view get_cart_items as
@@ -77,12 +73,12 @@ inner join product p using (id);
 
 
 
--- create or replace view Working_Hours as 
---     select 'truck' as roll, truck_ID as ID, total_duration from truck union
---     select 'driver', nic, total_duration from driver union
---     select 'assistant', nic, total_duration from assistant; 
+create or replace view Working_Hours as 
+    select 'truck' as roll, truck_ID as ID, total_duration from truck union
+    select 'driver', nic, total_duration from driver union
+    select 'assistant', nic, total_duration from assistant; 
 
--- customer order details
+
 create or replace view Customer_Order_Report as
 select year(ordered_date) as year,
 	customer_email, 
@@ -95,7 +91,7 @@ select year(ordered_date) as year,
 customer c inner join orders_order_product o on c.email = o.customer_email 
 order by ordered_date desc;
 
--- total orders and total income for each product in each route for each year
+
 create or replace view cities_routes_report as 
 select city, 
     truck_route, 

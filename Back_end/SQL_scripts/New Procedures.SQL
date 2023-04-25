@@ -1,18 +1,3 @@
-drop procedure if exists save_to_cart;
-Delimiter $$
-create procedure Save_To_Cart(
-	email varchar(225),
-	id int,
-    quantity int)
-begin 
-	declare current_id int;
-	select cart_ID into current_id from cart where cart.email = email;
-    delete from cart_product where cart_ID = current_id and cart_product.id = id;
-	insert into cart_product values (default, id, current_id, quantity);
-end$$
-delimiter ;
-
-
 drop procedure if exists payment_proceed;
 DELIMITER $$
 CREATE PROCEDURE payment_proceed(
@@ -65,7 +50,7 @@ BEGIN
 	-- assign train -----------------------------------------------------------------------
 		select train_ID into current_train_id from train inner join 
 		train_route using(route_id) where store_ID in (select store_ID from
-		truck where truck_route = route) and 
+		truck where truck_route = route) and  
 		train.loaded_Capacity + tot_capacity <= train.capacity 
 		order by IF(SIGN(TIMEDIFF(train_route.depart_time, CURTIME())) = 1, 1, 0) limit 1;    
 		insert into transport values (default, current_train_id);
@@ -151,31 +136,16 @@ begin
 	limit 5;
 end $$
 
--- drop procedure if exists quarter_sales_report;
--- delimiter $$
--- create procedure quarter_sales_report(
--- 	r__year year)
--- begin
--- 	select year(ordered_date) as year,
--- 		quarter(ordered_date) as quarter, 
--- 		sum(quantity) as total_quantity,
--- 		sum(quantity * price) as total_income
--- 	FROM order_product inner join orders  using(order_ID) inner join product using(id)
--- 	group by year, quarter
--- 	order by year, quarter;    
--- END $$
-
--- drop procedure if exists quarter_order_report;
--- delimiter $$
--- create procedure quarter_order_report(
--- 	r_year year)
--- begin
--- 	select year(ordered_date) as year,
--- 		quarter(ordered_date) as quarter, 
--- 		product_name as product,
--- 		sum(quantity) as total_sells,
--- 		sum(quantity * price) as total_income
--- 	from order_product inner join orders  using(order_ID) inner join product using(id)
--- 	group by year, quarter, product
--- 	order by year, quarter, total_income;
--- end $$
+drop procedure if exists save_to_cart;
+Delimiter $$
+create procedure Save_To_Cart(
+	email varchar(225),
+	id int,
+    quantity int)
+begin 
+	declare current_id int;
+	select cart_ID into current_id from cart where cart.email = email;
+    delete from cart_product where cart_ID = current_id and cart_product.id = id;
+	insert into cart_product values (default, id, current_id, quantity);
+end$$
+delimiter ;

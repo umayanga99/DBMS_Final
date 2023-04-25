@@ -119,11 +119,11 @@ const Manager = () => {
                                     <td>{item.order_ID}</td>
                                     <td>{item.customer_address}</td>
                                     <td>{item.customer_email}</td>
-                                    <td>{item.ordered_date}</td>
+                                    <td>{item.ordered_date.slice(0,10)}</td>
                                     <td>{item.ordered_time}</td>
                                     <td>{item.truck_route}</td>
                                     <td>{item.tot_capacity}</td>
-                                    <td>{item.prefered_dilivery_date}</td>
+                                    <td>{item.prefered_dilivery_date.slice(0,10)}</td>
                                     <td>{item.total_price}</td>
                                 </tr>
                             )

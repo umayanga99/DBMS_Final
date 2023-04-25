@@ -224,7 +224,7 @@ const Reports = () => {
                                             <td>{item.customer_email}</td>
                                             <td>{item.customer_name}</td>
                                             <td>{item.customer_type}</td>
-                                            <td>{item.ordered_date}</td>
+                                            <td>{item.ordered_date.slice(0,10)}</td>
                                             <td>{item.product_name}</td>
                                             <td>{item.quantity}</td>
                                             <td>{item.total_price}</td>
@@ -240,7 +240,7 @@ const Reports = () => {
                         <th>City</th>
                         <th>Truck Route</th>
                         <th>Product Name</th>
-                        <th>Year</th>
+                        {/* <th>Year</th> */}
                         <th>Tot Orders</th>
                         <th>Total Income </th>
                     </tr>
@@ -253,7 +253,7 @@ const Reports = () => {
                                             <td>{item.city}</td>
                                             <td>{item.truck_route}</td>
                                             <td>{item.product_name}</td>
-                                            <td>{item.year}</td>
+                                            {/* <td>{item.year}</td> */}
                                             <td>{item.tot_orders}</td>
                                             <td>{item.total_income}</td>
                                         </tr>

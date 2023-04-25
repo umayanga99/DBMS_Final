@@ -1,5 +1,6 @@
 Delimiter $$
-CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225)) RETURNS tinyint(1)
+CREATE FUNCTION login_authentication(email varchar(255), pass varchar(225))
+	RETURNS tinyint(1)
     READS SQL DATA
 BEGIN
 	declare flag int default 0;
@@ -34,17 +35,3 @@ BEGIN
 	end if;
 END
 $$
-
--- Delimiter $$
--- CREATE FUNCTION Total_Price(
--- 	email varchar(255)) RETURNS int
---     DETERMINISTIC
--- BEGIN
--- 	declare tot int;
---     select sum(OP.quantity * P.price) into tot 
---     from Orders O right join Order_Product OP using (order_ID) 
---     left join Product P using (id) 
---     where O.customer_email = email;
--- RETURN tot;
--- END
--- $$

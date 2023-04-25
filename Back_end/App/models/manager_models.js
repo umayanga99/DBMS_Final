@@ -88,7 +88,7 @@ Manager.getMostOrdered = (year, result) => {
 };
 
 Manager.getCustomerOrderReport = (year, result) => {
-    mysql.query(`select customer_email,customer_name,customer_type,ordered_date,product_name,quantity,total_price from customer_order_report where year = ?`,[year],(err,res) => {
+    mysql.query(`select customer_email,customer_name,customer_type,ordered_date,product_name,quantity,total_price from customer_order_report where year = ? order by customer_type,customer_email,ordered_date`,[year],(err,res) => {
         if (err) {
             result(err, null);
             return;
