@@ -1,5 +1,4 @@
 const CartModel = require("../models/cart_models");
-//
 
 exports.saveCart = (req, res) => {
  
@@ -8,20 +7,15 @@ exports.saveCart = (req, res) => {
       message: "Content can not be empty!"
     });
   } 
-
- 
   const email = req.body.email;
-  const productID = req.body.productID;
-  console.log(cartID, productID);
+  const items = req.body.items;
   
-CartModel.saveCart(email, productID, (err, data) => {
+CartModel.saveCart(email, items, (err, data) => {
     if(err) {
        
         res.status(200).send({
             message: "Fail",
-            data: {
-                productId: "dsfsdf"
-            }
+            
         });
     } else {
         res.status(200).send({
@@ -31,14 +25,34 @@ CartModel.saveCart(email, productID, (err, data) => {
 } )
 }
 
+exports.clearCart = (req, res) => {
+ 
+    if (!req.body) {
+      res.status(400).send({  
+        message: "Content can not be empty!"
+      });
+    } 
+    const email = req.body.email;
+    
+  CartModel.clearCart(email, (err, data) => {
+      if(err) {
+         
+          res.status(200).send({
+              message: "Fail",
+              
+          });
+      } else {
+          res.status(200).send({
+              message: "Successfull"
+          });
+      }
+  } )
+  }
 
 exports.getCartItems = (req, res) => {
- 
+    let email = req.body.email;
 
-    let cartID = req.query.cartID;
-  
-   
- CartModel.GetCartItem(cartID, (err, data) => {
+ CartModel.getCartItem(email, (err, data) => {
      if(err) {
        
         res.status(200).send({
@@ -53,10 +67,7 @@ exports.getCartItems = (req, res) => {
              
              data:data
          });
-         console.log(data);
      }
  } )
  
  }
-
-

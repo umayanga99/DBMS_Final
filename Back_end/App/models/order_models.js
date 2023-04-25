@@ -19,58 +19,16 @@
     this.destination = file.destination;
  };
 
- Order.paymentProceed = (product_ID,cart_ID,email,order_ID,address,customer_email,quantity,date,time,route_ID,nearest_Branch,tot_capacity,state,destination) => {
-    mysql.query(`SELECT payment_proceed(${product_ID}, ${cart_ID}, ${email}, ${order_ID}, ${address}, ${customer_email}, ${quantity}, ${date}, ${time}, ${route_ID}, ${nearest_Branch}, ${tot_capacity}, ${state}, ${destination})`, (err,res) => {
-        if(err){
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        } else {
-            result(null, res);
-        }
-    });
-};
-
-Order.validate_Date = (prefered_dilivery_date) => {
-    mysql.query(`SELECT validate_Day(${prefered_dilivery_date})`, (err,res) => {
-        if(err){
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        } else {
-            result(null, res);
-        }
-    });
-};
-
- Order.placeOrder= (customerID,cartID,qunatity,address,destination,diliveryDate,result)=>{
-    mysql.query(`select place_order(${customerID},${cartID},${quantity},${address},${destination},${diliveryDate})`,(err,res)=>{
-        if(err){
-            console.log("error: ",err);
-            result(err,null);
-            return;
-        }
-        else{
-            result(null,true);
-            
-        }
-
-    });
-};
-
- Order.getTotal=(email,result)=>{
-
-    mysql.query(`CALL Total_Price(${email})`,(err,res)=>{
-        if(err){
-            console.log("error ",err);
-            result(err,null);
-            return;
-        }else{
-            result(null,res);
-        }
-        console.log("added : ",res);
-    });
-
+ Order.placeOrder = (email,prefered_dilivery_date,address,route,totalPrice,result) => {
+    let flag;
+     mysql.query(`call payment_proceed(?,?,?,?,?,@?)`, [email,prefered_dilivery_date,address,route,totalPrice,flag],(err,res) => {
+         if(err){
+             result(err, null);
+             return;
+         } else {
+             result(null, res);
+         }
+     });
  };
 
  module.exports=Order;

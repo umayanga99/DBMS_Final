@@ -1,5 +1,5 @@
 import React,{ useState} from 'react';
-import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, Spinner} from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Link, useNavigate } from "@reach/router";
+import { useNavigate } from "@reach/router";
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
@@ -16,40 +16,55 @@ const Register = () => {
     const [theme] = useThemeHook();
     const [type, setType] = React.useState('');
     const navigate = useNavigate();
-
+    const [value,setValue] = useState('');
     const handleChange = (event) => {
         setType(event.target.value);
     };
-
     const handleSubmit = (event)=>{
         const form = event.currentTarget;
         event.preventDefault();
         const password = form.password.value;
         const email = form.email.value;
+        const name = form.name.value;
         
-        if(password && email && number && type){
+        if(password && email && number && type && name){
             setLoading(true);
-            fetch('https://fakestoreapi.com/auth/signIn',{
+            fetch('http://localhost:8000/api/auth/addUser',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify({
-                    email: email,
+                    name: name,
                     password: password,
+                    email: email,
                     type: type,
-                    number: number
+                    TP: number
                 })
             }).then(res=>res.json())
-            .then(json=>sessionStorage.setItem("token", json.token))
+            .then((data) => {
+                
+                setValue(data);
+                if(data.message===1){
+                    alert("Email is already registered");
+                }
+                else if(data.message===0){
+                    localStorage.setItem('email', data.email);
+                    alert('register successfully');
+                    navigate('/', {replace: true});
+                }
+                else{
+                    alert("Error Occured");   
+                }
+            })
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
-                navigate('home', {replace: true})
-                alert('register successfully');
+                console.log(name, password, email ,type, number);
             })
         }
     }
+
     return (
        <Container className="py-5 mt-5">
             <Row className="justify-content-center mt-5">
@@ -63,11 +78,17 @@ const Register = () => {
                             <Form.Control name="email" type="email" placeholder="Email" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control name="name" type="text" placeholder="Name" required />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>Mobile number</Form.Label>
                             <PhoneInput
                                 international={false}
                                 country={'lk'}
                                 onlyCountries={['lk']}
+                                disableDropdown={true}
+                                countryCodeEditable={false}
                                 value={number}
                                 onChange={phone=> setNumber(phone)}
                                 className="text-dark"
@@ -89,9 +110,9 @@ const Register = () => {
                                     onChange={handleChange}
                                     required
                                     >
-                                    <MenuItem value={10}>Wholesalers</MenuItem>
-                                    <MenuItem value={20}>Retailers</MenuItem>
-                                    <MenuItem value={30}>End Customers</MenuItem>
+                                    <MenuItem value={"wholesaler"}>Wholesalers</MenuItem>
+                                    <MenuItem value={"retailer"}>Retailers</MenuItem>
+                                    <MenuItem value={"end customer"}>End Customers</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Box>

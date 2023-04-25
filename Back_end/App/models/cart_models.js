@@ -2,44 +2,46 @@ const mysql = require("./db.js");
 
 constructor
 const Cart = function(file) {
+  this.email=email;
+  this.items=items;
   this.title = file.title;
   this.description = file.description;
   this.published = file.published;
 };
 
+Cart.saveCart = (email,items, result) => {
+  for(let i =0;i<items.length;i++){
+    let subArray=items[i]
+    mysql.query("Call Save_To_Cart(?,?,?)",[email,subArray.id,subArray.quantity],(err,res)=>{
+      if(err){result(err,null);
+      return;}
+    })
+  }
+  }
 
-Cart.saveCart = (email,quantity, productID, result) => {
-    mysql.query(`CALL Add_to_cart(?,?,?)`,[email,quantity,productID], (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      } else {
-        result(null, true);
-      }
-      
-      console.log("added : ", res);
-    });
-  };
-
-
-Cart.GetCartItem =  (email, result) => {
-   mysql.query(`select * from cart_product where cart_id = (select cart_id from cart where cart.email=?)`,[email], (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, res);
-      return;
-    } else {
-      result(null, res);
-    }
-    // not found Tutorial with the id
-    console.log("returned : ", res);
-  });
+Cart.getCartItem=(email,result)=>{
+ mysql.query("select id,itemTotal,price,product_description,product_name,product_weight,quantity,unit_capacity from get_cart_items where get_cart_items.email = ? ",[email],(err,res)=>{
+  if(err){
+    result(err,null);
+    return;
+  }else{
+    result(null,res);
+    return;
+  }
+ })
 };
 
+Cart.clearCart=(email,result)=>{
+  mysql.query("Call clear_cart(?) ",[email],(err,res)=>{
+   if(err){
+     result(err,null);
+     return;
+   }else{
+     result(null,res);
+     return;
+   }
+  })
+ };
 
-  
 
-module.exports = Cart;
-
-
+module.exports=Cart;
